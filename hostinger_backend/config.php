@@ -13,9 +13,9 @@ ini_set('display_errors', 0);
 
 // Configurações de Conexão com o Banco de Dados Hostinger
 define('DB_HOST', 'localhost'); // Na Hostinger, o host do MySQL normalmente é 'localhost'
-define('DB_NAME', 'u123456789_fit60'); // Substitua pelo Nome do Banco criado no hPanel
-define('DB_USER', 'u123456789_admin'); // Substitua pelo Usuário do Banco criado no hPanel
-define('DB_PASS', 'SuaSenhaSeguraAqui123!'); // Substitua pela Senha configurada no hPanel
+define('DB_NAME', 'u907658030_60maisfitBD'); // Banco de dados do usuário
+define('DB_USER', 'u907658030_60maisfitBD'); // Usuário do banco
+define('DB_PASS', '60maisFit');             // Senha configurada
 define('DB_CHARSET', 'utf8mb4');
 
 // Chave de Segurança para autenticação da API (Token da Hostinger)
