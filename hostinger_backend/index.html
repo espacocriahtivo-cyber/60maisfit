@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>60+ FIT - Aplicativo de Musculação e Funcionalidade</title>
+    <style>
+        :root {
+            --primary: #4d7c0f;
+            --primary-dark: #3f6212;
+            --primary-light: #ecfdf5;
+            --accent: #84cc16;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --bg: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .logo-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            font-size: 22px;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .hero {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .tagline {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 40px;
+            line-height: 1.2;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 18px;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 32px auto;
+        }
+
+        .download-box {
+            background: white;
+            border-radius: 20px;
+            padding: 32px 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            border: 1.5px solid #e2e8f0;
+            max-width: 540px;
+            margin: 0 auto 40px auto;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--primary);
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            padding: 18px 36px;
+            border-radius: 14px;
+            text-decoration: none;
+            width: 100%;
+            transition: all 0.2s ease;
+            box-shadow: 0 10px 20px -3px rgba(77, 124, 15, 0.35);
+        }
+
+        .btn-download:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 24px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .feature-icon {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .steps-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 28px;
+            max-width: 720px;
+            margin: 40px auto;
+            border: 1px solid #cbd5e1;
+            text-align: left;
+        }
+
+        .step-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 18px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: var(--primary);
+            color: white;
+            font-weight: 800;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 60px;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo-badge">
+            <span class="logo-icon">60+</span>
+            <span>FIT</span>
+        </a>
+        <div>
+            <a href="api/api.php?action=test" style="font-size: 13px; color: var(--primary); font-weight: 700; text-decoration: none;">
+                🟢 Servidor Online
+            </a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <span class="tagline">Musculação e Funcionalidade para Idosos</span>
+        <h1>Seu Treino e Saúde na Palma da Mão</h1>
+        <p class="hero-desc">
+            Exercícios guiados por voz e vídeo, controle de pressão e saturação, acompanhamento profissional e planos sob medida para a sua longevidade.
+        </p>
+
+        <div class="download-box">
+            <h3 style="margin-bottom: 8px; font-size: 18px;">Instale o Aplicativo no Celular</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+                Versão oficial para Android • Compatível com smartphones e tablets
+            </p>
+
+            <a href="60fit.apk" class="btn-download" download>
+                📲 Baixar Aplicativo 60+ FIT (.APK)
+            </a>
+
+            <div style="margin-top: 16px; font-size: 12px; color: #94a3b8;">
+                Tamanho: ~25 MB • Atualizado com sincronização em nuvem
+            </div>
+        </div>
+    </section>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🏋️</div>
+            <div class="feature-title">Treinos Personalizados</div>
+            <div class="feature-text">Protocolos seguros para ganho de massa muscular, equilíbrio e prevenção de quedas.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🩺</div>
+            <div class="feature-title">Anamnese e Saúde</div>
+            <div class="feature-text">Registro de pressão arterial, frequência cardíaca e cuidados para artrose e hipertensão.</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">☁️</div>
+            <div class="feature-title">Nuvem Hostinger</div>
+            <div class="feature-text">Seus dados e planos sincronizados com segurança no banco MySQL da sua hospedagem.</div>
+        </div>
+    </div>
+
+    <div class="steps-box">
+        <h3 style="margin-bottom: 16px; font-size: 18px;">📱 Como instalar o APK no seu celular Android:</h3>
+        
+        <div class="step-row">
+            <div class="step-num">1</div>
+            <div>
+                <strong>Clique em "Baixar Aplicativo (.APK)"</strong>
+                <p style="font-size: 14px; color: var(--text-muted);">O download do arquivo <code>60fit.apk</code> começará no seu aparelho.</p>
+            </div>
+        </div>
+
+        <div class="step-row">
+            <div class="step-num">2</div>
+            <div>
+                <strong>Permita a instalação no navegador</strong>
+                <p style="font-size: 14px; color: var(--text-muted);">Quando o Android perguntar, selecione "Permitir desta fonte" ou "Instalar de fontes desconhecidas".</p>
+            </div>
+        </div>
+
+        <div class="step-row">
+            <div class="step-num">3</div>
+            <div>
+                <strong>Abra e aproveite!</strong>
+                <p style="font-size: 14px; color: var(--text-muted);">O ícone 60+ FIT aparecerá na tela de início do seu celular pronto para treinar.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 60+ FIT • Hospedado com alta performance na Hostinger</p>
+        <p style="margin-top: 6px; font-size: 12px;">
+            <a href="api/install.php" style="color: #64748b; text-decoration: none;">Painel de Instalação do Banco</a> • 
+            <a href="api/api.php?action=test" style="color: #64748b; text-decoration: none;">API Status</a>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "60+ FIT",
+  "description": "Aplicativo de musculação e funcionalidade para o público 60+, com treinos personalizados, acompanhamento de saúde, evolução física e interface acessível.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
