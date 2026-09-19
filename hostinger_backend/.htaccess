@@ -1,0 +1,10 @@
+# 60+ FIT - Configuração Apache / LiteSpeed (Hostinger)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Evitar erro 404 para favicon.ico
+    RewriteRule ^favicon\.ico$ - [R=204,L]
+</IfModule>
+
+# Forçar charset UTF-8
+AddDefaultCharset UTF-8
