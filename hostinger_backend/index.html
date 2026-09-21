@@ -391,36 +391,65 @@
         <!-- ======================================================== -->
         <!-- TELA 1: SPLASH (TELA INICIAL)                            -->
         <!-- ======================================================== -->
-        <section id="screen-1" class="screen-viewport active" style="background: radial-gradient(circle at center, #1b2819 0%, #080c08 100%); color: white; justify-content: space-between; padding: 20px 24px;">
-            <div class="status-bar dark-theme" style="padding: 0;">
+        <section id="screen-1" class="screen-viewport active" style="position: relative; overflow: hidden; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(6,14,7,0.7) 40%, rgba(4,9,5,0.96) 95%), url('img_splash_hero.jpg') center top / cover no-repeat, #081008; color: white; justify-content: space-between; padding: 20px 24px;">
+            <!-- Dynamic Green Wave Accents -->
+            <svg style="position: absolute; top: 0; left: 0; width: 140px; height: 140px; pointer-events: none; z-index: 1;" viewBox="0 0 140 140">
+                <path d="M 0 110 C 35 90 65 50 40 0" stroke="#76c00d" stroke-width="5" fill="none" />
+            </svg>
+            <svg style="position: absolute; bottom: 0; left: 0; width: 100%; height: 120px; pointer-events: none; z-index: 1;" viewBox="0 0 360 120" preserveAspectRatio="none">
+                <path d="M 0 55 C 55 75 105 105 0 120" stroke="#76c00d" stroke-width="5" fill="none" />
+                <path d="M 360 65 C 305 85 275 105 345 120" stroke="#76c00d" stroke-width="5" fill="none" />
+            </svg>
+
+            <!-- Status Bar -->
+            <div class="status-bar dark-theme" style="padding: 0; z-index: 2; position: relative;">
                 <span>9:41</span>
                 <div class="status-icons">📶 🔋</div>
             </div>
 
-            <!-- Imagem Central com Kettlebell e Terceira Idade Ativa -->
-            <div style="text-align: center; margin-top: 40px;">
-                <div style="width: 170px; height: 170px; margin: 0 auto 24px auto; border-radius: 50%; background: #132213; border: 4px solid var(--lime-main); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 35px rgba(115, 192, 25, 0.3);">
-                    <span style="font-size: 5rem;">🏋️‍♂️</span>
+            <!-- Top / Center Branding & Impact Headline -->
+            <div style="z-index: 2; position: relative; margin-top: 10px;">
+                <!-- Brand Logo -->
+                <div style="text-align: left;">
+                    <div style="display: flex; align-items: baseline; gap: 4px;">
+                        <span style="font-size: 3.5rem; font-weight: 900; color: #ffffff; letter-spacing: -2px; line-height: 1;">60</span>
+                        <span style="font-size: 2.2rem; font-weight: 900; color: #8cee00; vertical-align: super; line-height: 1;">+</span>
+                        <span style="font-size: 3.5rem; font-weight: 900; font-style: italic; color: #8cee00; letter-spacing: -1px; line-height: 1; margin-left: 2px;">FIT</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 6px; margin-top: 6px;">
+                        <span style="display: inline-block; width: 22px; height: 2px; background: #8cee00;"></span>
+                        <span style="font-size: 0.68rem; font-weight: 800; letter-spacing: 1.5px; color: #ffffff; text-transform: uppercase;">MUSCULAÇÃO E FUNCIONALIDADE</span>
+                        <span style="display: inline-block; width: 22px; height: 2px; background: #8cee00;"></span>
+                    </div>
                 </div>
 
-                <div class="brand-logo-text">
-                    <span>60<sup>+</sup></span><span class="fit">FIT</span>
+                <!-- Exact Headline from TELA INICIAL -->
+                <div style="text-align: left; margin-top: 36px;">
+                    <p style="font-size: 1.85rem; line-height: 1.25; font-weight: 800; color: #ffffff; margin: 0; text-shadow: 0 2px 12px rgba(0,0,0,0.85);">
+                        Mais saúde,<br>
+                        força e<br>
+                        <span style="color: #8cee00; font-style: italic; font-weight: 900;">independência</span><br>
+                        para o seu<br>
+                        dia a dia!
+                    </p>
                 </div>
-                <div class="brand-logo-caption">MUSCULAÇÃO E FUNCIONALIDADE</div>
-
-                <p style="font-size: 1.15rem; line-height: 1.4; color: #e2e8f0; margin-top: 35px; font-weight: 600;">
-                    Mais saúde,<br>força e independência<br>para o seu dia a dia!
-                </p>
             </div>
 
-            <!-- Ações Inferiores -->
-            <div style="margin-bottom: 20px;">
-                <button class="btn-primary" onclick="goToScreen(2)">
-                    <span style="font-size: 1.3rem;">➔</span> COMEÇAR
+            <!-- Bottom Actions: Pill Button COMEÇAR & Accessibility -->
+            <div style="margin-bottom: 18px; z-index: 2; position: relative;">
+                <button onclick="goToScreen(2)" style="background: linear-gradient(90deg, #7ee600 0%, #a4f51e 100%); color: #000; border: none; border-radius: 9999px; padding: 14px 28px; width: 92%; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 1.25rem; font-weight: 900; letter-spacing: 1.5px; box-shadow: 0 6px 25px rgba(126, 230, 0, 0.45); cursor: pointer; transition: transform 0.15s ease;">
+                    <div style="width: 34px; height: 34px; border-radius: 50%; background: #000000; color: #8cee00; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                        ➔
+                    </div>
+                    <span>COMEÇAR</span>
                 </button>
+
                 <div style="text-align: center; margin-top: 18px;">
-                    <a href="javascript:void(0)" onclick="toggleFontSize()" style="color: #cbd5e1; text-decoration: none; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">
-                        <span>♿</span> Acessibilidade
+                    <a href="javascript:void(0)" onclick="toggleFontSize()" style="color: #ffffff; text-decoration: none; font-size: 0.95rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                        <div style="width: 28px; height: 28px; border-radius: 50%; background: #5ba70d; display: flex; align-items: center; justify-content: center; font-size: 0.95rem;">
+                            🚹
+                        </div>
+                        Acessibilidade
                     </a>
                 </div>
             </div>
@@ -643,7 +672,7 @@
             <!-- Avatar Circular com Ícone de Câmera -->
             <div style="text-align: center; margin-bottom: 18px; position: relative; width: 100px; margin-left: auto; margin-right: auto;">
                 <div style="width: 90px; height: 90px; border-radius: 50%; background: #dcfce7; border: 3px solid var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; overflow: hidden; margin: 0 auto;">
-                    👵
+                    <img src="img_avatar_maria.jpg" onerror="this.outerHTML='<span style=\'font-size:2.8rem;\'>👵</span>'" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div style="position: absolute; bottom: 0; right: 6px; width: 32px; height: 32px; background: #0f172a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; border: 2px solid white; cursor: pointer;">
                     📷
@@ -809,8 +838,8 @@
 
             <!-- Header com Foto de Maria e Saudação -->
             <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px;">
-                <div style="width: 58px; height: 58px; border-radius: 50%; background: #dcfce7; border: 2.5px solid var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer;" onclick="goToScreen(5)">
-                    👵
+                <div style="width: 58px; height: 58px; border-radius: 50%; background: #dcfce7; border: 2.5px solid var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 2rem; overflow: hidden; cursor: pointer;" onclick="goToScreen(5)">
+                    <img src="img_avatar_maria.jpg" onerror="this.outerHTML='<span style=\'font-size:2rem;\'>👵</span>'" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div>
                     <h2 style="font-size: 1.3rem; font-weight: 900; color: var(--text-dark);">Olá, Maria!</h2>
@@ -985,13 +1014,13 @@
 
             <!-- Video Player Ilustrativo Interativo -->
             <div style="width: 100%; height: 210px; border-radius: 20px; background: #0f172a; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: white; margin-bottom: 14px;">
-                <span style="font-size: 4.5rem; opacity: 0.3;">👵🏃‍♀️</span>
+                <img src="img_exercise_knee.jpg" onerror="this.style.display='none'" style="position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.65;">
                 <!-- Play Button Overlay -->
-                <div onclick="playInstructionAudio()" style="position: absolute; width: 64px; height: 64px; border-radius: 50%; background: rgba(115, 192, 25, 0.9); display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4);">
+                <div onclick="playInstructionAudio()" style="position: absolute; width: 64px; height: 64px; border-radius: 50%; background: rgba(115, 192, 25, 0.9); display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.4); z-index: 2;">
                     ▶
                 </div>
                 <!-- Barra de Tempo Inferior -->
-                <div style="position: absolute; bottom: 8px; left: 14px; right: 14px; display: flex; justify-content: space-between; font-size: 0.75rem; color: #cbd5e1;">
+                <div style="position: absolute; bottom: 8px; left: 14px; right: 14px; display: flex; justify-content: space-between; font-size: 0.75rem; color: #cbd5e1; z-index: 2;">
                     <span>▶ 0:00 / 0:10</span>
                     <span>1080p</span>
                 </div>
