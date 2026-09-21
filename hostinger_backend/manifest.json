@@ -1,0 +1,23 @@
+{
+  "name": "60+ FIT - Musculação e Funcionalidade",
+  "short_name": "60+ FIT",
+  "description": "Aplicativo de treinos e saúde funcional para a terceira idade",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f0fdf4",
+  "theme_color": "#166534",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%23166534'/><text x='50%25' y='65%25' font-family='Arial,sans-serif' font-weight='900' font-size='90' fill='white' text-anchor='middle'>60+</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%23166534'/><text x='50%25' y='65%25' font-family='Arial,sans-serif' font-weight='900' font-size='240' fill='white' text-anchor='middle'>60+</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

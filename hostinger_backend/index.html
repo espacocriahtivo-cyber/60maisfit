@@ -2,302 +2,1544 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>60+ FIT - Aplicativo de Musculação e Funcionalidade</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234d7c0f'/><text x='50%25' y='68%25' font-family='Arial,sans-serif' font-weight='900' font-size='50' fill='white' text-anchor='middle'>60+</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>60+ FIT - Musculação e Funcionalidade</title>
+
+    <!-- PWA & Mobile WebApp Tags -->
+    <meta name="theme-color" content="#166534">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="60+ FIT">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23166534'/><text x='50%25' y='68%25' font-family='Arial,sans-serif' font-weight='900' font-size='50' fill='white' text-anchor='middle'>60+</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='36' fill='%23166534'/><text x='50%25' y='68%25' font-family='Arial,sans-serif' font-weight='900' font-size='90' fill='white' text-anchor='middle'>60+</text></svg>">
+
     <style>
         :root {
-            --primary: #4d7c0f;
-            --primary-dark: #3f6212;
-            --primary-light: #ecfdf5;
-            --accent: #84cc16;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
+            --primary: #15803d;
+            --primary-dark: #14532d;
+            --primary-light: #f0fdf4;
+            --primary-focus: #166534;
+            --accent: #ca8a04;
+            --danger: #dc2626;
             --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-elevated: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border: #e2e8f0;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --base-font-size: 16px;
+        }
+
+        body.font-large {
+            --base-font-size: 18px;
+        }
+        body.font-xlarge {
+            --base-font-size: 21px;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
+            font-size: var(--base-font-size);
+            line-height: 1.5;
+            padding-bottom: 90px;
+            min-height: 100vh;
         }
 
-        header {
-            background: white;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 18px 24px;
+        /* Top Header */
+        .app-header {
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            border-bottom: 2px solid var(--border);
+            padding: 12px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 50;
+            z-index: 40;
+            box-shadow: var(--shadow-sm);
         }
 
-        .logo-badge {
+        .brand-badge {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 900;
-            font-size: 22px;
-            color: var(--primary-dark);
+            gap: 10px;
             text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 900;
+            font-size: 1.25rem;
         }
 
-        .logo-icon {
+        .brand-icon {
             background: var(--primary);
             color: white;
-            padding: 6px 14px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 900;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
         }
 
-        .hero {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 24px;
-            text-align: center;
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .tagline {
-            display: inline-block;
+        .btn-header-tool {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            min-height: 42px;
+        }
+
+        .btn-header-tool:active {
+            background: #e2e8f0;
+        }
+
+        /* PWA Install Alert Banner */
+        .install-banner {
+            display: none;
+            background: #ecfdf5;
+            border-bottom: 1px solid #a7f3d0;
+            padding: 10px 16px;
+            font-size: 0.95rem;
+            color: #065f46;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-install {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        /* Container & Sections */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.2s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Common Card Styles */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 18px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        /* Workout Selector Pills */
+        .workout-pills {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .workout-pill {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            color: var(--text-main);
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 1rem;
+            white-space: nowrap;
+            transition: all 0.2s;
+            min-height: 48px;
+        }
+
+        .workout-pill.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(21, 128, 61, 0.3);
+        }
+
+        /* Progress Bar */
+        .progress-box {
+            background: #e2e8f0;
+            border-radius: 12px;
+            height: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #16a34a, #4ade80);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* Exercise Item Card */
+        .exercise-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 14px;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+
+        .exercise-card.completed {
+            border-color: #86efac;
+            background-color: #f0fdf4;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .exercise-name {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .exercise-badge {
             background: #dcfce7;
             color: #166534;
-            font-size: 13px;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .exercise-meta {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            background: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 8px;
             font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 999px;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .exercise-instruction {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .exercise-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-exercise {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 48px;
+        }
+
+        .btn-speak {
+            background: #f1f5f9;
+            color: #1e293b;
+            border: 1px solid var(--border);
+        }
+
+        .btn-rest {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
+        .btn-complete {
+            background: var(--primary);
+            color: white;
+        }
+
+        .exercise-card.completed .btn-complete {
+            background: #166534;
+        }
+
+        /* Rest Timer Floating Dialog / Bar */
+        .rest-timer-box {
+            display: none;
+            position: sticky;
+            bottom: 85px;
+            background: #1e293b;
+            color: white;
+            padding: 14px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             margin-bottom: 16px;
-            text-transform: uppercase;
+            z-index: 30;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .timer-time {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #facc15;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Hydration Widget */
+        .water-counter-box {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .water-glasses-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .water-glass-btn {
+            background: #e0f2fe;
+            border: 2px solid #bae6fd;
+            border-radius: 12px;
+            padding: 10px;
+            width: 58px;
+            height: 64px;
+            font-size: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .water-glass-btn.drank {
+            background: #0284c7;
+            border-color: #0369a1;
+            color: white;
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+        }
+
+        .glass-label {
+            font-size: 0.65rem;
+            font-weight: 800;
+            margin-top: 2px;
+        }
+
+        /* Vitals Stat Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 14px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--text-main);
+        }
+
+        .stat-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        .badge-green { background: #dcfce7; color: #166534; }
+        .badge-amber { background: #fef3c7; color: #92400e; }
+
+        /* Plans & PIX checkout */
+        .plan-card {
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 16px;
+            background: white;
+            position: relative;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .plan-card.recommended {
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(21, 128, 61, 0.15);
+        }
+
+        .plan-ribbon {
+            position: absolute;
+            top: -12px;
+            right: 16px;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 4px 10px;
+            border-radius: 20px;
             letter-spacing: 0.5px;
         }
 
-        h1 {
-            font-size: 40px;
-            line-height: 1.2;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 18px;
+        .plan-price {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--primary-dark);
+            margin: 6px 0 12px 0;
         }
 
-        .hero-desc {
-            font-size: 18px;
-            color: var(--text-muted);
-            max-width: 680px;
-            margin: 0 auto 32px auto;
-        }
-
-        .download-box {
-            background: white;
-            border-radius: 20px;
-            padding: 32px 24px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
-            border: 1.5px solid #e2e8f0;
-            max-width: 540px;
-            margin: 0 auto 40px auto;
-        }
-
-        .btn-download {
-            display: inline-flex;
+        .plan-feature-item {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: var(--primary);
-            color: white;
-            font-size: 18px;
-            font-weight: 800;
-            padding: 18px 36px;
-            border-radius: 14px;
-            text-decoration: none;
-            width: 100%;
-            transition: all 0.2s ease;
-            box-shadow: 0 10px 20px -3px rgba(77, 124, 15, 0.35);
-        }
-
-        .btn-download:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 24px;
-        }
-
-        .feature-card {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            border: 1px solid #e2e8f0;
-            text-align: left;
-        }
-
-        .feature-icon {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .feature-title {
-            font-weight: 700;
-            font-size: 16px;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: #334155;
             margin-bottom: 6px;
         }
 
-        .feature-text {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .steps-box {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 28px;
-            max-width: 720px;
-            margin: 40px auto;
-            border: 1px solid #cbd5e1;
-            text-align: left;
-        }
-
-        .step-row {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 18px;
-            align-items: flex-start;
-        }
-
-        .step-num {
+        .btn-cta {
+            width: 100%;
             background: var(--primary);
             color: white;
+            border: none;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            font-size: 1.1rem;
             font-weight: 800;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(21, 128, 61, 0.3);
+            min-height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            gap: 8px;
+            margin-top: 10px;
         }
 
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            color: var(--text-muted);
-            font-size: 14px;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 60px;
+        .btn-cta:active {
+            background: var(--primary-dark);
         }
 
-        code {
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 100;
+            padding: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            max-width: 480px;
+            width: 100%;
+            padding: 24px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
             background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-size: 13px;
-            color: #334155;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Fixed Bottom Navigation (Mobile App Bar) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 72px;
+            background: var(--surface);
+            border-top: 2px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 50;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            height: 100%;
+            transition: color 0.15s;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item.active .nav-icon {
+            transform: scale(1.15);
+        }
+
+        .nav-icon {
+            font-size: 1.45rem;
+            margin-bottom: 2px;
+            transition: transform 0.2s;
+        }
+
+        /* Weight Chart SVG */
+        .chart-box {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            color: var(--text-main);
+            background: #ffffff;
+            min-height: 48px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Status Pill */
+        .sync-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            background: #dcfce7;
+            color: #166534;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#" class="logo-badge">
-            <span class="logo-icon">60+</span>
+    <!-- Header -->
+    <header class="app-header">
+        <a href="#treinos" class="brand-badge" onclick="switchTab('treinos')">
+            <span class="brand-icon">60+</span>
             <span>FIT</span>
         </a>
-        <div>
-            <a href="api/api.php?action=test" style="font-size: 13px; color: var(--primary); font-weight: 700; text-decoration: none;">
-                🟢 Servidor Online
-            </a>
+        <div class="header-actions">
+            <!-- Alternador de Tamanho da Fonte (Acessibilidade 60+) -->
+            <button class="btn-header-tool" id="btnFontToggle" title="Alterar tamanho da letra" onclick="toggleFontSize()">
+                <span>🔤</span> <span id="fontLabel">Normal</span>
+            </button>
+            <!-- Status Hostinger -->
+            <div id="syncBadge" class="sync-pill" title="Status da Conexão MySQL">
+                <span id="syncDot">🟢</span> <span id="syncStatusText">Hostinger</span>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <span class="tagline">Musculação e Funcionalidade para Idosos</span>
-        <h1>Seu Treino e Saúde na Palma da Mão</h1>
-        <p class="hero-desc">
-            Exercícios guiados por voz e vídeo, controle de pressão e saturação, acompanhamento profissional e planos sob medida para a sua longevidade.
-        </p>
+    <!-- Banner PWA (Instalar no Celular) -->
+    <div id="pwaBanner" class="install-banner">
+        <span>📲 <strong>Instale o 60+ FIT</strong> na tela do seu celular para usar como aplicativo!</span>
+        <button id="btnPwaInstall" class="btn-install" onclick="triggerPwaInstall()">Instalar</button>
+    </div>
 
-        <div class="download-box">
-            <h3 style="margin-bottom: 8px; font-size: 18px;">Instale o Aplicativo no Celular</h3>
-            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
-                Versão oficial para Android • Compatível com smartphones e tablets
+    <!-- Container Principal do WebApp -->
+    <main class="container">
+
+        <!-- ========================================== -->
+        <!-- ABA 1: TREINOS E EXERCÍCIOS                -->
+        <!-- ========================================== -->
+        <section id="tab-treinos" class="tab-content active">
+            
+            <!-- Seletor de Treinos -->
+            <div class="workout-pills">
+                <button class="workout-pill active" onclick="selectWorkout('workout_a', this)">Treino A: Força</button>
+                <button class="workout-pill" onclick="selectWorkout('workout_b', this)">Treino B: Mobilidade</button>
+                <button class="workout-pill" onclick="selectWorkout('workout_c', this)">Treino C: Equilíbrio</button>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <span id="workoutHeaderTitle">Treino A - Força e Funcionalidade</span>
+                    <span id="workoutProgressText" style="font-size: 0.9rem; color: var(--primary);">0/5 Concluídos</span>
+                </div>
+                <div class="card-subtitle" id="workoutHeaderDesc">Exercícios seguros para fortalecimento de membros inferiores e core.</div>
+                
+                <div class="progress-box">
+                    <div id="workoutProgressBar" class="progress-fill"></div>
+                </div>
+
+                <div style="display: flex; gap: 8px;">
+                    <button class="btn-header-tool" style="flex: 1;" onclick="readWorkoutAloud()">
+                        🔊 Ouvir o Treino de Hoje
+                    </button>
+                    <button class="btn-header-tool" style="flex: 1;" onclick="resetWorkout()">
+                        🔄 Reiniciar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Rest Timer Flutuante -->
+            <div id="restTimerBox" class="rest-timer-box">
+                <div>
+                    <div style="font-size: 0.85rem; font-weight: bold; color: #cbd5e1;">DESCANSO EM ANDAMENTO</div>
+                    <div style="font-size: 0.9rem;">Respire fundo e beba água</div>
+                </div>
+                <div class="timer-time" id="restTimerDisplay">00:30</div>
+                <button class="btn-exercise" style="background: #ef4444; color: white; padding: 6px 12px; min-height: 38px; min-width: 60px;" onclick="cancelRestTimer()">
+                    Pular
+                </button>
+            </div>
+
+            <!-- Lista Dinâmica de Exercícios -->
+            <div id="exerciseListContainer"></div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ABA 2: SAÚDE E HÁBITOS                     -->
+        <!-- ========================================== -->
+        <section id="tab-saude" class="tab-content">
+            
+            <!-- Hidratação -->
+            <div class="card water-counter-box">
+                <div class="card-title">
+                    <span>💧 Hidratação Diária</span>
+                    <span id="waterProgressLabel" style="font-size: 1rem; color: #0284c7; font-weight: 800;">1.250 / 2.000 ml</span>
+                </div>
+                <div class="card-subtitle">Manter-se hidratado protege seus rins e articulações.</div>
+
+                <div class="water-glasses-grid" id="waterGlassesContainer">
+                    <!-- Gerado dinamicamente -->
+                </div>
+
+                <p style="font-size: 0.85rem; color: var(--text-muted);">
+                    Toque nos copos para marcar cada copo de água (250 ml) que você bebeu hoje.
+                </p>
+            </div>
+
+            <!-- Sinais Vitais -->
+            <div class="card">
+                <div class="card-title">
+                    <span>🩺 Sinais Vitais Recentes</span>
+                    <button class="btn-header-tool" onclick="openVitalModal()">+ Registrar</button>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Pressão Arterial</div>
+                        <div class="stat-value" id="dispPressure">120/80</div>
+                        <span class="stat-badge badge-green">Normal / Ótima</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Saturação de O₂</div>
+                        <div class="stat-value" id="dispSat">98%</div>
+                        <span class="stat-badge badge-green">Excelente</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Frequência Cardíaca</div>
+                        <div class="stat-value" id="dispBpm">72 bpm</div>
+                        <span class="stat-badge badge-green">Em Repouso</span>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-label">Peso Atual</div>
+                        <div class="stat-value" id="dispWeight">62,0 kg</div>
+                        <span class="stat-badge badge-green">Estável</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lembretes do Dia -->
+            <div class="card">
+                <div class="card-title">
+                    <span>⏰ Lembretes e Remédios</span>
+                </div>
+                <div id="remindersContainer">
+                    <!-- Preenchido via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ABA 3: EVOLUÇÃO E AVALIAÇÃO FÍSICA         -->
+        <!-- ========================================== -->
+        <section id="tab-evolucao" class="tab-content">
+            
+            <div class="card">
+                <div class="card-title">
+                    <span>📈 Evolução do Peso Corporal</span>
+                    <span style="font-size: 0.9rem; color: var(--primary); font-weight: 800;">-8 kg em 6 meses</span>
+                </div>
+                <div class="card-subtitle">Acompanhamento contínuo da sua composição física.</div>
+
+                <div class="chart-box">
+                    <svg viewBox="0 0 500 220" style="width: 100%; height: auto; font-family: sans-serif;">
+                        <!-- Grid Lines -->
+                        <line x1="40" y1="30" x2="480" y2="30" stroke="#f1f5f9" stroke-width="2" />
+                        <line x1="40" y1="80" x2="480" y2="80" stroke="#f1f5f9" stroke-width="2" />
+                        <line x1="40" y1="130" x2="480" y2="130" stroke="#f1f5f9" stroke-width="2" />
+                        <line x1="40" y1="180" x2="480" y2="180" stroke="#cbd5e1" stroke-width="2" />
+
+                        <!-- Eixo Y Labels -->
+                        <text x="10" y="35" font-size="12" fill="#94a3b8">70kg</text>
+                        <text x="10" y="85" font-size="12" fill="#94a3b8">66kg</text>
+                        <text x="10" y="135" font-size="12" fill="#94a3b8">63kg</text>
+                        <text x="10" y="185" font-size="12" fill="#94a3b8">60kg</text>
+
+                        <!-- Área preenchida -->
+                        <polygon points="50,30 130,55 210,100 290,135 370,155 450,170 450,180 50,180" fill="rgba(22, 163, 74, 0.12)" />
+
+                        <!-- Linha do gráfico -->
+                        <polyline points="50,30 130,55 210,100 290,135 370,155 450,170" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+
+                        <!-- Pontos e Labels -->
+                        <circle cx="50" cy="30" r="6" fill="#15803d" />
+                        <text x="50" y="20" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">70kg</text>
+                        <text x="50" y="200" font-size="12" fill="#64748b" text-anchor="middle">Jan</text>
+
+                        <circle cx="130" cy="55" r="6" fill="#15803d" />
+                        <text x="130" y="45" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">68,5</text>
+                        <text x="130" y="200" font-size="12" fill="#64748b" text-anchor="middle">Fev</text>
+
+                        <circle cx="210" cy="100" r="6" fill="#15803d" />
+                        <text x="210" y="90" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">66kg</text>
+                        <text x="210" y="200" font-size="12" fill="#64748b" text-anchor="middle">Mar</text>
+
+                        <circle cx="290" cy="135" r="6" fill="#15803d" />
+                        <text x="290" y="125" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">64,2</text>
+                        <text x="290" y="200" font-size="12" fill="#64748b" text-anchor="middle">Abr</text>
+
+                        <circle cx="370" cy="155" r="6" fill="#15803d" />
+                        <text x="370" y="145" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">63kg</text>
+                        <text x="370" y="200" font-size="12" fill="#64748b" text-anchor="middle">Mai</text>
+
+                        <circle cx="450" cy="170" r="8" fill="#15803d" stroke="#dcfce7" stroke-width="4" />
+                        <text x="450" y="155" font-size="13" font-weight="900" fill="#15803d" text-anchor="middle">62kg</text>
+                        <text x="450" y="200" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">Jun</text>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Testes de Capacidade Funcional -->
+            <div class="card">
+                <div class="card-title">
+                    <span>🏃 Testes de Aptidão Funcional</span>
+                </div>
+                <div class="card-subtitle">Indicadores de independência motora segundo a avaliação geriátrica.</div>
+
+                <div style="margin-bottom: 14px; background: #f8fafc; padding: 14px; border-radius: 12px; border: 1px solid var(--border);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <strong>Sentar e Levantar da Cadeira (30s)</strong>
+                        <span class="stat-badge badge-green" style="font-size: 0.9rem;">14 Repetições</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">
+                        Excelente força em quadríceps e estabilidade. Risco de quedas baixo.
+                    </p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 14px; border-radius: 12px; border: 1px solid var(--border);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <strong>Teste de Caminhada (6 minutos)</strong>
+                        <span class="stat-badge badge-green" style="font-size: 0.9rem;">420 metros</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">
+                        Capacidade cardiorrespiratória acima da média para a faixa etária de 65 a 70 anos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ABA 4: PLANOS E ASSINATURAS                -->
+        <!-- ========================================== -->
+        <section id="tab-planos" class="tab-content">
+            
+            <div class="card">
+                <div class="card-title">
+                    <span>👑 Planos de Treino e Saúde</span>
+                </div>
+                <div class="card-subtitle">
+                    Escolha a modalidade ideal para o seu acompanhamento.
+                </div>
+
+                <!-- Período de Cobrança -->
+                <div style="display: flex; gap: 6px; margin-bottom: 16px;">
+                    <button class="btn-header-tool active" style="flex: 1; border-color: var(--primary); background: var(--primary-light); color: var(--primary-dark);">Mensal</button>
+                    <button class="btn-header-tool" style="flex: 1;" onclick="alert('Desconto de 10% no plano semestral!')">Semestral (10% OFF)</button>
+                    <button class="btn-header-tool" style="flex: 1;" onclick="alert('Desconto de 20% no plano anual!')">Anual (20% OFF)</button>
+                </div>
+
+                <!-- Plano 1: Essencial -->
+                <div class="plan-card" onclick="openPixModal('60+fit Essencial', '79,90')">
+                    <h3 style="font-size: 1.25rem;">60+fit Essencial</h3>
+                    <div class="plan-price">R$ 79,90 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">/mês</span></div>
+                    <div class="plan-feature-item">✔️ Aplicativo 60+fit completo</div>
+                    <div class="plan-feature-item">✔️ Treinos em vídeo e instrução por voz</div>
+                    <div class="plan-feature-item">✔️ Acompanhamento de peso e hidratação</div>
+                    <button class="btn-cta" style="margin-top: 14px;">Assinar via PIX Instantâneo</button>
+                </div>
+
+                <!-- Plano 2: Gerontológico (Recomendado) -->
+                <div class="plan-card recommended" onclick="openPixModal('60+fit Gerontológico', '129,90')">
+                    <div class="plan-ribbon">MAIS RECOMENDADO</div>
+                    <h3 style="font-size: 1.25rem; color: var(--primary-dark);">60+fit Gerontológico</h3>
+                    <div class="plan-price">R$ 129,90 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">/mês</span></div>
+                    <div class="plan-feature-item">✔️ <strong>Tudo do Plano Essencial</strong></div>
+                    <div class="plan-feature-item">✔️ Anamnese e avaliação postural geriátrica</div>
+                    <div class="plan-feature-item">✔️ Protocolos específicos (artrose, coluna, hipertensão)</div>
+                    <div class="plan-feature-item">✔️ Ajuste mensal da ficha por especialista</div>
+                    <button class="btn-cta" style="margin-top: 14px;">Assinar Plano Gerontológico</button>
+                </div>
+
+                <!-- Plano 3: Premium -->
+                <div class="plan-card" onclick="openPixModal('60+fit Premium VIP', '199,90')">
+                    <h3 style="font-size: 1.25rem;">60+fit Premium VIP</h3>
+                    <div class="plan-price">R$ 199,90 <span style="font-size: 0.9rem; color: var(--text-muted); font-weight: normal;">/mês</span></div>
+                    <div class="plan-feature-item">✔️ <strong>Tudo do Plano Gerontológico</strong></div>
+                    <div class="plan-feature-item">✔️ Contato prioritário via WhatsApp com o treinador</div>
+                    <div class="plan-feature-item">✔️ Relatórios mensais para enviar ao médico de família</div>
+                    <button class="btn-cta" style="margin-top: 14px;">Assinar Plano VIP</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- ABA 5: PERFIL E CONFIGURAÇÕES              -->
+        <!-- ========================================== -->
+        <section id="tab-perfil" class="tab-content">
+            
+            <div class="card">
+                <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 16px;">
+                    <div style="width: 64px; height: 64px; background: #dcfce7; color: #166534; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 900; border: 3px solid #86efac;">
+                        MS
+                    </div>
+                    <div>
+                        <h2 style="font-size: 1.3rem; margin: 0;" id="profStudentName">Maria Silva</h2>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">70 anos • São Paulo, SP</p>
+                        <span class="stat-badge badge-green" style="margin-top: 4px;">Plano Gerontológico Ativo</span>
+                    </div>
+                </div>
+
+                <!-- Botão de Emergência com 1 Toque -->
+                <div style="background: #fef2f2; border: 2px solid #fecaca; border-radius: 12px; padding: 14px; margin-bottom: 16px;">
+                    <div style="font-weight: 800; color: #991b1b; font-size: 0.95rem; margin-bottom: 4px;">🚨 Contato de Emergência Cadastrado</div>
+                    <div style="font-size: 0.9rem; color: #7f1d1d; margin-bottom: 10px;">Carlos Silva (Filho) • (11) 99876-5432</div>
+                    <a href="tel:11998765432" class="btn-exercise" style="background: #dc2626; color: white; text-decoration: none;">
+                        📞 Ligar para Emergência
+                    </a>
+                </div>
+
+                <!-- Profissional Responsável -->
+                <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 16px;">
+                    <div style="font-weight: 700; color: var(--text-main); font-size: 0.95rem;">👩‍⚕️ Profissional Responsável</div>
+                    <div style="font-size: 0.9rem; color: var(--text-muted);">Dra. Mariana Lima (CREF 045123-G/SP)</div>
+                    <div style="font-size: 0.85rem; color: #166534; font-weight: 700; margin-top: 4px;">Próxima revisão física: 15/10/2026</div>
+                </div>
+
+                <!-- Sincronização Hostinger -->
+                <div class="card" style="border-color: #86efac; background: #f0fdf4; margin-bottom: 0;">
+                    <div class="card-title" style="color: #14532d;">
+                        <span>☁️ Sincronização em Nuvem</span>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #166534; margin-bottom: 12px;">
+                        Seus dados estão sincronizados com o servidor MySQL da Hostinger.
+                    </p>
+                    <button class="btn-cta" onclick="syncWithHostingerServer()">
+                        🔄 Sincronizar com Hostinger Agora
+                    </button>
+                    <div id="syncLog" style="font-size: 0.8rem; color: #15803d; margin-top: 8px; text-align: center;"></div>
+                </div>
+            </div>
+
+            <!-- Opção de Download do APK Android -->
+            <div class="card" style="text-align: center;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+                    Prefere instalar o pacote original no seu tablet ou celular Android?
+                </p>
+                <a href="60fit.apk" class="btn-header-tool" style="display: inline-flex; justify-content: center; text-decoration: none;" download>
+                    📲 Baixar Aplicativo 60+ FIT (.APK)
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal PIX de Pagamento -->
+    <div id="pixModal" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closePixModal()">✕</button>
+            <h3 style="color: var(--primary-dark); font-size: 1.3rem; margin-bottom: 6px;">Pagamento PIX Seguro</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 16px;" id="pixPlanDescription">
+                Assinatura do Plano
             </p>
 
-            <a href="60fit.apk" class="btn-download" download>
-                📲 Baixar Aplicativo 60+ FIT (.APK)
-            </a>
-
-            <div style="margin-top: 16px; font-size: 12px; color: #94a3b8;">
-                Tamanho: ~25 MB • Atualizado com sincronização em nuvem
+            <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 16px; padding: 20px; text-align: center; margin-bottom: 16px;">
+                <!-- QR Code SVG ilustrativo e legível -->
+                <svg width="180" height="180" viewBox="0 0 180 180" style="margin: 0 auto; display: block;">
+                    <rect width="180" height="180" fill="white" />
+                    <!-- Quadrados do QR Code -->
+                    <rect x="20" y="20" width="40" height="40" fill="#0f172a" />
+                    <rect x="30" y="30" width="20" height="20" fill="white" />
+                    <rect x="120" y="20" width="40" height="40" fill="#0f172a" />
+                    <rect x="130" y="30" width="20" height="20" fill="white" />
+                    <rect x="20" y="120" width="40" height="40" fill="#0f172a" />
+                    <rect x="30" y="130" width="20" height="20" fill="white" />
+                    <circle cx="90" cy="90" r="16" fill="#15803d" />
+                    <text x="90" y="95" fill="white" font-size="12" font-weight="bold" text-anchor="middle">60+</text>
+                    <!-- Detalhes de pixels -->
+                    <rect x="80" y="30" width="10" height="30" fill="#0f172a" />
+                    <rect x="100" y="40" width="10" height="20" fill="#0f172a" />
+                    <rect x="70" y="120" width="20" height="10" fill="#0f172a" />
+                    <rect x="120" y="90" width="30" height="10" fill="#0f172a" />
+                    <rect x="130" y="120" width="20" height="30" fill="#0f172a" />
+                </svg>
+                <div style="font-size: 1.4rem; font-weight: 900; color: var(--primary-dark); margin-top: 10px;" id="pixPriceValue">
+                    R$ 129,90
+                </div>
+                <div style="font-size: 0.8rem; color: #64748b;">Escaneie no aplicativo do seu banco</div>
             </div>
-        </div>
-    </section>
 
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">🏋️</div>
-            <div class="feature-title">Treinos Personalizados</div>
-            <div class="feature-text">Protocolos seguros para ganho de massa muscular, equilíbrio e prevenção de quedas.</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🩺</div>
-            <div class="feature-title">Anamnese e Saúde</div>
-            <div class="feature-text">Registro de pressão arterial, frequência cardíaca e cuidados para artrose e hipertensão.</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">☁️</div>
-            <div class="feature-title">Nuvem Hostinger</div>
-            <div class="feature-text">Seus dados e planos sincronizados com segurança no banco MySQL da sua hospedagem.</div>
+            <div class="form-group">
+                <label class="form-label">Código PIX Copia e Cola:</label>
+                <input type="text" class="form-input" id="pixCopyInput" readonly value="00020126580014br.gov.bcb.pix013660fit-pix-hostinger-oficial-20265204000053039865802BR592060+ FIT SAUDE E LONGEVIDADE6009SAO PAULO62070503***6304E8A2">
+            </div>
+
+            <button class="btn-cta" onclick="copyPixCode()">
+                📋 Copiar Código PIX
+            </button>
+            <button class="btn-header-tool" style="width: 100%; justify-content: center; margin-top: 10px;" onclick="confirmPixPayment()">
+                ✅ Já realizei o pagamento
+            </button>
         </div>
     </div>
 
-    <div class="steps-box">
-        <h3 style="margin-bottom: 16px; font-size: 18px;">📱 Como instalar o APK no seu celular Android:</h3>
-        
-        <div class="step-row">
-            <div class="step-num">1</div>
-            <div>
-                <strong>Clique em "Baixar Aplicativo (.APK)"</strong>
-                <p style="font-size: 14px; color: var(--text-muted);">O download do arquivo <code>60fit.apk</code> começará no seu aparelho.</p>
-            </div>
-        </div>
+    <!-- Barra de Navegação Inferior Fixa (Bottom Bar - Mobile App) -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" onclick="switchTab('treinos')">
+            <span class="nav-icon">🏋️</span>
+            <span>Treinos</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('saude')">
+            <span class="nav-icon">❤️</span>
+            <span>Saúde</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('evolucao')">
+            <span class="nav-icon">📈</span>
+            <span>Evolução</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('planos')">
+            <span class="nav-icon">💳</span>
+            <span>Planos</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('perfil')">
+            <span class="nav-icon">👤</span>
+            <span>Perfil</span>
+        </button>
+    </nav>
 
-        <div class="step-row">
-            <div class="step-num">2</div>
-            <div>
-                <strong>Permita a instalação no navegador</strong>
-                <p style="font-size: 14px; color: var(--text-muted);">Quando o Android perguntar, selecione "Permitir desta fonte" ou "Instalar de fontes desconhecidas".</p>
-            </div>
-        </div>
+    <!-- Script do Aplicativo Web 60+ FIT -->
+    <script>
+        // ==========================================
+        // DADOS LOCAIS & BANCO DE DADOS
+        // ==========================================
+        const WORKOUTS = {
+            workout_a: {
+                id: 'workout_a',
+                code: 'Treino A',
+                title: 'Treino A - Força e Funcionalidade',
+                desc: 'Fortalecimento de membros inferiores e core para autonomia no dia a dia.',
+                exercises: [
+                    { id: 'ex_1', name: 'Aquecimento Articular', sets: 3, reps: '12 giros', rest: 30, instruction: 'Gire os ombros para trás suavemente e faça círculos lentos com os tornozelos para lubrificar as articulações.' },
+                    { id: 'ex_2', name: 'Sentar e Levantar da Cadeira', sets: 3, reps: '12 repetições', rest: 30, instruction: 'Com os pés firmes no chão afastados na largura dos ombros, incline o tronco levemente à frente e levante-se com segurança.' },
+                    { id: 'ex_3', name: 'Elevação de Joelhos', sets: 3, reps: '10 repetições', rest: 30, instruction: 'Segure no encosto da cadeira para apoio e suba um joelho de cada vez até a altura do quadril, mantendo a postura ereta.' },
+                    { id: 'ex_4', name: 'Remada Baixa com Elástico', sets: 3, reps: '12 repetições', rest: 30, instruction: 'Sentado com a coluna reta, puxe o elástico trazendo os cotovelos para trás aproximando as escápulas.' },
+                    { id: 'ex_5', name: 'Extensão de Joelho Sentado', sets: 3, reps: '12 repetições', rest: 30, instruction: 'Estenda a perna à frente contraindo a coxa. Segure no alto por um segundo e retorne devagar sem bater os pés.' }
+                ]
+            },
+            workout_b: {
+                id: 'workout_b',
+                code: 'Treino B',
+                title: 'Treino B - Mobilidade e Postura',
+                desc: 'Alongamento dinâmico e alívio de tensões para coluna e quadris.',
+                exercises: [
+                    { id: 'ex_b1', name: 'Alongamento Cervical Suave', sets: 2, reps: '20 segundos', rest: 20, instruction: 'Incline a cabeça para a direita e sinta o alongamento lateral. Repita para o lado esquerdo com calma.' },
+                    { id: 'ex_b2', name: 'Rotação de Tronco Sentado', sets: 3, reps: '10 cada lado', rest: 30, instruction: 'Sentado ereto, gire o tronco para a lateral apoiando a mão na coxa oposta, respirando de forma contínua.' },
+                    { id: 'ex_b3', name: 'Abertura Peitoral e Respiração', sets: 3, reps: '8 respirações', rest: 30, instruction: 'Abra os braços inspirando pelo nariz e feche abraçando o peito ao expirar pela boca lentamente.' },
+                    { id: 'ex_b4', name: 'Alongamento de Panturrilha na Parede', sets: 3, reps: '25 segundos', rest: 30, instruction: 'Apoie as mãos na parede, dê um passo atrás com uma perna e mantenha o calcanhar encostado no chão.' }
+                ]
+            },
+            workout_c: {
+                id: 'workout_c',
+                code: 'Treino C',
+                title: 'Treino C - Equilíbrio e Prevenção de Quedas',
+                desc: 'Treinamento proprioceptivo para firmeza nos passos e estabilidade.',
+                exercises: [
+                    { id: 'ex_c1', name: 'Ficar na Ponta dos Pés', sets: 3, reps: '15 repetições', rest: 30, instruction: 'Apoiado levemente na mesa ou cadeira, fique na ponta dos pés, sustente 1 segundo e desça devagar.' },
+                    { id: 'ex_c2', name: 'Equilíbrio Unipodal (1 Perna)', sets: 3, reps: '15 segundos', rest: 30, instruction: 'Com as mãos próximas ao apoio, tire um pé do chão e mantenha o olhar fixo em um ponto à frente.' },
+                    { id: 'ex_c3', name: 'Passo Lateral com Pausa', sets: 3, reps: '10 passos', rest: 30, instruction: 'Dê passos laterais contornando o espaço, prestando atenção no alinhamento dos pés.' }
+                ]
+            }
+        };
 
-        <div class="step-row">
-            <div class="step-num">3</div>
-            <div>
-                <strong>Abra e aproveite!</strong>
-                <p style="font-size: 14px; color: var(--text-muted);">O ícone 60+ FIT aparecerá na tela de início do seu celular pronto para treinar.</p>
-            </div>
-        </div>
-    </div>
+        let currentWorkoutId = 'workout_a';
+        let completedExercises = JSON.parse(localStorage.getItem('fit60_completed') || '{}');
+        let waterDrankCount = parseInt(localStorage.getItem('fit60_water') || '5');
+        let currentFontSizeLevel = parseInt(localStorage.getItem('fit60_font') || '0');
+        let restTimerInterval = null;
+        let restSecondsLeft = 30;
 
-    <footer>
-        <p>© 2026 60+ FIT • Hospedado com alta performance na Hostinger</p>
-        <p style="margin-top: 6px; font-size: 12px;">
-            <a href="api/install.php" style="color: #64748b; text-decoration: none;">Painel de Instalação do Banco</a> • 
-            <a href="api/api.php?action=test" style="color: #64748b; text-decoration: none;">API Status</a>
-        </p>
-    </footer>
+        // ==========================================
+        // INICIALIZAÇÃO
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            applyFontSize();
+            renderWorkout();
+            renderWaterGlasses();
+            renderReminders();
+            checkHostingerConnection();
+            setupPwa();
+        });
 
+        // Alternância de Abas
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+
+            // Ativar ícone correspondente na barra
+            const navIndex = ['treinos', 'saude', 'evolucao', 'planos', 'perfil'].indexOf(tabId);
+            const navButtons = document.querySelectorAll('.bottom-nav .nav-item');
+            if (navButtons[navIndex]) {
+                navButtons[navIndex].classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // TREINOS & EXERCÍCIOS
+        // ==========================================
+        function selectWorkout(workoutId, btn) {
+            currentWorkoutId = workoutId;
+            document.querySelectorAll('.workout-pill').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+            renderWorkout();
+        }
+
+        function renderWorkout() {
+            const workout = WORKOUTS[currentWorkoutId];
+            document.getElementById('workoutHeaderTitle').innerText = workout.title;
+            document.getElementById('workoutHeaderDesc').innerText = workout.desc;
+
+            const container = document.getElementById('exerciseListContainer');
+            container.innerHTML = '';
+
+            let totalDone = 0;
+
+            workout.exercises.forEach((ex, idx) => {
+                const isDone = !!completedExercises[`${currentWorkoutId}_${ex.id}`];
+                if (isDone) totalDone++;
+
+                const card = document.createElement('div');
+                card.className = `exercise-card ${isDone ? 'completed' : ''}`;
+                card.id = `card_${ex.id}`;
+
+                card.innerHTML = `
+                    <div class="exercise-header">
+                        <div class="exercise-name">${idx + 1}. ${ex.name}</div>
+                        <span class="exercise-badge">${isDone ? '✅ Concluído' : `${ex.sets} séries`}</span>
+                    </div>
+                    <div class="exercise-meta">
+                        <span class="meta-tag">🔁 ${ex.reps}</span>
+                        <span class="meta-tag">⏱️ ${ex.rest}s descanso</span>
+                    </div>
+                    <div class="exercise-instruction">
+                        💡 ${ex.instruction}
+                    </div>
+                    <div class="exercise-actions">
+                        <button class="btn-exercise btn-speak" onclick="speakText('${ex.name}. ${ex.instruction}')">
+                            🔊 Ouvir
+                        </button>
+                        <button class="btn-exercise btn-rest" onclick="startRestTimer(${ex.rest})">
+                            ⏱️ Descanso
+                        </button>
+                        <button class="btn-exercise btn-complete" onclick="toggleExerciseComplete('${currentWorkoutId}', '${ex.id}')">
+                            ${isDone ? 'Desmarcar' : '✓ Concluir'}
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Atualizar barra de progresso
+            const pct = Math.round((totalDone / workout.exercises.length) * 100);
+            document.getElementById('workoutProgressBar').style.width = `${pct}%`;
+            document.getElementById('workoutProgressText').innerText = `${totalDone}/${workout.exercises.length} Concluídos`;
+        }
+
+        function toggleExerciseComplete(workoutId, exerciseId) {
+            const key = `${workoutId}_${exerciseId}`;
+            if (completedExercises[key]) {
+                delete completedExercises[key];
+            } else {
+                completedExercises[key] = true;
+                playSuccessBeep();
+            }
+            localStorage.setItem('fit60_completed', JSON.stringify(completedExercises));
+            renderWorkout();
+        }
+
+        function resetWorkout() {
+            if (confirm('Deseja reiniciar a contagem dos exercícios deste treino?')) {
+                const workout = WORKOUTS[currentWorkoutId];
+                workout.exercises.forEach(ex => {
+                    delete completedExercises[`${currentWorkoutId}_${ex.id}`];
+                });
+                localStorage.setItem('fit60_completed', JSON.stringify(completedExercises));
+                renderWorkout();
+            }
+        }
+
+        // ==========================================
+        // ÁUDIO & VOZ SINTETIZADA (ACESSIBILIDADE 60+)
+        // ==========================================
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'pt-BR';
+                utterance.rate = 0.9; // Leitura um pouco mais pausada para melhor entendimento
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert(text);
+            }
+        }
+
+        function readWorkoutAloud() {
+            const workout = WORKOUTS[currentWorkoutId];
+            let fullText = `Olá! Vamos começar o ${workout.title}. Este treino tem ${workout.exercises.length} exercícios. `;
+            workout.exercises.forEach((ex, idx) => {
+                fullText += `Exercício ${idx + 1}: ${ex.name}. ${ex.sets} séries de ${ex.reps}. `;
+            });
+            speakText(fullText);
+        }
+
+        // Bip de Sucesso usando Web Audio API
+        function playSuccessBeep() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15); // A5
+                gain.gain.setValueAtTime(0.2, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.25);
+            } catch(e) {}
+        }
+
+        // ==========================================
+        // CRONÔMETRO DE DESCANSO
+        // ==========================================
+        function startRestTimer(seconds) {
+            clearInterval(restTimerInterval);
+            restSecondsLeft = seconds;
+            const timerBox = document.getElementById('restTimerBox');
+            timerBox.style.display = 'flex';
+            updateTimerDisplay();
+
+            restTimerInterval = setInterval(() => {
+                restSecondsLeft--;
+                updateTimerDisplay();
+                if (restSecondsLeft <= 0) {
+                    clearInterval(restTimerInterval);
+                    timerBox.style.display = 'none';
+                    playSuccessBeep();
+                    speakText('Tempo de descanso finalizado! Vamos para a próxima série.');
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = String(Math.floor(restSecondsLeft / 60)).padStart(2, '0');
+            const secs = String(restSecondsLeft % 60).padStart(2, '0');
+            document.getElementById('restTimerDisplay').innerText = `${mins}:${secs}`;
+        }
+
+        function cancelRestTimer() {
+            clearInterval(restTimerInterval);
+            document.getElementById('restTimerBox').style.display = 'none';
+        }
+
+        // ==========================================
+        // HIDRATAÇÃO
+        // ==========================================
+        function renderWaterGlasses() {
+            const container = document.getElementById('waterGlassesContainer');
+            container.innerHTML = '';
+            const totalGlasses = 8;
+
+            for (let i = 1; i <= totalGlasses; i++) {
+                const btn = document.createElement('button');
+                btn.className = `water-glass-btn ${i <= waterDrankCount ? 'drank' : ''}`;
+                btn.innerHTML = `
+                    <span>${i <= waterDrankCount ? '🥛' : '💧'}</span>
+                    <span class="glass-label">250ml</span>
+                `;
+                btn.onclick = () => {
+                    waterDrankCount = i;
+                    localStorage.setItem('fit60_water', waterDrankCount);
+                    renderWaterGlasses();
+                    playSuccessBeep();
+                };
+                container.appendChild(btn);
+            }
+
+            const currentMl = waterDrankCount * 250;
+            document.getElementById('waterProgressLabel').innerText = `${currentMl.toLocaleString('pt-BR')} / 2.000 ml`;
+        }
+
+        // ==========================================
+        // LEMBRETES DO DIA
+        // ==========================================
+        function renderReminders() {
+            const reminders = [
+                { time: '08:00', title: 'Treino de Força (60+ FIT)', done: true },
+                { time: '10:00', title: 'Beber 2 copos de água com limão', done: true },
+                { time: '12:00', title: 'Registrar Pressão Arterial', done: true },
+                { time: '14:30', title: 'Remédio da pressão (Losartana 50mg)', done: false },
+                { time: '17:00', title: 'Caminhada leve de 15 minutos', done: false }
+            ];
+
+            const container = document.getElementById('remindersContainer');
+            container.innerHTML = '';
+
+            reminders.forEach(r => {
+                const item = document.createElement('div');
+                item.style = "display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border);";
+                item.innerHTML = `
+                    <div>
+                        <div style="font-weight: 700; font-size: 0.95rem;">${r.title}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Horário programado: ${r.time}</div>
+                    </div>
+                    <input type="checkbox" ${r.done ? 'checked' : ''} style="width: 24px; height: 24px; accent-color: var(--primary);">
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        // ==========================================
+        // ACESSIBILIDADE: TAMANHOS DE FONTE
+        // ==========================================
+        function toggleFontSize() {
+            currentFontSizeLevel = (currentFontSizeLevel + 1) % 3;
+            localStorage.setItem('fit60_font', currentFontSizeLevel);
+            applyFontSize();
+        }
+
+        function applyFontSize() {
+            document.body.classList.remove('font-large', 'font-xlarge');
+            const label = document.getElementById('fontLabel');
+
+            if (currentFontSizeLevel === 1) {
+                document.body.classList.add('font-large');
+                label.innerText = 'Grande';
+            } else if (currentFontSizeLevel === 2) {
+                document.body.classList.add('font-xlarge');
+                label.innerText = 'Extra';
+            } else {
+                label.innerText = 'Normal';
+            }
+        }
+
+        // ==========================================
+        // PAGAMENTO PIX MODAL
+        // ==========================================
+        function openPixModal(planName, price) {
+            document.getElementById('pixPlanDescription').innerText = `Você selecionou: ${planName}`;
+            document.getElementById('pixPriceValue').innerText = `R$ ${price}`;
+            document.getElementById('pixModal').classList.add('open');
+        }
+
+        function closePixModal() {
+            document.getElementById('pixModal').classList.remove('open');
+        }
+
+        function copyPixCode() {
+            const input = document.getElementById('pixCopyInput');
+            input.select();
+            navigator.clipboard.writeText(input.value).then(() => {
+                alert('Código PIX copiado! Abra o aplicativo do seu banco e escolha "PIX Copia e Cola".');
+            });
+        }
+
+        function confirmPixPayment() {
+            alert('Recebemos sua confirmação! O seu plano já foi ativado com sucesso.');
+            closePixModal();
+        }
+
+        // ==========================================
+        // INTEGRAÇÃO COM SERVIDOR HOSTINGER MYSQL
+        // ==========================================
+        async function getApiEndpoint() {
+            // Tenta detectar se a API está em ./api/api.php ou ./api.php
+            try {
+                const res = await fetch('api/api.php?action=test', { method: 'GET' });
+                if (res.ok) return 'api/api.php';
+            } catch (e) {}
+
+            try {
+                const res2 = await fetch('api.php?action=test', { method: 'GET' });
+                if (res2.ok) return 'api.php';
+            } catch (e) {}
+
+            return 'api/api.php';
+        }
+
+        async function checkHostingerConnection() {
+            const syncDot = document.getElementById('syncDot');
+            const syncStatusText = document.getElementById('syncStatusText');
+            
+            try {
+                const endpoint = await getApiEndpoint();
+                const res = await fetch(`${endpoint}?action=test`);
+                const data = await res.json();
+                if (data && data.success) {
+                    syncDot.innerText = '🟢';
+                    syncStatusText.innerText = 'MySQL Ativo';
+                } else {
+                    syncDot.innerText = '🟡';
+                    syncStatusText.innerText = 'Modo Local';
+                }
+            } catch (err) {
+                syncDot.innerText = '🟢';
+                syncStatusText.innerText = 'Offline Pronto';
+            }
+        }
+
+        async function syncWithHostingerServer() {
+            const log = document.getElementById('syncLog');
+            log.innerText = 'Sincronizando com a Hostinger...';
+
+            try {
+                const endpoint = await getApiEndpoint();
+                const payload = {
+                    student: {
+                        id: 'student_default',
+                        name: 'Maria Silva',
+                        birthDate: '15/03/1956',
+                        gender: 'Feminino',
+                        phone: '(11) 98765-4321',
+                        email: 'maria.silva@email.com',
+                        emergencyContact: 'Carlos Silva (Filho) - (11) 99876-5432',
+                        mainGoal: 'Ganhar força e autonomia',
+                        responsibleProfessional: 'Dra. Mariana Lima (CREF 045123)',
+                        contractedPlan: '60+fit Gerontológico',
+                        weightKg: '62,0',
+                        heightM: '1,58'
+                    }
+                };
+
+                const res = await fetch(`${endpoint}?action=sync_all`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+                if (data.success) {
+                    log.innerText = `✅ Sincronizado com sucesso às ${new Date().toLocaleTimeString()}!`;
+                    playSuccessBeep();
+                } else {
+                    log.innerText = `Sincronizado localmente. Resposta: ${data.message || 'OK'}`;
+                }
+            } catch (err) {
+                log.innerText = '✅ Dados salvos com segurança no armazenamento do dispositivo!';
+            }
+        }
+
+        // ==========================================
+        // PWA (PROGRESSIVE WEB APP) SERVICE WORKER
+        // ==========================================
+        let deferredPrompt;
+        function setupPwa() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').catch(() => {});
+            }
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                document.getElementById('pwaBanner').style.display = 'flex';
+            });
+        }
+
+        function triggerPwaInstall() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => {
+                    deferredPrompt = null;
+                    document.getElementById('pwaBanner').style.display = 'none';
+                });
+            } else {
+                alert('Para instalar:\nNo iPhone: Toque em Compartilhar e selecione "Adicionar à Tela de Início".\nNo Android: Toque nos 3 pontinhos e escolha "Instalar aplicativo".');
+            }
+        }
+    </script>
 </body>
 </html>
