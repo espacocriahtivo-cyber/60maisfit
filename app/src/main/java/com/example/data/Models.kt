@@ -70,14 +70,125 @@ data class HealthConditions(
 )
 
 data class PhysicalAssessment(
+    val id: String = "eval_003",
+    val date: String = "22/09/2026",
+    val responsibleProfessional: String = "Dra. Mariana Lima (CREF 045123)",
+
+    // Obrigatórios
     val weightKg: String = "62",
+    val heightCm: String = "158",
     val heightM: String = "1,58",
+
+    // Opcionais: Perimetria (cm)
+    val armCircumferenceCm: String = "28.5",
+    val waistCircumferenceCm: String = "78.0",
+    val abdomenCircumferenceCm: String = "84.0",
+    val hipCircumferenceCm: String = "98.0",
+    val thighCircumferenceCm: String = "52.0",
+    val calfCircumferenceCm: String = "34.5", // Alerta de sarcopenia < 31 cm
+
+    // Opcionais: Dobras cutâneas (mm)
+    val tricepsSkinfoldMm: String = "18.0",
+    val subscapularSkinfoldMm: String = "16.5",
+    val iliacCrestSkinfoldMm: String = "20.0",
+
+    // Opcionais: Testes Biomecânicos & Funcionais
+    val flexibilityCm: String = "24",
+    val flexibilityRating: String = "Adequada para a faixa etária",
+    val handgripStrengthKgf: String = "22.5", // Pressão palmar / força de preensão
+    val gaitSpeed3mSeconds: String = "2.8", // Marcha 3 metros
+
+    // Pressão arterial
+    val systolicPressureMmHg: String = "120",
+    val diastolicPressureMmHg: String = "80",
     val bloodPressure: String = "120 / 80 mmHg",
-    val heartRateBpm: Int = 72,
+
+    // Saturação e Frequência Cardíaca
     val oxygenSaturation: Int = 98,
+    val heartRateBpm: Int = 72,
+
+    // Goniometria
+    val goniometryNotes: String = "Joelho direito: flexão 125° / extensão 0°. Ombro direito: flexão 165°.",
+
+    // Teste de equilíbrio
+    val balanceTestResult: String = "Apoio unipodal: 14s (D) / 12s (E). Semi-tandem seguro e estável.",
+
+    // Teste AGA — Avaliação Geriátrica Ampla (opcional)
+    val agaScore: String = "Independente para ABVD e AIVD. Cognição e humor preservados. Sem sinais de fragilidade.",
+
+    // Observações profissionais
+    val professionalNotes: String = "Evolução clínica favorável. Ganho perceptível de força em membros inferiores e marcha mais segura.",
+
+    // Compatibilidade com código legado
     val sitToStandReps: Int = 14,
-    val walkDistanceMeters: Int = 420,
-    val flexibilityRating: String = "Adequada para a faixa etária"
+    val walkDistanceMeters: Int = 420
+) {
+    fun calculateBmi(): Double {
+        val w = weightKg.replace(",", ".").toDoubleOrNull() ?: return 0.0
+        val hCm = heightCm.replace(",", ".").toDoubleOrNull()
+        val h = if (hCm != null && hCm > 40.0) {
+            hCm / 100.0
+        } else {
+            heightM.replace(",", ".").toDoubleOrNull() ?: 1.58
+        }
+        if (h <= 0.0) return 0.0
+        return w / (h * h)
+    }
+
+    fun getBmiClassification(): String {
+        val bmi = calculateBmi()
+        if (bmi <= 0.0) return "Informe peso e altura"
+        return when {
+            bmi < 22.0 -> "Baixo peso (Risco de sarcopenia / desnutrição)"
+            bmi <= 27.0 -> "Eutrófico / Peso adequado (Critério Lipschitz 60+)"
+            bmi <= 30.0 -> "Sobrepeso (Atenção às articulações)"
+            else -> "Obesidade (Sobrecarga osteoarticular)"
+        }
+    }
+
+    fun getBmiStatusType(): String {
+        val bmi = calculateBmi()
+        return when {
+            bmi <= 0.0 -> "NEUTRAL"
+            bmi < 22.0 -> "WARNING"
+            bmi <= 27.0 -> "SUCCESS"
+            else -> "WARNING"
+        }
+    }
+
+    fun calculateWaistToHipRatio(): String {
+        val w = waistCircumferenceCm.replace(",", ".").toDoubleOrNull()
+        val h = hipCircumferenceCm.replace(",", ".").toDoubleOrNull()
+        if (w == null || h == null || h <= 0.0) return "--"
+        val ratio = w / h
+        return String.format(java.util.Locale.US, "%.2f", ratio)
+    }
+
+    fun calculateSkinfoldSum(): String {
+        val t = tricepsSkinfoldMm.replace(",", ".").toDoubleOrNull() ?: 0.0
+        val s = subscapularSkinfoldMm.replace(",", ".").toDoubleOrNull() ?: 0.0
+        val c = iliacCrestSkinfoldMm.replace(",", ".").toDoubleOrNull() ?: 0.0
+        val sum = t + s + c
+        return if (sum > 0) String.format(java.util.Locale.US, "%.1f mm", sum) else "--"
+    }
+
+    fun calculateGaitVelocity(): String {
+        val sec = gaitSpeed3mSeconds.replace(",", ".").toDoubleOrNull()
+        if (sec == null || sec <= 0) return "--"
+        val vel = 3.0 / sec
+        return String.format(java.util.Locale.US, "%.2f m/s", vel)
+    }
+}
+
+data class AssessmentComparison(
+    val current: PhysicalAssessment,
+    val previous: PhysicalAssessment?,
+    val weightDeltaKg: Double?,
+    val weightDeltaPercent: Double?,
+    val bmiDelta: Double?,
+    val handgripDeltaKgf: Double?,
+    val gaitDeltaSec: Double?,
+    val calfDeltaCm: Double?
 )
 
 data class Exercise(
@@ -150,6 +261,36 @@ data class UserSubscription(
     val lastPaymentDate: String
 )
 
+data class FunctionalDimension(
+    val id: String,
+    val name: String, // FORÇA, MOBILIDADE, EQUILÍBRIO, MARCHA, FLEXIBILIDADE, RISCO DE QUEDAS, CAPACIDADE FUNCIONAL
+    val icon: String,
+    val primaryMetric: String, // Ex: Preensão palmar
+    val initialValue: String,  // Ex: 21 kg
+    val currentValue: String,  // Ex: 25 kg
+    val evolutionLabel: String,// Ex: ↑ evolução (+4 kg / +19%)
+    val isPositive: Boolean = true,
+    val historyPoints: List<Pair<String, Float>> = emptyList(),
+    val secondaryMetric: String? = null,
+    val secondaryInitial: String? = null,
+    val secondaryCurrent: String? = null,
+    val secondaryEvolution: String? = null,
+    val clinicalGuideline: String
+)
+
+data class StudentFunctionalProfile(
+    val studentId: String,
+    val studentName: String,
+    val age: Int,
+    val plan: String,
+    val frequency: String,
+    val lastAssessmentDate: String,
+    val overallScore: String,
+    val fallRiskLevel: String,
+    val adherencePercent: Int,
+    val dimensions: List<FunctionalDimension>
+)
+
 data class ProfessionalStudent(
     val id: String,
     val name: String,
@@ -178,3 +319,32 @@ enum class UserType {
     STUDENT,
     PROFESSIONAL
 }
+
+data class PrescriptionExercise(
+    val id: String,
+    val name: String,
+    val sequenceId: Int, // 1 a 6
+    val isSelected: Boolean = true,
+    val sets: Int = 2,
+    val repsOrTime: String = "10 a 12 reps",
+    val loadOrIntensity: String = "Peso corporal",
+    val restSeconds: Int = 45,
+    val notes: String = ""
+)
+
+data class WorkoutSequence(
+    val id: Int,
+    val title: String,
+    val subtitle: String,
+    val emoji: String,
+    val exercises: List<PrescriptionExercise>
+)
+
+data class WorkoutPrescription(
+    val studentId: String = "student_001",
+    val studentName: String = "Maria Silva",
+    val workoutCode: String = "Treino A",
+    val sequences: List<WorkoutSequence> = emptyList(),
+    val professionalName: String = "Prof. Dra. Camila Rocha (CREF 098452-G/SP)",
+    val date: String = "22/09/2026"
+)

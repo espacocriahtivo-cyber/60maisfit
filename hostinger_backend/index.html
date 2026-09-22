@@ -370,10 +370,13 @@
             <button class="screen-chip active" onclick="goToScreen(1)">1. Splash</button>
             <button class="screen-chip" onclick="goToScreen(2)">2. Menu Principal</button>
             <button class="screen-chip" onclick="goToScreen('2b')">Login</button>
-            <button class="screen-chip" onclick="goToScreen(3)">3. Criar conta</button>
-            <button class="screen-chip" onclick="goToScreen(4)">4. Perfil/Papel</button>
-            <button class="screen-chip" onclick="goToScreen(5)">5. Cadastro</button>
-            <button class="screen-chip" onclick="goToScreen(6)">6. Anamnese</button>
+            <button class="screen-chip" onclick="goToScreen(3)">3. Anamnese</button>
+            <button class="screen-chip" onclick="goToScreen(4)">4. Avaliação Física</button>
+            <button class="screen-chip" onclick="goToScreen('4b')">Papel</button>
+            <button class="screen-chip" onclick="goToScreen(5)">5. Dashboard Profissional</button>
+            <button class="screen-chip" onclick="goToScreen('5b')">5b. Cadastro Aluno</button>
+            <button class="screen-chip" onclick="goToScreen(6)">6. Prescrição</button>
+            <button class="screen-chip" onclick="goToScreen('3b')">Criar Conta</button>
             <button class="screen-chip" onclick="goToScreen(7)">7. Avaliação</button>
             <button class="screen-chip" onclick="goToScreen(8)">8. Início Aluno</button>
             <button class="screen-chip" onclick="goToScreen(9)">9. Meu Treino</button>
@@ -663,333 +666,27 @@
         </section>
 
         <!-- ======================================================== -->
-        <!-- TELA 3: CRIAR CONTA                                      -->
+        <!-- TELA 3: ANAMNESE GERONTOLÓGICA                           -->
         <!-- ======================================================== -->
-        <section id="screen-3" class="screen-viewport" style="background: #ffffff; padding: 16px 20px;">
+        <section id="screen-3" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; overflow-y: auto;">
             <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
                 <span>9:41</span>
                 <div class="status-icons">📶 🔋</div>
             </div>
 
-            <div style="display: flex; align-items: center; margin-bottom: 16px;">
-                <button class="btn-back" onclick="goToScreen(2)">←</button>
-                <div style="margin-left: 8px;">
-                    <h2 style="font-size: 1.25rem; font-weight: 900;">Criar minha conta</h2>
-                    <p style="font-size: 0.82rem; color: var(--text-muted);">Preencha seus dados para começar</p>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center;">
+                    <button class="btn-back" onclick="goToScreen(2)">←</button>
+                    <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Anamnese Gerontológica</h2>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-box">
-                    <span>👤</span>
-                    <input type="text" placeholder="Nome completo" value="Maria Silva">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-box">
-                    <span>📅</span>
-                    <input type="text" placeholder="Data de nascimento" value="15/03/1956">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-box">
-                    <span>💳</span>
-                    <input type="text" placeholder="CPF" value="123.456.789-00">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-box">
-                    <span>✉️</span>
-                    <input type="email" placeholder="E-mail" value="maria.silva@email.com">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-box">
-                    <span>📞</span>
-                    <input type="tel" placeholder="Telefone" value="(11) 98765-4321">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="input-box">
-                    <span>🔒</span>
-                    <input type="password" placeholder="Senha" value="••••••••">
-                    <span>👁️</span>
-                </div>
-            </div>
-
-            <div style="display: flex; align-items: flex-start; gap: 8px; margin: 16px 0; font-size: 0.8rem; color: var(--text-muted);">
-                <input type="checkbox" checked style="margin-top: 3px; accent-color: var(--lime-dark);">
-                <span>Li e aceito os <strong style="color: var(--text-dark);">Termos de Uso</strong> e <strong style="color: var(--text-dark);">Política de Privacidade</strong></span>
-            </div>
-
-            <button class="btn-primary" onclick="goToScreen(4)">
-                CONTINUAR
-            </button>
-
-            <div style="text-align: center; margin-top: 14px; font-size: 0.85rem; color: var(--text-muted);">
-                Já tem uma conta? <a href="javascript:void(0)" onclick="goToScreen(2)" style="color: var(--lime-dark); font-weight: 800; text-decoration: none;">Entrar</a>
-            </div>
-        </section>
-
-        <!-- ======================================================== -->
-        <!-- TELA 4: ESCOLHA DO USUÁRIO                               -->
-        <!-- ======================================================== -->
-        <section id="screen-4" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; justify-content: space-between;">
-            <div>
-                <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
-                    <span>9:41</span>
-                    <div class="status-icons">📶 🔋</div>
-                </div>
-
-                <div style="display: flex; align-items: center; margin-bottom: 14px;">
-                    <button class="btn-back" onclick="goToScreen(3)">←</button>
-                    <h2 style="font-size: 1.3rem; font-weight: 900; margin-left: 8px;">Você é:</h2>
-                </div>
-
-                <!-- Foto Casal Idoso Ilustrativa -->
-                <div style="width: 100%; height: 180px; border-radius: 20px; background: #e2f7d2; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 20px; border: 2px solid var(--lime-main);">
-                    <div style="text-align: center;">
-                        <span style="font-size: 4rem;">👵👴</span>
-                        <div style="font-weight: 800; color: var(--lime-text); font-size: 0.9rem;">Saúde, Força e Longevidade</div>
-                    </div>
-                </div>
-
-                <!-- Card Aluno 60+ Selecionado -->
-                <div onclick="goToScreen(5)" style="background: #f0fdf4; border: 2px solid var(--lime-main); border-radius: 18px; padding: 16px; margin-bottom: 14px; cursor: pointer; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 12px rgba(115, 192, 25, 0.15);">
-                    <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
-                        👤
-                    </div>
-                    <div style="flex: 1;">
-                        <div style="font-size: 1.05rem; font-weight: 900; color: var(--text-dark);">Aluno 60+</div>
-                        <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.3;">Quero treinar, cuidar da minha saúde e ter mais qualidade de vida.</div>
-                    </div>
-                    <div style="color: var(--lime-dark); font-weight: 900; font-size: 1.2rem;">&rsaquo;</div>
-                </div>
-
-                <!-- Card Profissional -->
-                <div onclick="goToScreen(15)" style="background: #ffffff; border: 1.5px solid var(--border-light); border-radius: 18px; padding: 16px; cursor: pointer; display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
-                        🩺
-                    </div>
-                    <div style="flex: 1;">
-                        <div style="font-size: 1.05rem; font-weight: 900; color: var(--text-dark);">Profissional</div>
-                        <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.3;">Sou profissional de Educação Física ou Fisioterapeuta e quero acompanhar meus alunos.</div>
-                    </div>
-                    <div style="color: #94a3b8; font-weight: 900; font-size: 1.2rem;">&rsaquo;</div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-bottom: 16px;">
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">Juntos por um envelhecimento mais ativo!</p>
-                <div class="brand-logo-text" style="font-size: 1.4rem; color: var(--text-dark);">
-                    <span>60<sup>+</sup></span><span style="color: var(--lime-dark);">FIT</span>
-                </div>
-                <div class="brand-logo-caption" style="color: var(--text-muted);">MUSCULAÇÃO E FUNCIONALIDADE</div>
-            </div>
-        </section>
-
-        <!-- ======================================================== -->
-        <!-- TELA 5: CADASTRO DO ALUNO (MEU PERFIL)                   -->
-        <!-- ======================================================== -->
-        <section id="screen-5" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; overflow-y: auto;">
-            <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
-                <span>9:41</span>
-                <div class="status-icons">📶 🔋</div>
-            </div>
-
-            <div style="display: flex; align-items: center; margin-bottom: 14px;">
-                <button class="btn-back" onclick="goToScreen(4)">←</button>
-                <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Cadastro do Aluno</h2>
-            </div>
-
-            <!-- Header Badge -->
-            <div style="margin-bottom: 14px;">
-                <span style="background: rgba(140, 238, 0, 0.18); color: var(--lime-dark); font-weight: 800; font-size: 0.76rem; padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(91, 167, 13, 0.35);">
-                    Ficha de Cadastro e Matrícula
+                <span style="background: rgba(140, 238, 0, 0.18); color: var(--lime-dark); font-weight: 800; font-size: 0.72rem; padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(91, 167, 13, 0.35);">
+                    Tela 3
                 </span>
             </div>
 
-            <!-- 6. Foto do Aluno -->
-            <div style="text-align: center; margin-bottom: 16px; position: relative; width: 105px; margin-left: auto; margin-right: auto;">
-                <div style="width: 96px; height: 96px; border-radius: 50%; background: #dcfce7; border: 3.5px solid var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; overflow: hidden; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                    <img src="img_avatar_maria.jpg" onerror="this.outerHTML='<span style=\'font-size:2.8rem;\'>👵</span>'" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div onclick="alert('Foto selecionada com sucesso!')" title="Alterar Foto" style="position: absolute; bottom: 2px; right: 4px; width: 34px; height: 34px; background: var(--lime-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 2.5px solid white; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
-                    📷
-                </div>
-            </div>
-            <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">
-                Toque na câmera para alterar a <strong>Foto</strong>
-            </p>
-
-            <!-- 1. Nome -->
-            <div class="form-group">
-                <label class="form-label">Nome completo</label>
-                <div class="input-box">
-                    <span>👤</span>
-                    <input type="text" id="student_name" placeholder="Ex: Maria Silva" value="Maria Silva">
-                </div>
-            </div>
-
-            <!-- 2. Data de nascimento -->
-            <div class="form-group">
-                <label class="form-label">Data de nascimento</label>
-                <div class="input-box">
-                    <span>📅</span>
-                    <input type="text" id="student_birthdate" placeholder="DD/MM/AAAA" value="15/03/1956">
-                </div>
-            </div>
-
-            <!-- 3. Sexo -->
-            <div class="form-group">
-                <label class="form-label">Sexo</label>
-                <div class="input-box">
-                    <span>⚧️</span>
-                    <select id="student_gender" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
-                        <option value="Feminino" selected>Feminino</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="Outro">Outro</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- 4. Telefone -->
-            <div class="form-group">
-                <label class="form-label">Telefone</label>
-                <div class="input-box">
-                    <span>📞</span>
-                    <input type="tel" id="student_phone" placeholder="(11) 98765-4321" value="(11) 98765-4321">
-                </div>
-            </div>
-
-            <!-- 5. E-mail -->
-            <div class="form-group">
-                <label class="form-label">E-mail</label>
-                <div class="input-box">
-                    <span>✉️</span>
-                    <input type="email" id="student_email" placeholder="aluno@email.com" value="maria.silva@email.com">
-                </div>
-            </div>
-
-            <!-- 7. Contato de emergência -->
-            <div class="form-group">
-                <label class="form-label">Contato de emergência</label>
-                <div class="input-box">
-                    <span>🚨</span>
-                    <input type="text" id="student_emergency" placeholder="Ex: Carlos Silva (Filho) - (11) 99876-5432" value="Carlos Silva (Filho) - (11) 99876-5432">
-                </div>
-            </div>
-
-            <!-- 8. Objetivo -->
-            <div class="form-group">
-                <label class="form-label">Objetivo</label>
-                <div class="input-box">
-                    <span>🎯</span>
-                    <select id="student_goal" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
-                        <option selected>Ganhar força e autonomia</option>
-                        <option>Melhorar o equilíbrio e prevenir quedas</option>
-                        <option>Aumentar flexibilidade e mobilidade</option>
-                        <option>Alívio de dores articulares e artrose</option>
-                        <option>Condicionamento físico geral</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- CARD: INFORMAÇÕES PROFISSIONAIS -->
-            <div style="background: #f8fafc; border: 1.5px solid rgba(91, 167, 13, 0.4); border-radius: 18px; padding: 16px; margin: 18px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.04);">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--lime-dark); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
-                        🩺
-                    </div>
-                    <div>
-                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-dark);">Informações profissionais</div>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);">Prescrição, plano contratado e acompanhamento</div>
-                    </div>
-                </div>
-
-                <!-- 9. Profissional responsável -->
-                <div class="form-group" style="margin-bottom: 12px;">
-                    <label class="form-label">Profissional responsável</label>
-                    <div class="input-box">
-                        <span>👨‍🏫</span>
-                        <input type="text" id="student_professional" placeholder="Nome do profissional (CREF/CREFITO)" value="Dra. Mariana Lima (CREF 045123)">
-                    </div>
-                </div>
-
-                <!-- 10. Data de início -->
-                <div class="form-group" style="margin-bottom: 12px;">
-                    <label class="form-label">Data de início</label>
-                    <div class="input-box">
-                        <span>🗓️</span>
-                        <input type="text" id="student_start_date" placeholder="DD/MM/AAAA" value="10/01/2026">
-                    </div>
-                </div>
-
-                <!-- 11. Plano contratado -->
-                <div class="form-group" style="margin-bottom: 12px;">
-                    <label class="form-label">Plano contratado</label>
-                    <div class="input-box">
-                        <span>💳</span>
-                        <select id="student_plan" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
-                            <option>60+fit Essencial (R$ 79,90/mês)</option>
-                            <option selected>60+fit Gerontológico (R$ 129,90/mês)</option>
-                            <option>60+fit Premium (R$ 199,90/mês)</option>
-                            <option>60+fit Personalizado (Consultar)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 12. Frequência semanal -->
-                <div class="form-group" style="margin-bottom: 12px;">
-                    <label class="form-label">Frequência semanal</label>
-                    <div class="input-box">
-                        <span>⏱️</span>
-                        <select id="student_frequency" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
-                            <option>1x por semana</option>
-                            <option>2x por semana</option>
-                            <option selected>3x por semana</option>
-                            <option>4x por semana</option>
-                            <option>5x por semana</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- 13. Observações -->
-                <div class="form-group" style="margin-bottom: 0;">
-                    <label class="form-label">Observações</label>
-                    <div class="input-box" style="height: auto; padding: 10px;">
-                        <textarea id="student_notes" rows="3" style="width: 100%; border: none; outline: none; font-family: inherit; font-size: 0.88rem; resize: vertical;" placeholder="Anotações clínicas, cuidados articulares, restrições e histórico...">Foco em membros inferiores, equilíbrio e prevenção de quedas. Sem contraindicações agudas.</textarea>
-                    </div>
-                </div>
-            </div>
-
-            <button class="btn-primary" style="margin-top: 10px; margin-bottom: 20px;" onclick="saveStudentRegistration()">
-                SALVAR CADASTRO DO ALUNO
-            </button>
-        </section>
-
-        <!-- ======================================================== -->
-        <!-- TELA 6: ANAMNESE GERONTOLÓGICA                           -->
-        <!-- ======================================================== -->
-        <section id="screen-6" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; overflow-y: auto;">
-            <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
-                <span>9:41</span>
-                <div class="status-icons">📶 🔋</div>
-            </div>
-
-            <div style="display: flex; align-items: center; margin-bottom: 14px;">
-                <button class="btn-back" onclick="goToScreen(5)">←</button>
-                <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Anamnese Gerontológica</h2>
-            </div>
-
-            <!-- Header Badge -->
+            <!-- Header Subtitle -->
             <div style="margin-bottom: 14px;">
-                <span style="background: rgba(140, 238, 0, 0.18); color: var(--lime-dark); font-weight: 800; font-size: 0.76rem; padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(91, 167, 13, 0.35);">
+                <span style="background: #f0fdf4; color: #166534; font-weight: 800; font-size: 0.76rem; padding: 4px 10px; border-radius: 8px; border: 1px solid #bbf7d0;">
                     Questionário Clínico e Funcional 60+
                 </span>
             </div>
@@ -1002,7 +699,7 @@
                         Apoio à Decisão Profissional
                     </div>
                     <div style="font-size: 0.78rem; color: #78350f; line-height: 1.35;">
-                        A presença de uma doença <strong>não gera automaticamente um treino</strong>. O sistema funciona como ferramenta de apoio ao profissional de Educação Física / Fisioterapia para validar e personalizar a prescrição com segurança.
+                        A presença de uma doença <strong>não gera automaticamente um treino</strong>. O sistema funciona como apoio ao profissional para validar e personalizar a prescrição.
                     </div>
                 </div>
             </div>
@@ -1232,8 +929,1695 @@
             </div>
 
             <button class="btn-primary" style="margin-top: 10px; margin-bottom: 22px;" onclick="saveGerontologicalAnamnese()">
-                SALVAR ANAMNESE E IR PARA AVALIAÇÃO
+                SALVAR ANAMNESE E IR PARA AVALIAÇÃO FÍSICA (TELA 4)
             </button>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TELA 3b: CRIAR CONTA                                     -->
+        <!-- ======================================================== -->
+        <section id="screen-3b" class="screen-viewport" style="background: #ffffff; padding: 16px 20px;">
+            <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
+                <span>9:41</span>
+                <div class="status-icons">📶 🔋</div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin-bottom: 16px;">
+                <button class="btn-back" onclick="goToScreen(2)">←</button>
+                <div style="margin-left: 8px;">
+                    <h2 style="font-size: 1.25rem; font-weight: 900;">Criar minha conta</h2>
+                    <p style="font-size: 0.82rem; color: var(--text-muted);">Preencha seus dados para começar</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-box">
+                    <span>👤</span>
+                    <input type="text" placeholder="Nome completo" value="Maria Silva">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-box">
+                    <span>📅</span>
+                    <input type="text" placeholder="Data de nascimento" value="15/03/1956">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-box">
+                    <span>💳</span>
+                    <input type="text" placeholder="CPF" value="123.456.789-00">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-box">
+                    <span>✉️</span>
+                    <input type="email" placeholder="E-mail" value="maria.silva@email.com">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-box">
+                    <span>📞</span>
+                    <input type="tel" placeholder="Telefone" value="(11) 98765-4321">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-box">
+                    <span>🔒</span>
+                    <input type="password" placeholder="Senha" value="••••••••">
+                    <span>👁️</span>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: flex-start; gap: 8px; margin: 16px 0; font-size: 0.8rem; color: var(--text-muted);">
+                <input type="checkbox" checked style="margin-top: 3px; accent-color: var(--lime-dark);">
+                <span>Li e aceito os <strong style="color: var(--text-dark);">Termos de Uso</strong> e <strong style="color: var(--text-dark);">Política de Privacidade</strong></span>
+            </div>
+
+            <button class="btn-primary" onclick="goToScreen(3)">
+                CONTINUAR PARA ANAMNESE (TELA 3)
+            </button>
+
+            <div style="text-align: center; margin-top: 14px; font-size: 0.85rem; color: var(--text-muted);">
+                Já tem uma conta? <a href="javascript:void(0)" onclick="goToScreen(2)" style="color: var(--lime-dark); font-weight: 800; text-decoration: none;">Entrar</a>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TELA 4: AVALIAÇÃO FÍSICA (60+ FIT)                       -->
+        <!-- ======================================================== -->
+        <section id="screen-4" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; overflow-y: auto;">
+            <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
+                <span>9:41</span>
+                <div class="status-icons">📶 🔋</div>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <div style="display: flex; align-items: center;">
+                    <button class="btn-back" onclick="goToScreen(6)">←</button>
+                    <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Avaliação física</h2>
+                </div>
+                <button class="btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; min-height: 34px;" onclick="promptNewAssessment()">+ Nova</button>
+            </div>
+
+            <!-- Banner de Identificação da Avaliação -->
+            <div style="background: #f8fafc; border: 1.5px solid var(--border-light); border-radius: 14px; padding: 10px 14px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <div style="font-size: 0.82rem; font-weight: 800; color: var(--text-dark);">
+                        📅 Data: <span id="eval_display_date">22/09/2026</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">
+                        🩺 Profissional: <span id="eval_display_prof">Dra. Mariana Lima (CREF 045123)</span>
+                    </div>
+                </div>
+                <span style="background: #e2f7d2; color: #2d6a0a; font-weight: 800; font-size: 0.72rem; padding: 3px 8px; border-radius: 8px;">Ativa</span>
+            </div>
+
+            <!-- Abas da Avaliação -->
+            <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 14px; -webkit-overflow-scrolling: touch;">
+                <button class="eval-tab-btn active" id="eval_tab_btn_0" onclick="switchEvalTab(0)" style="white-space: nowrap; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light); background: #f0fdf4; color: var(--lime-dark); font-weight: 800; font-size: 0.78rem; cursor: pointer;">1. Obrigatórios & IMC</button>
+                <button class="eval-tab-btn" id="eval_tab_btn_1" onclick="switchEvalTab(1)" style="white-space: nowrap; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light); background: #ffffff; color: var(--text-muted); font-weight: 700; font-size: 0.78rem; cursor: pointer;">2. Perimetria & Dobras</button>
+                <button class="eval-tab-btn" id="eval_tab_btn_2" onclick="switchEvalTab(2)" style="white-space: nowrap; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light); background: #ffffff; color: var(--text-muted); font-weight: 700; font-size: 0.78rem; cursor: pointer;">3. Funcional & Sinais</button>
+                <button class="eval-tab-btn" id="eval_tab_btn_3" onclick="switchEvalTab(3)" style="white-space: nowrap; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light); background: #ffffff; color: var(--text-muted); font-weight: 700; font-size: 0.78rem; cursor: pointer;">4. Goniometria & AGA</button>
+                <button class="eval-tab-btn" id="eval_tab_btn_4" onclick="switchEvalTab(4)" style="white-space: nowrap; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border-light); background: #ffffff; color: var(--text-muted); font-weight: 700; font-size: 0.78rem; cursor: pointer;">5. Comparativo</button>
+            </div>
+
+            <!-- PAINEL 0: OBRIGATÓRIOS & IMC -->
+            <div id="eval_panel_0" class="eval-panel" style="display: block;">
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 10px 12px; font-size: 0.78rem; color: #166534; margin-bottom: 14px; line-height: 1.4;">
+                    ℹ️ <strong>Campos obrigatórios:</strong> Peso (kg) e Altura (cm). O aplicativo calcula automaticamente o IMC, a classificação geriátrica (OPAS/Lipschitz) e a evolução do peso vs avaliações anteriores.
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Peso (kg) *</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_input_weight" value="62.0" oninput="recalcAssessment()"></div>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Altura (cm) *</label>
+                        <div class="input-box"><input type="number" step="1" id="eval_input_height" value="158" oninput="recalcAssessment()"></div>
+                    </div>
+                </div>
+
+                <!-- Card de Cálculos Automáticos em Tempo Real -->
+                <div style="background: #ffffff; border: 2px solid var(--lime-main); border-radius: 16px; padding: 14px; margin-top: 10px; box-shadow: 0 4px 12px rgba(115, 192, 25, 0.12);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <strong style="font-size: 0.95rem; color: var(--text-dark);">Cálculo Automático</strong>
+                        <span style="background: #dcfce7; color: #15803d; font-size: 0.7rem; font-weight: 900; padding: 3px 8px; border-radius: 6px;">TEMPO REAL</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Índice de Massa Corporal (IMC)</div>
+                            <div id="eval_calc_bmi_val" style="font-size: 1.8rem; font-weight: 900; color: var(--lime-dark); line-height: 1.1;">24.8 kg/m²</div>
+                        </div>
+                        <div id="eval_calc_bmi_badge" style="background: #dcfce7; color: #166534; font-size: 0.78rem; font-weight: 800; padding: 6px 10px; border-radius: 10px; text-align: right;">
+                            ✓ Adequado (60+)
+                        </div>
+                    </div>
+
+                    <div id="eval_calc_bmi_desc" style="font-size: 0.8rem; font-weight: 700; color: var(--text-dark); margin-top: 8px;">
+                        Classificação: Eutrófico / Peso adequado (Critério Lipschitz 60+)
+                    </div>
+                    <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; line-height: 1.3;">
+                        Referência geriátrica: idosos saudáveis devem manter IMC entre 22 e 27 kg/m² para reserva funcional e proteção osteomuscular.
+                    </div>
+
+                    <hr style="border: none; border-top: 1px solid var(--border-light); margin: 12px 0;">
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong style="font-size: 0.85rem; color: var(--text-dark);">Evolução do Peso</strong>
+                            <div id="eval_calc_weight_evol" style="font-size: 0.78rem; color: #2563eb; font-weight: 700; margin-top: 2px;">
+                                -1.5 kg (-2.4%) vs avaliação anterior de 15/06/2026
+                            </div>
+                        </div>
+                        <div id="eval_calc_weight_icon" style="width: 34px; height: 34px; border-radius: 50%; background: #eff6ff; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #2563eb;">
+                            📉
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAINEL 1: PERIMETRIA & DOBRAS (OPCIONAIS) -->
+            <div id="eval_panel_1" class="eval-panel" style="display: none;">
+                <div style="font-size: 0.85rem; font-weight: 900; margin-bottom: 4px;">Perimetria (Circunferências em cm)</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px;">Medições com fita métrica flexível</div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Braço (cm)</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_arm" value="28.5"></div>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Cintura (cm)</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_waist" value="78.0" oninput="recalcRcq()"></div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Abdômen (cm)</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_abdomen" value="84.0"></div>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Quadril (cm)</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_hip" value="98.0" oninput="recalcRcq()"></div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Coxa (cm)</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_thigh" value="52.0"></div>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Panturrilha (cm)</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_calf" value="34.5" oninput="checkCalfAlert()"></div>
+                    </div>
+                </div>
+
+                <div id="eval_calf_alert" style="background: #dcfce7; border: 1px solid #86efac; border-radius: 12px; padding: 10px; font-size: 0.75rem; color: #166534; font-weight: 700; margin-bottom: 12px;">
+                    ✅ Panturrilha ≥ 31 cm (34.5 cm): Massa muscular preservada (baixo risco de sarcopenia).
+                </div>
+
+                <div id="eval_rcq_card" style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 10px 14px; font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <span>Relação Cintura-Quadril (RCQ):</span>
+                    <strong id="eval_rcq_val" style="color: var(--lime-dark); font-size: 1rem;">0.80</strong>
+                </div>
+
+                <div style="font-size: 0.85rem; font-weight: 900; margin-bottom: 4px;">Dobras Cutâneas (mm)</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px;">Aferição com plicômetro / adipômetro</div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Tríceps (mm)</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_triceps" value="18.0" oninput="recalcSkinfolds()"></div>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Subescapular (mm)</label>
+                        <div class="input-box"><input type="number" step="0.1" id="eval_subscapular" value="16.5" oninput="recalcSkinfolds()"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Crista ilíaca (mm)</label>
+                    <div class="input-box"><input type="number" step="0.1" id="eval_iliac" value="20.0" oninput="recalcSkinfolds()"></div>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: 12px; padding: 10px 14px; font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+                    <span>Soma das 3 Dobras:</span>
+                    <strong id="eval_skinfolds_sum" style="color: var(--lime-dark); font-size: 1rem;">54.5 mm</strong>
+                </div>
+            </div>
+
+            <!-- PAINEL 2: FUNCIONAL & SINAIS VITAIS (OPCIONAIS) -->
+            <div id="eval_panel_2" class="eval-panel" style="display: none;">
+                <div style="font-size: 0.85rem; font-weight: 900; margin-bottom: 4px;">Pressão Arterial & Hemodinâmica</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px;">Parâmetros vitais de segurança clínica</div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Sistólica (mmHg)</label>
+                        <div class="input-box"><input type="number" id="eval_systolic" value="120"></div>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Diastólica (mmHg)</label>
+                        <div class="input-box"><input type="number" id="eval_diastolic" value="80"></div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Frequência cardíaca (bpm)</label>
+                        <div class="input-box"><input type="number" id="eval_hr" value="72"></div>
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label class="form-label">Saturação SpO₂ (%)</label>
+                        <div class="input-box"><input type="number" id="eval_spo2" value="98"></div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.85rem; font-weight: 900; margin-top: 14px; margin-bottom: 4px;">Testes Funcionais Gerontológicos</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); margin-bottom: 12px;">Força de preensão, velocidade e flexibilidade</div>
+
+                <div class="form-group">
+                    <label class="form-label">Pressão palmar / força de preensão (kgf)</label>
+                    <div class="input-box"><input type="number" step="0.5" id="eval_handgrip" value="22.5" oninput="checkHandgripAlert()"></div>
+                </div>
+                <div id="eval_handgrip_alert" style="font-size: 0.75rem; color: #166534; font-weight: 700; margin-top: -6px; margin-bottom: 12px;">
+                    ✅ Força palmar preservada (≥ 16 kgf para mulheres idosas - EWGSOP2).
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Marcha 3 metros (tempo em segundos)</label>
+                    <div class="input-box"><input type="number" step="0.1" id="eval_gait3m" value="2.8" oninput="checkGaitSpeed()"></div>
+                </div>
+                <div id="eval_gait_speed_info" style="font-size: 0.75rem; color: #166534; font-weight: 700; margin-top: -6px; margin-bottom: 12px;">
+                    ✅ Velocidade estimada: 1.07 m/s (Marcha segura e funcional - baixo risco de quedas).
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Flexibilidade (cm no banco de Wells ou alcance)</label>
+                    <div class="input-box"><input type="text" id="eval_flexibility" value="24 cm (Adequada para 60+)"></div>
+                </div>
+            </div>
+
+            <!-- PAINEL 3: GONIOMETRIA, EQUILÍBRIO & AGA (OPCIONAIS) -->
+            <div id="eval_panel_3" class="eval-panel" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">Goniometria (graus articulares)</label>
+                    <div class="input-box" style="height: auto;">
+                        <textarea id="eval_goniometry" rows="2" style="resize: none;">Joelho D: flexão 125° / extensão 0°. Ombro D: flexão 165° sem dor.</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Teste de equilíbrio</label>
+                    <div class="input-box" style="height: auto;">
+                        <textarea id="eval_balance" rows="2" style="resize: none;">Apoio unipodal: 14s (D) / 12s (E). Teste de Tandem firme e estável.</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Teste AGA — Avaliação Geriátrica Ampla (opcional)</label>
+                    <div class="input-box" style="height: auto;">
+                        <textarea id="eval_aga" rows="3" style="resize: none;">Independente para Atividades Básicas (Katz) e Instrumentais (Lawton). Sem fragilidade clínica. Cognição preservada (MEEM 28/30).</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Parecer e Observações do Profissional</label>
+                    <div class="input-box" style="height: auto;">
+                        <textarea id="eval_notes" rows="2" style="resize: none;">Aluna apta para progressão de carga em membros inferiores e treino proprioceptivo dinâmico.</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAINEL 4: COMPARATIVO COM AVALIAÇÕES ANTERIORES -->
+            <div id="eval_panel_4" class="eval-panel" style="display: none;">
+                <div style="background: #f0fdf4; border: 1.5px solid var(--lime-main); border-radius: 16px; padding: 14px; margin-bottom: 14px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <strong style="font-size: 0.95rem; color: var(--text-dark);">Comparativo Evolutivo</strong>
+                        <span style="font-size: 0.75rem; color: var(--lime-dark); font-weight: 800;">22/09 vs 15/06/2026</span>
+                    </div>
+
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left;">
+                        <tr style="border-bottom: 1px solid var(--border-light); color: var(--text-muted);">
+                            <th style="padding: 6px 0;">Indicador</th>
+                            <th style="padding: 6px 4px; text-align: center;">Atual</th>
+                            <th style="padding: 6px 4px; text-align: center;">Anterior</th>
+                            <th style="padding: 6px 0; text-align: right;">Evolução</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                            <td style="padding: 8px 0; font-weight: 700;">Peso (kg)</td>
+                            <td style="padding: 8px 4px; text-align: center; font-weight: 800; color: var(--text-dark);">62.0</td>
+                            <td style="padding: 8px 4px; text-align: center; color: var(--text-muted);">63.5</td>
+                            <td style="padding: 8px 0; text-align: right; color: #2563eb; font-weight: 800;">-1.5 kg</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                            <td style="padding: 8px 0; font-weight: 700;">IMC (kg/m²)</td>
+                            <td style="padding: 8px 4px; text-align: center; font-weight: 800; color: var(--text-dark);">24.8</td>
+                            <td style="padding: 8px 4px; text-align: center; color: var(--text-muted);">25.4</td>
+                            <td style="padding: 8px 0; text-align: right; color: #166534; font-weight: 800;">Adequado</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                            <td style="padding: 8px 0; font-weight: 700;">Panturrilha</td>
+                            <td style="padding: 8px 4px; text-align: center; font-weight: 800; color: var(--text-dark);">34.5 cm</td>
+                            <td style="padding: 8px 4px; text-align: center; color: var(--text-muted);">33.8 cm</td>
+                            <td style="padding: 8px 0; text-align: right; color: #166534; font-weight: 800;">+0.7 cm</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #f1f5f9;">
+                            <td style="padding: 8px 0; font-weight: 700;">Força Palmar</td>
+                            <td style="padding: 8px 4px; text-align: center; font-weight: 800; color: var(--text-dark);">22.5 kgf</td>
+                            <td style="padding: 8px 4px; text-align: center; color: var(--text-muted);">20.0 kgf</td>
+                            <td style="padding: 8px 0; text-align: right; color: #166534; font-weight: 800;">+2.5 kgf</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px 0; font-weight: 700;">Marcha 3m</td>
+                            <td style="padding: 8px 4px; text-align: center; font-weight: 800; color: var(--text-dark);">2.8 s</td>
+                            <td style="padding: 8px 4px; text-align: center; color: var(--text-muted);">3.2 s</td>
+                            <td style="padding: 8px 0; text-align: right; color: #166534; font-weight: 800;">-0.4 s (mais ágil)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="font-size: 0.85rem; font-weight: 900; margin-bottom: 10px;">Histórico de Avaliações</div>
+
+                <div onclick="loadPastAssessment(0)" style="background: #ffffff; border: 1.5px solid var(--lime-main); border-radius: 12px; padding: 12px; margin-bottom: 8px; cursor: pointer;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <strong style="font-size: 0.85rem;">22/09/2026 (Atual)</strong>
+                        <span style="font-size: 0.72rem; color: #166534; background: #dcfce7; padding: 2px 6px; border-radius: 6px; font-weight: 800;">Ativa</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Dra. Mariana Lima • 62.0 kg • Força: 22.5 kgf • Marcha: 2.8s</div>
+                </div>
+
+                <div onclick="loadPastAssessment(1)" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 12px; padding: 12px; margin-bottom: 8px; cursor: pointer;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <strong style="font-size: 0.85rem;">15/06/2026</strong>
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Ver ficha</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Dra. Mariana Lima • 63.5 kg • Força: 20.0 kgf • Marcha: 3.2s</div>
+                </div>
+
+                <div onclick="loadPastAssessment(2)" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 12px; padding: 12px; margin-bottom: 8px; cursor: pointer;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <strong style="font-size: 0.85rem;">10/01/2026 (Baseline inicial)</strong>
+                        <span style="font-size: 0.72rem; color: var(--text-muted);">Ver ficha</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Dr. Roberto Santos • 65.0 kg • Força: 17.5 kgf • Marcha: 3.7s</div>
+                </div>
+            </div>
+
+            <!-- Botão Salvar Avaliação -->
+            <button class="btn-primary" style="margin-top: 18px; margin-bottom: 24px;" onclick="savePhysicalAssessment()">
+                SALVAR AVALIAÇÃO FÍSICA
+            </button>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TELA 4b: ESCOLHA DO USUÁRIO                              -->
+        <!-- ======================================================== -->
+        <section id="screen-4b" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; justify-content: space-between;">
+            <div>
+                <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
+                    <span>9:41</span>
+                    <div class="status-icons">📶 🔋</div>
+                </div>
+
+                <div style="display: flex; align-items: center; margin-bottom: 14px;">
+                    <button class="btn-back" onclick="goToScreen(3)">←</button>
+                    <h2 style="font-size: 1.3rem; font-weight: 900; margin-left: 8px;">Você é:</h2>
+                </div>
+
+                <!-- Foto Casal Idoso Ilustrativa -->
+                <div style="width: 100%; height: 180px; border-radius: 20px; background: #e2f7d2; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 20px; border: 2px solid var(--lime-main);">
+                    <div style="text-align: center;">
+                        <span style="font-size: 4rem;">👵👴</span>
+                        <div style="font-weight: 800; color: var(--lime-text); font-size: 0.9rem;">Saúde, Força e Longevidade</div>
+                    </div>
+                </div>
+
+                <!-- Card Aluno 60+ Selecionado -->
+                <div onclick="goToScreen('5b')" style="background: #f0fdf4; border: 2px solid var(--lime-main); border-radius: 18px; padding: 16px; margin-bottom: 14px; cursor: pointer; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 12px rgba(115, 192, 25, 0.15);">
+                    <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
+                        👤
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="font-size: 1.05rem; font-weight: 900; color: var(--text-dark);">Aluno 60+</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.3;">Quero treinar, cuidar da minha saúde e ter mais qualidade de vida.</div>
+                    </div>
+                    <div style="color: var(--lime-dark); font-weight: 900; font-size: 1.2rem;">&rsaquo;</div>
+                </div>
+
+                <!-- Card Profissional -->
+                <div onclick="goToScreen(5)" style="background: #ffffff; border: 1.5px solid var(--border-light); border-radius: 18px; padding: 16px; cursor: pointer; display: flex; align-items: center; gap: 14px;">
+                    <div style="width: 44px; height: 44px; border-radius: 50%; background: #f1f5f9; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">
+                        🩺
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="font-size: 1.05rem; font-weight: 900; color: var(--text-dark);">Profissional</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.3;">Sou profissional de Educação Física ou Fisioterapeuta e quero acompanhar meus alunos.</div>
+                    </div>
+                    <div style="color: #94a3b8; font-weight: 900; font-size: 1.2rem;">&rsaquo;</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 16px;">
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px;">Juntos por um envelhecimento mais ativo!</p>
+                <div class="brand-logo-text" style="font-size: 1.4rem; color: var(--text-dark);">
+                    <span>60<sup>+</sup></span><span style="color: var(--lime-dark);">FIT</span>
+                </div>
+                <div class="brand-logo-caption" style="color: var(--text-muted);">MUSCULAÇÃO E FUNCIONALIDADE</div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TELA 5: DASHBOARD DO PROFISSIONAL (STATUS FUNCIONAL)       -->
+        <!-- ======================================================== -->
+        <section id="screen-5" class="screen-viewport" style="background: #f8fafc; padding: 16px 18px; overflow-y: auto;">
+            <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
+                <span>9:41</span>
+                <div class="status-icons">📶 🔋</div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <button class="btn-back" onclick="goToScreen(15)">←</button>
+                <div style="margin-left: 8px;">
+                    <h2 style="font-size: 1.15rem; font-weight: 900; color: var(--text-dark); margin: 0;">Tela 5: Dashboard do Profissional</h2>
+                    <div style="font-size: 0.76rem; color: var(--text-muted);">Status Funcional e Gráficos de Evolução 60+</div>
+                </div>
+            </div>
+
+            <!-- Card do Profissional Logado -->
+            <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 12px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <div style="width: 48px; height: 48px; border-radius: 50%; background: #dcfce7; border: 2.5px solid var(--lime-dark); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; overflow: hidden; flex-shrink: 0;">
+                    👩‍⚕️
+                </div>
+                <div style="flex: 1;">
+                    <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">Prof. Dra. Camila Rocha</div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">CREF 098452-G/SP • Fisiologia Geriátrica 60+</div>
+                    <div style="font-size: 0.72rem; color: var(--lime-dark); font-weight: 800;">4 alunos ativos • Painel Clínico de Evolução</div>
+                </div>
+            </div>
+
+            <!-- Seletor de Alunos em Chips Horizontais -->
+            <div style="margin-bottom: 14px;">
+                <div style="font-size: 0.74rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">
+                    Selecione o Aluno para Abrir o Status Funcional:
+                </div>
+                <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px;">
+                    <button class="student-pill active" id="pill_maria" onclick="selectProStudent('s1', 'Maria Silva', 68, '60+fit Gerontológico', '3x/semana', '11/12 (Robusto)', 'Baixo Risco (18%)', 92, '👵')" style="background: var(--lime-dark); color: white; border: none; border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; font-weight: 800; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 6px rgba(91,167,13,0.3);">
+                        👵 Maria Silva (68a)
+                    </button>
+                    <button class="student-pill" id="pill_jose" onclick="selectProStudent('s2', 'José de Alencar', 72, '60+fit Essencial', '2x/semana', '9/12 (Moderado)', 'Médio Risco (35%)', 85, '🧓')" style="background: #ffffff; color: var(--text-dark); border: 1px solid var(--border-light); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; cursor: pointer; white-space: nowrap;">
+                        🧓 José de Alencar (72a)
+                    </button>
+                    <button class="student-pill" id="pill_antonia" onclick="selectProStudent('s3', 'Antônia Santos', 65, '60+fit Gerontológico', '3x/semana', '10/12 (Robusto)', 'Baixo Risco (22%)', 78, '👵')" style="background: #ffffff; color: var(--text-dark); border: 1px solid var(--border-light); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; cursor: pointer; white-space: nowrap;">
+                        👵 Antônia Santos (65a)
+                    </button>
+                    <button class="student-pill" id="pill_carlos" onclick="selectProStudent('s4', 'Carlos Eduardo', 70, '60+fit Personal', '4x/semana', '12/12 (Excelente)', 'Mínimo (10%)', 95, '🧓')" style="background: #ffffff; color: var(--text-dark); border: 1px solid var(--border-light); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; font-weight: 700; cursor: pointer; white-space: nowrap;">
+                        🧓 Carlos Eduardo (70a)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ficha Resumo do Aluno Aberto -->
+            <div style="background: #ffffff; border: 1.5px solid rgba(140, 238, 0, 0.7); border-radius: 18px; padding: 14px; margin-bottom: 16px; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                    <div id="dash_student_avatar" style="width: 58px; height: 58px; border-radius: 50%; background: #dcfce7; border: 2.5px solid var(--lime-dark); display: flex; align-items: center; justify-content: center; font-size: 2rem; flex-shrink: 0;">
+                        👵
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3 id="dash_student_name" style="font-size: 1.15rem; font-weight: 900; color: var(--text-dark); margin: 0;">Maria Silva</h3>
+                            <span style="background: #dcfce7; color: #166534; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 6px;">Ativo</span>
+                        </div>
+                        <div id="dash_student_details" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">
+                            68 anos • Plano 60+fit Gerontológico
+                        </div>
+                        <div style="font-size: 0.74rem; color: var(--text-muted);">
+                            Frequência: <strong id="dash_student_freq">3x por semana</strong> • Última Avaliação: 22/09/2026
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Badges de Escore e Segurança -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px;">
+                        <div style="font-size: 0.62rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase;">Capacidade</div>
+                        <div id="dash_score_cap" style="font-size: 0.84rem; font-weight: 900; color: #166534;">11/12 (Robusto)</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px;">
+                        <div style="font-size: 0.62rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase;">Quedas</div>
+                        <div id="dash_score_fall" style="font-size: 0.84rem; font-weight: 900; color: #15803d;">Baixo (18%)</div>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px;">
+                        <div style="font-size: 0.62rem; font-weight: 900; color: var(--text-muted); text-transform: uppercase;">Adesão</div>
+                        <div id="dash_score_adh" style="font-size: 0.84rem; font-weight: 900; color: var(--lime-dark);">92% treinos</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Título da Seção dos 7 Pilares Funcionais -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <div>
+                    <h3 style="font-size: 1.05rem; font-weight: 900; color: var(--text-dark); margin: 0;">Status Funcional do Aluno</h3>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">7 dimensões gerontológicas com gráficos de evolução</div>
+                </div>
+                <span style="background: rgba(140, 238, 0, 0.2); color: var(--lime-dark); font-size: 0.72rem; font-weight: 900; padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(91,167,13,0.4);">
+                    7 DIMENSÕES
+                </span>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- 1. FORÇA                                       -->
+            <!-- ============================================== -->
+            <div class="functional-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: #ecfccb; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                            💪
+                        </div>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">FORÇA</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Preensão palmar (Dinamometria)</div>
+                        </div>
+                    </div>
+                    <span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; border-radius: 8px; padding: 3px 8px; font-size: 0.74rem; font-weight: 900;">
+                        ↑ evolução (+4 kg / +19%)
+                    </span>
+                </div>
+
+                <!-- Caixa Comparativa Inicial vs Atual -->
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Avaliação inicial</div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #475569;">21 kg</div>
+                    </div>
+                    <div style="font-size: 1.4rem; color: var(--lime-dark);">📈</div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Atual</div>
+                        <div style="font-size: 1.2rem; font-weight: 900; color: var(--lime-dark);">25 kg</div>
+                    </div>
+                </div>
+
+                <!-- Métrica Secundária -->
+                <div style="font-size: 0.76rem; color: var(--text-dark); background: #ffffff; padding: 6px 0; border-bottom: 1px dashed #e2e8f0; margin-bottom: 10px;">
+                    <strong style="color: var(--text-muted);">Sentar e Levantar 30s:</strong> Inicial: 10 reps &rarr; <strong>Atual: 14 reps</strong> (<span style="color: #15803d; font-weight: 800;">↑ evolução +40%</span>)
+                </div>
+
+                <!-- Gráfico SVG de Evolução -->
+                <div style="background: #0d180c; border-radius: 12px; padding: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 0.65rem; color: #86efac; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px;">GRÁFICO DE EVOLUÇÃO (KG PREENSÃO):</div>
+                    <svg viewBox="0 0 300 75" style="width: 100%; height: 75px; overflow: visible;">
+                        <defs>
+                            <linearGradient id="grad_forca" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#84cc16" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#84cc16" stop-opacity="0.0"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M 20 55 L 100 42 L 180 28 L 260 12 L 260 65 L 20 65 Z" fill="url(#grad_forca)"/>
+                        <path d="M 20 55 L 100 42 L 180 28 L 260 12" fill="none" stroke="#84cc16" stroke-width="3" stroke-linecap="round"/>
+                        <!-- Pontos e Textos -->
+                        <circle cx="20" cy="55" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="20" y="47" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">21kg</text>
+                        <text x="20" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jan</text>
+
+                        <circle cx="100" cy="42" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="100" y="34" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">22.5</text>
+                        <text x="100" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Mar</text>
+
+                        <circle cx="180" cy="28" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="180" y="20" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">23.8</text>
+                        <text x="180" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jun</text>
+
+                        <circle cx="260" cy="12" r="5" fill="#84cc16" stroke="#ffffff" stroke-width="2"/>
+                        <text x="260" y="5" fill="#84cc16" font-size="10" font-weight="900" text-anchor="middle">25kg</text>
+                        <text x="260" y="72" fill="#84cc16" font-size="8" font-weight="800" text-anchor="middle">Set</text>
+                    </svg>
+                </div>
+
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 10px; font-size: 0.72rem; color: #166534; line-height: 1.3;">
+                    💡 <strong>Diretriz Clínica:</strong> Dinamometria >16 kgf (EWGSOP2 para mulheres). Excelente reserva osteometabólica.
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- 2. MOBILIDADE                                  -->
+            <!-- ============================================== -->
+            <div class="functional-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: #ecfccb; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                            🦵
+                        </div>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">MOBILIDADE</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Timed Up & Go (TUG Test)</div>
+                        </div>
+                    </div>
+                    <span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; border-radius: 8px; padding: 3px 8px; font-size: 0.74rem; font-weight: 900;">
+                        ↑ evolução (-3.3 s / 26.6% ágil)
+                    </span>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Avaliação inicial</div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #475569;">12.4 s</div>
+                    </div>
+                    <div style="font-size: 1.4rem; color: var(--lime-dark);">⏱️</div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Atual</div>
+                        <div style="font-size: 1.2rem; font-weight: 900; color: var(--lime-dark);">9.1 s</div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.76rem; color: var(--text-dark); padding: 6px 0; border-bottom: 1px dashed #e2e8f0; margin-bottom: 10px;">
+                    <strong style="color: var(--text-muted);">ADM Joelho / Quadril:</strong> Inicial: 105° &rarr; <strong>Atual: 125°</strong> (<span style="color: #15803d; font-weight: 800;">↑ evolução +20°</span>)
+                </div>
+
+                <div style="background: #0d180c; border-radius: 12px; padding: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 0.65rem; color: #86efac; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px;">TEMPO TUG (MENOR = MAIS ÁGIL):</div>
+                    <svg viewBox="0 0 300 75" style="width: 100%; height: 75px; overflow: visible;">
+                        <path d="M 20 18 L 100 28 L 180 40 L 260 55" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="20" cy="18" r="4" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="20" y="10" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">12.4s</text>
+                        <text x="20" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jan</text>
+
+                        <circle cx="100" cy="28" r="4" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="100" y="20" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">11.2s</text>
+                        <text x="100" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Mar</text>
+
+                        <circle cx="180" cy="40" r="4" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="180" y="32" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">10.0s</text>
+                        <text x="180" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jun</text>
+
+                        <circle cx="260" cy="55" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
+                        <text x="260" y="47" fill="#38bdf8" font-size="10" font-weight="900" text-anchor="middle">9.1s</text>
+                        <text x="260" y="72" fill="#38bdf8" font-size="8" font-weight="800" text-anchor="middle">Set</text>
+                    </svg>
+                </div>
+
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 10px; font-size: 0.72rem; color: #166534; line-height: 1.3;">
+                    💡 <strong>Diretriz Clínica:</strong> TUG < 10 segundos atesta independência motora plena e rapidez reflexa para travessia urbana.
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- 3. EQUILÍBRIO                                  -->
+            <!-- ============================================== -->
+            <div class="functional-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: #ecfccb; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                            ⚖️
+                        </div>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">EQUILÍBRIO</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Apoio Unipodal (Olhos abertos)</div>
+                        </div>
+                    </div>
+                    <span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; border-radius: 8px; padding: 3px 8px; font-size: 0.74rem; font-weight: 900;">
+                        ↑ evolução (+9 s / +150%)
+                    </span>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Avaliação inicial</div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #475569;">6 s</div>
+                    </div>
+                    <div style="font-size: 1.4rem; color: var(--lime-dark);">⚖️</div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Atual</div>
+                        <div style="font-size: 1.2rem; font-weight: 900; color: var(--lime-dark);">15 s</div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.76rem; color: var(--text-dark); padding: 6px 0; border-bottom: 1px dashed #e2e8f0; margin-bottom: 10px;">
+                    <strong style="color: var(--text-muted);">Semi-Tandem / Tandem:</strong> Inicial: 4 s (instável) &rarr; <strong>Atual: 10+ s (estável)</strong> (<span style="color: #15803d; font-weight: 800;">↑ evolução postural</span>)
+                </div>
+
+                <div style="background: #0d180c; border-radius: 12px; padding: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 0.65rem; color: #86efac; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px;">TEMPO EM APOIO UNIPODAL (SEGUNDOS):</div>
+                    <svg viewBox="0 0 300 75" style="width: 100%; height: 75px; overflow: visible;">
+                        <path d="M 20 58 L 100 45 L 180 30 L 260 14" fill="none" stroke="#84cc16" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="20" cy="58" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="20" y="50" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">6s</text>
+                        <text x="20" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jan</text>
+
+                        <circle cx="100" cy="45" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="100" y="37" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">9s</text>
+                        <text x="100" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Mar</text>
+
+                        <circle cx="180" cy="30" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="180" y="22" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">12s</text>
+                        <text x="180" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jun</text>
+
+                        <circle cx="260" cy="14" r="5" fill="#84cc16" stroke="#ffffff" stroke-width="2"/>
+                        <text x="260" y="6" fill="#84cc16" font-size="10" font-weight="900" text-anchor="middle">15s</text>
+                        <text x="260" y="72" fill="#84cc16" font-size="8" font-weight="800" text-anchor="middle">Set</text>
+                    </svg>
+                </div>
+
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 10px; font-size: 0.72rem; color: #166534; line-height: 1.3;">
+                    💡 <strong>Diretriz Clínica:</strong> Apoio unipodal sustentado >10s é preditor isolado de longevidade e blindagem contra desequilíbrios.
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- 4. MARCHA                                      -->
+            <!-- ============================================== -->
+            <div class="functional-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: #ecfccb; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                            🚶
+                        </div>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">MARCHA</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Velocidade de Marcha (3 metros)</div>
+                        </div>
+                    </div>
+                    <span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; border-radius: 8px; padding: 3px 8px; font-size: 0.74rem; font-weight: 900;">
+                        ↑ evolução (+32% mais rápida)
+                    </span>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Avaliação inicial</div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #475569;">0.81 m/s (3.7 s)</div>
+                    </div>
+                    <div style="font-size: 1.4rem; color: var(--lime-dark);">🏃</div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Atual</div>
+                        <div style="font-size: 1.2rem; font-weight: 900; color: var(--lime-dark);">1.07 m/s (2.8 s)</div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.76rem; color: var(--text-dark); padding: 6px 0; border-bottom: 1px dashed #e2e8f0; margin-bottom: 10px;">
+                    <strong style="color: var(--text-muted);">Cadência da passada:</strong> Inicial: 88 passos/min &rarr; <strong>Atual: 104 passos/min</strong> (<span style="color: #15803d; font-weight: 800;">↑ evolução +18%</span>)
+                </div>
+
+                <div style="background: #0d180c; border-radius: 12px; padding: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 0.65rem; color: #86efac; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px;">VELOCIDADE DE MARCHA (M/S):</div>
+                    <svg viewBox="0 0 300 75" style="width: 100%; height: 75px; overflow: visible;">
+                        <path d="M 20 54 L 100 42 L 180 30 L 260 14" fill="none" stroke="#84cc16" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="20" cy="54" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="20" y="46" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">0.81</text>
+                        <text x="20" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jan</text>
+
+                        <circle cx="100" cy="42" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="100" y="34" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">0.90</text>
+                        <text x="100" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Mar</text>
+
+                        <circle cx="180" cy="30" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="180" y="22" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">0.98</text>
+                        <text x="180" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jun</text>
+
+                        <circle cx="260" cy="14" r="5" fill="#84cc16" stroke="#ffffff" stroke-width="2"/>
+                        <text x="260" y="6" fill="#84cc16" font-size="10" font-weight="900" text-anchor="middle">1.07</text>
+                        <text x="260" y="72" fill="#84cc16" font-size="8" font-weight="800" text-anchor="middle">Set</text>
+                    </svg>
+                </div>
+
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 10px; font-size: 0.72rem; color: #166534; line-height: 1.3;">
+                    💡 <strong>Diretriz Clínica:</strong> Velocidade >1.0 m/s reclassifica como idosa comunitária robusta, capaz de atravessar faixas de pedestre com segurança.
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- 5. FLEXIBILIDADE                               -->
+            <!-- ============================================== -->
+            <div class="functional-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: #ecfccb; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                            🧘
+                        </div>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">FLEXIBILIDADE</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Sentar e Alcançar (Banco de Wells)</div>
+                        </div>
+                    </div>
+                    <span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; border-radius: 8px; padding: 3px 8px; font-size: 0.74rem; font-weight: 900;">
+                        ↑ evolução (+8 cm / +44%)
+                    </span>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Avaliação inicial</div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #475569;">18 cm</div>
+                    </div>
+                    <div style="font-size: 1.4rem; color: var(--lime-dark);">📐</div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Atual</div>
+                        <div style="font-size: 1.2rem; font-weight: 900; color: var(--lime-dark);">26 cm</div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.76rem; color: var(--text-dark); padding: 6px 0; border-bottom: 1px dashed #e2e8f0; margin-bottom: 10px;">
+                    <strong style="color: var(--text-muted);">Alcance mãos nas costas:</strong> Inicial: -8 cm &rarr; <strong>Atual: -2 cm</strong> (<span style="color: #15803d; font-weight: 800;">↑ evolução +6 cm</span>)
+                </div>
+
+                <div style="background: #0d180c; border-radius: 12px; padding: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 0.65rem; color: #86efac; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px;">SENTAR E ALCANÇAR (CM):</div>
+                    <svg viewBox="0 0 300 75" style="width: 100%; height: 75px; overflow: visible;">
+                        <path d="M 20 56 L 100 44 L 180 28 L 260 12" fill="none" stroke="#84cc16" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="20" cy="56" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="20" y="48" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">18cm</text>
+                        <text x="20" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jan</text>
+
+                        <circle cx="100" cy="44" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="100" y="36" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">20cm</text>
+                        <text x="100" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Mar</text>
+
+                        <circle cx="180" cy="28" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="180" y="20" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">23cm</text>
+                        <text x="180" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jun</text>
+
+                        <circle cx="260" cy="12" r="5" fill="#84cc16" stroke="#ffffff" stroke-width="2"/>
+                        <text x="260" y="5" fill="#84cc16" font-size="10" font-weight="900" text-anchor="middle">26cm</text>
+                        <text x="260" y="72" fill="#84cc16" font-size="8" font-weight="800" text-anchor="middle">Set</text>
+                    </svg>
+                </div>
+
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 10px; font-size: 0.72rem; color: #166534; line-height: 1.3;">
+                    💡 <strong>Diretriz Clínica:</strong> Cadeia posterior alongada reduz tensão lombar e otimiza a amplitude da passada.
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- 6. RISCO DE QUEDAS                             -->
+            <!-- ============================================== -->
+            <div class="functional-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: #ecfccb; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                            🛡️
+                        </div>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">RISCO DE QUEDAS</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Índice Clínico Gerontológico</div>
+                        </div>
+                    </div>
+                    <span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; border-radius: 8px; padding: 3px 8px; font-size: 0.74rem; font-weight: 900;">
+                        ↓ evolução (-52% risco)
+                    </span>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Avaliação inicial</div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #dc2626;">70% (Alto Risco)</div>
+                    </div>
+                    <div style="font-size: 1.4rem; color: var(--lime-dark);">🛡️</div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Atual</div>
+                        <div style="font-size: 1.2rem; font-weight: 900; color: #15803d;">18% (Baixo Risco)</div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.76rem; color: var(--text-dark); padding: 6px 0; border-bottom: 1px dashed #e2e8f0; margin-bottom: 10px;">
+                    <strong style="color: var(--text-muted);">Ocorrência de quedas no semestre:</strong> Inicial: 1 queda &rarr; <strong>Atual: 0 quedas</strong> (<span style="color: #15803d; font-weight: 800;">Zero quedas no período</span>)
+                </div>
+
+                <div style="background: #0d180c; border-radius: 12px; padding: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 0.65rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px;">REDUÇÃO DO RISCO DE QUEDAS (%):</div>
+                    <svg viewBox="0 0 300 75" style="width: 100%; height: 75px; overflow: visible;">
+                        <path d="M 20 12 L 100 28 L 180 44 L 260 58" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="20" cy="12" r="4" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="20" y="5" fill="#f87171" font-size="9" font-weight="900" text-anchor="middle">70%</text>
+                        <text x="20" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jan</text>
+
+                        <circle cx="100" cy="28" r="4" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="100" y="20" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">52%</text>
+                        <text x="100" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Mar</text>
+
+                        <circle cx="180" cy="44" r="4" fill="#ffffff" stroke="#38bdf8" stroke-width="2"/>
+                        <text x="180" y="36" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">34%</text>
+                        <text x="180" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jun</text>
+
+                        <circle cx="260" cy="58" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/>
+                        <text x="260" y="50" fill="#38bdf8" font-size="10" font-weight="900" text-anchor="middle">18%</text>
+                        <text x="260" y="72" fill="#38bdf8" font-size="8" font-weight="800" text-anchor="middle">Set</text>
+                    </svg>
+                </div>
+
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 10px; font-size: 0.72rem; color: #166534; line-height: 1.3;">
+                    💡 <strong>Diretriz Clínica:</strong> Transição segura de Alto para Baixo Risco de Quedas graças ao fortalecimento de dorsiflexores e trabalho proprioceptivo.
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- 7. CAPACIDADE FUNCIONAL                        -->
+            <!-- ============================================== -->
+            <div class="functional-card" style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 16px; padding: 14px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background: #ecfccb; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                            🏆
+                        </div>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">CAPACIDADE FUNCIONAL</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Escore SPPB / Avaliação Geriátrica Ampla</div>
+                        </div>
+                    </div>
+                    <span style="background: #dcfce7; color: #15803d; border: 1px solid #86efac; border-radius: 8px; padding: 3px 8px; font-size: 0.74rem; font-weight: 900;">
+                        ↑ evolução (+57% capacidade)
+                    </span>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Avaliação inicial</div>
+                        <div style="font-size: 1.05rem; font-weight: 800; color: #b45309;">7 / 12 (Moderada)</div>
+                    </div>
+                    <div style="font-size: 1.4rem; color: var(--lime-dark);">🌟</div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Atual</div>
+                        <div style="font-size: 1.2rem; font-weight: 900; color: #166534;">11 / 12 (Robusto)</div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.76rem; color: var(--text-dark); padding: 6px 0; border-bottom: 1px dashed #e2e8f0; margin-bottom: 10px;">
+                    <strong style="color: var(--text-muted);">Autonomia ABVD / AIVD:</strong> Inicial: Parcial &rarr; <strong>Atual: 100% Independente</strong> (<span style="color: #15803d; font-weight: 800;">Total autonomia</span>)
+                </div>
+
+                <div style="background: #0d180c; border-radius: 12px; padding: 10px; margin-bottom: 10px;">
+                    <div style="font-size: 0.65rem; color: #86efac; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 4px;">ESCORE SPPB TOTAL (MÁX 12 PONTOS):</div>
+                    <svg viewBox="0 0 300 75" style="width: 100%; height: 75px; overflow: visible;">
+                        <path d="M 20 54 L 100 36 L 180 24 L 260 12" fill="none" stroke="#84cc16" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="20" cy="54" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="20" y="46" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">7 pts</text>
+                        <text x="20" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jan</text>
+
+                        <circle cx="100" cy="36" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="100" y="28" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">9 pts</text>
+                        <text x="100" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Mar</text>
+
+                        <circle cx="180" cy="24" r="4" fill="#ffffff" stroke="#84cc16" stroke-width="2"/>
+                        <text x="180" y="16" fill="#ffffff" font-size="9" font-weight="900" text-anchor="middle">10 pts</text>
+                        <text x="180" y="72" fill="#94a3b8" font-size="8" text-anchor="middle">Jun</text>
+
+                        <circle cx="260" cy="12" r="5" fill="#84cc16" stroke="#ffffff" stroke-width="2"/>
+                        <text x="260" y="5" fill="#84cc16" font-size="10" font-weight="900" text-anchor="middle">11 pts</text>
+                        <text x="260" y="72" fill="#84cc16" font-size="8" font-weight="800" text-anchor="middle">Set</text>
+                    </svg>
+                </div>
+
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 8px 10px; font-size: 0.72rem; color: #166534; line-height: 1.3;">
+                    💡 <strong>Diretriz Clínica:</strong> SPPB 11/12 reflete robustez geriátrica, máxima autonomia para tarefas cotidianas e excelente reserva fisiológica.
+                </div>
+            </div>
+
+            <!-- ============================================== -->
+            <!-- AÇÕES RÁPIDAS DO PROFISSIONAL                  -->
+            <!-- ============================================== -->
+            <div style="background: #ffffff; border: 1px solid var(--border-light); border-radius: 18px; padding: 14px; margin-bottom: 20px;">
+                <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark); margin-bottom: 10px;">
+                    Ações do Profissional para <span id="dash_action_student_name">Maria Silva</span>:
+                </div>
+                
+                <button class="btn-primary" onclick="goToScreen(9)" style="margin-bottom: 10px;">
+                    🏋️ PRESCREVER / AJUSTAR TREINO (TELA 9)
+                </button>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px;">
+                    <button class="btn-secondary" onclick="goToScreen(4)" style="padding: 10px; font-size: 0.8rem;">
+                        📋 Nova Avaliação
+                    </button>
+                    <button class="btn-secondary" onclick="goToScreen(3)" style="padding: 10px; font-size: 0.8rem;">
+                        🩺 Ver Anamnese
+                    </button>
+                </div>
+
+                <button class="btn-secondary" onclick="exportClinicalReport()" style="width: 100%; padding: 11px; font-size: 0.84rem; font-weight: 800; border-color: var(--lime-dark); color: var(--lime-dark);">
+                    📑 Exportar Relatório Clínico de Evolução (PDF)
+                </button>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TELA 5b: CADASTRO DO ALUNO (MEU PERFIL)                  -->
+        <!-- ======================================================== -->
+        <section id="screen-5b" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; overflow-y: auto;">
+            <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
+                <span>9:41</span>
+                <div class="status-icons">📶 🔋</div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin-bottom: 14px;">
+                <button class="btn-back" onclick="goToScreen(4)">←</button>
+                <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Cadastro do Aluno</h2>
+            </div>
+
+            <!-- Header Badge -->
+            <div style="margin-bottom: 14px;">
+                <span style="background: rgba(140, 238, 0, 0.18); color: var(--lime-dark); font-weight: 800; font-size: 0.76rem; padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(91, 167, 13, 0.35);">
+                    Ficha de Cadastro e Matrícula
+                </span>
+            </div>
+
+            <!-- 6. Foto do Aluno -->
+            <div style="text-align: center; margin-bottom: 16px; position: relative; width: 105px; margin-left: auto; margin-right: auto;">
+                <div style="width: 96px; height: 96px; border-radius: 50%; background: #dcfce7; border: 3.5px solid var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; overflow: hidden; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="img_avatar_maria.jpg" onerror="this.outerHTML='<span style=\'font-size:2.8rem;\'>👵</span>'" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div onclick="alert('Foto selecionada com sucesso!')" title="Alterar Foto" style="position: absolute; bottom: 2px; right: 4px; width: 34px; height: 34px; background: var(--lime-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 2.5px solid white; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
+                    📷
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">
+                Toque na câmera para alterar a <strong>Foto</strong>
+            </p>
+
+            <!-- 1. Nome -->
+            <div class="form-group">
+                <label class="form-label">Nome completo</label>
+                <div class="input-box">
+                    <span>👤</span>
+                    <input type="text" id="student_name" placeholder="Ex: Maria Silva" value="Maria Silva">
+                </div>
+            </div>
+
+            <!-- 2. Data de nascimento -->
+            <div class="form-group">
+                <label class="form-label">Data de nascimento</label>
+                <div class="input-box">
+                    <span>📅</span>
+                    <input type="text" id="student_birthdate" placeholder="DD/MM/AAAA" value="15/03/1956">
+                </div>
+            </div>
+
+            <!-- 3. Sexo -->
+            <div class="form-group">
+                <label class="form-label">Sexo</label>
+                <div class="input-box">
+                    <span>⚧️</span>
+                    <select id="student_gender" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                        <option value="Feminino" selected>Feminino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 4. Telefone -->
+            <div class="form-group">
+                <label class="form-label">Telefone</label>
+                <div class="input-box">
+                    <span>📞</span>
+                    <input type="tel" id="student_phone" placeholder="(11) 98765-4321" value="(11) 98765-4321">
+                </div>
+            </div>
+
+            <!-- 5. E-mail -->
+            <div class="form-group">
+                <label class="form-label">E-mail</label>
+                <div class="input-box">
+                    <span>✉️</span>
+                    <input type="email" id="student_email" placeholder="aluno@email.com" value="maria.silva@email.com">
+                </div>
+            </div>
+
+            <!-- 7. Contato de emergência -->
+            <div class="form-group">
+                <label class="form-label">Contato de emergência</label>
+                <div class="input-box">
+                    <span>🚨</span>
+                    <input type="text" id="student_emergency" placeholder="Ex: Carlos Silva (Filho) - (11) 99876-5432" value="Carlos Silva (Filho) - (11) 99876-5432">
+                </div>
+            </div>
+
+            <!-- 8. Objetivo -->
+            <div class="form-group">
+                <label class="form-label">Objetivo</label>
+                <div class="input-box">
+                    <span>🎯</span>
+                    <select id="student_goal" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                        <option selected>Ganhar força e autonomia</option>
+                        <option>Melhorar o equilíbrio e prevenir quedas</option>
+                        <option>Aumentar flexibilidade e mobilidade</option>
+                        <option>Alívio de dores articulares e artrose</option>
+                        <option>Condicionamento físico geral</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- CARD: INFORMAÇÕES PROFISSIONAIS -->
+            <div style="background: #f8fafc; border: 1.5px solid rgba(91, 167, 13, 0.4); border-radius: 18px; padding: 16px; margin: 18px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.04);">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--lime-dark); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                        🩺
+                    </div>
+                    <div>
+                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-dark);">Informações profissionais</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">Prescrição, plano contratado e acompanhamento</div>
+                    </div>
+                </div>
+
+                <!-- 9. Profissional responsável -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Profissional responsável</label>
+                    <div class="input-box">
+                        <span>👨‍🏫</span>
+                        <input type="text" id="student_professional" placeholder="Nome do profissional (CREF/CREFITO)" value="Dra. Mariana Lima (CREF 045123)">
+                    </div>
+                </div>
+
+                <!-- 10. Data de início -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Data de início</label>
+                    <div class="input-box">
+                        <span>🗓️</span>
+                        <input type="text" id="student_start_date" placeholder="DD/MM/AAAA" value="10/01/2026">
+                    </div>
+                </div>
+
+                <!-- 11. Plano contratado -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Plano contratado</label>
+                    <div class="input-box">
+                        <span>💳</span>
+                        <select id="student_plan" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                            <option>60+fit Essencial (R$ 79,90/mês)</option>
+                            <option selected>60+fit Gerontológico (R$ 129,90/mês)</option>
+                            <option>60+fit Premium (R$ 199,90/mês)</option>
+                            <option>60+fit Personalizado (Consultar)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 12. Frequência semanal -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Frequência semanal</label>
+                    <div class="input-box">
+                        <span>⏱️</span>
+                        <select id="student_frequency" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                            <option>1x por semana</option>
+                            <option>2x por semana</option>
+                            <option selected>3x por semana</option>
+                            <option>4x por semana</option>
+                            <option>5x por semana</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 13. Observações -->
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Observações</label>
+                    <div class="input-box" style="height: auto; padding: 10px;">
+                        <textarea id="student_notes" rows="3" style="width: 100%; border: none; outline: none; font-family: inherit; font-size: 0.88rem; resize: vertical;" placeholder="Anotações clínicas, cuidados articulares, restrições e histórico...">Foco em membros inferiores, equilíbrio e prevenção de quedas. Sem contraindicações agudas.</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary" style="margin-top: 10px; margin-bottom: 20px;" onclick="saveStudentRegistration()">
+                SALVAR CADASTRO DO ALUNO
+            </button>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TELA 6: SISTEMA DE PRESCRIÇÃO DE TREINO (6 SEQUÊNCIAS)   -->
+        <!-- ======================================================== -->
+        <section id="screen-6" class="screen-viewport" style="background: #ffffff; padding: 16px 18px 80px 18px; overflow-y: auto;">
+            <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
+                <span>9:41</span>
+                <div class="status-icons">📶 🔋</div>
+            </div>
+
+            <!-- Top Header com Voltar -->
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <div style="display: flex; align-items: center;">
+                    <button class="btn-back" onclick="goToScreen(5)">←</button>
+                    <div style="margin-left: 8px;">
+                        <h2 style="font-size: 1.22rem; font-weight: 900; margin: 0; color: var(--text-dark);">Tela 6: Prescrição de Treino</h2>
+                        <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700;">Montagem por Sequências 60+fit</span>
+                    </div>
+                </div>
+                <span style="background: #f0fdf4; color: var(--lime-dark); font-weight: 900; font-size: 0.72rem; padding: 4px 8px; border-radius: 8px; border: 1px solid #86efac;">
+                    CREF ATIVO
+                </span>
+            </div>
+
+            <!-- Card de Identificação e Resumo -->
+            <div style="background: #f8fafc; border: 1.5px solid rgba(140, 238, 0, 0.4); border-radius: 16px; padding: 14px; margin-bottom: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">Maria Silva (68 anos)</div>
+                        <div style="font-size: 0.74rem; color: var(--text-muted);">Prof. Dra. Camila Rocha • CREF 098452-G/SP</div>
+                    </div>
+                    <div style="display: flex; gap: 4px;">
+                        <button style="border: 1.5px solid var(--lime-dark); background: #ecfccb; color: var(--lime-dark); border-radius: 6px; padding: 3px 8px; font-weight: 800; font-size: 0.72rem; cursor: pointer;">Treino A</button>
+                        <button style="border: 1px solid #cbd5e1; background: transparent; color: #64748b; border-radius: 6px; padding: 3px 8px; font-weight: 700; font-size: 0.72rem; cursor: pointer;" onclick="alert('Alternado para Treino B')">Treino B</button>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; background: #ffffff; padding: 8px 12px; border-radius: 10px; border: 1px solid #e2e8f0; font-size: 0.78rem;">
+                    <div>
+                        <span style="color: var(--text-muted);">Exercícios selecionados:</span>
+                        <strong id="prescription-count" style="color: var(--lime-dark); margin-left: 4px;">38 de 38</strong>
+                    </div>
+                    <div>
+                        <span style="color: var(--text-muted);">Tempo est.:</span>
+                        <strong style="color: var(--text-dark); margin-left: 4px;">~45 min</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seletor Rápido de Sequências (Filtro Horizontal) -->
+            <div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 12px; -webkit-overflow-scrolling: touch;">
+                <button onclick="filterWebPrescription(0)" class="seq-filter-chip active" style="padding: 5px 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 800; border: 1px solid var(--lime-dark); background: var(--lime-dark); color: white; cursor: pointer; white-space: nowrap;">Todas (6)</button>
+                <button onclick="filterWebPrescription(1)" class="seq-filter-chip" style="padding: 5px 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 700; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-dark); cursor: pointer; white-space: nowrap;">🧘 1. Mobilidade</button>
+                <button onclick="filterWebPrescription(2)" class="seq-filter-chip" style="padding: 5px 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 700; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-dark); cursor: pointer; white-space: nowrap;">🤸 2. Alongamento</button>
+                <button onclick="filterWebPrescription(3)" class="seq-filter-chip" style="padding: 5px 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 700; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-dark); cursor: pointer; white-space: nowrap;">💪 3. Força</button>
+                <button onclick="filterWebPrescription(4)" class="seq-filter-chip" style="padding: 5px 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 700; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-dark); cursor: pointer; white-space: nowrap;">⚡ 4. Funcional</button>
+                <button onclick="filterWebPrescription(5)" class="seq-filter-chip" style="padding: 5px 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 700; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-dark); cursor: pointer; white-space: nowrap;">⚖️ 5. Equilíbrio</button>
+                <button onclick="filterWebPrescription(6)" class="seq-filter-chip" style="padding: 5px 10px; border-radius: 12px; font-size: 0.74rem; font-weight: 700; border: 1px solid #cbd5e1; background: #ffffff; color: var(--text-dark); cursor: pointer; white-space: nowrap;">🛡️ 6. Quedas</button>
+            </div>
+
+            <!-- SEQUÊNCIA 1 — MOBILIDADE -->
+            <div class="seq-card-block" data-seq="1" style="background: #ffffff; border: 1.5px solid #dcfce7; border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3rem;">🧘</span>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">Sequência 1 — Mobilidade</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Fluidez e amplitude articular para 60+</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #ecfccb; color: var(--lime-dark); padding: 2px 7px; border-radius: 6px;">5 ex.</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Mobilidade cervical</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 8 a 10 movimentos suaves • Sem carga</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Mobilidade de ombros</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 10 rotações escapulares • Bastão leve</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Mobilidade torácica</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 8 reps para cada lado • Sentada na cadeira</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Mobilidade de quadril</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 10 círculos e pêndulos • Com apoio</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Mobilidade de tornozelo</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 12 flexões e rotações • Prevenção de tropeço</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- SEQUÊNCIA 2 — ALONGAMENTO -->
+            <div class="seq-card-block" data-seq="2" style="background: #ffffff; border: 1.5px solid #dbeafe; border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3rem;">🤸</span>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">Sequência 2 — Alongamento</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Flexibilidade muscular sem desconforto</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #eff6ff; color: #1d4ed8; padding: 2px 7px; border-radius: 6px;">5 ex.</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Membros superiores</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 20 a 30s sustentados • Peitoral e tríceps</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Cadeia posterior</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 20s com apoio seguro • Isquiotibiais</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Quadríceps</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 20s deitado ou segurando no espaldar</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Panturrilha</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 25s empurrando a parede • Gastrocnêmio</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Quadril</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 20s para flexores e rotadores</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- SEQUÊNCIA 3 — FORÇA -->
+            <div class="seq-card-block" data-seq="3" style="background: #ffffff; border: 1.5px solid #fed7aa; border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3rem;">💪</span>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">Sequência 3 — Força</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Combate à sarcopenia e densidade óssea</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #fff7ed; color: #c2410c; padding: 2px 7px; border-radius: 6px;">9 ex.</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Agachamento</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 10 a 12 reps • Peso corporal / com banco</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Leg press</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 10 reps • Carga moderada (40kg)</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Extensão de joelho</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 12 reps • Cadeira extensora adaptada</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Flexão de joelho</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 10 a 12 reps • Mesa ou em pé com caneleira</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Remada</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 12 reps • Elástico ou máquina sentada</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Puxada</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 10 reps • Puxador frente pegada neutra</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Supino</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 10 reps • Máquina articulada ou halteres leves</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Exercícios de braços</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 12 reps • Rosca bíceps e tríceps banco</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Panturrilha</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 15 reps • Em pé com apoio estável</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- SEQUÊNCIA 4 — FUNCIONAL -->
+            <div class="seq-card-block" data-seq="4" style="background: #ffffff; border: 1.5px solid #fef08a; border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3rem;">⚡</span>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">Sequência 4 — Funcional</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Autonomia e tarefas do cotidiano</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #fefce8; color: #854d0e; padding: 2px 7px; border-radius: 6px;">6 ex.</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Sentar e levantar</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 10 a 12 reps • Cadeira firme 45cm</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Subir degrau</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 8 reps por perna • Step com corrimão</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Carregar objetos</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 15 metros • Carga bilateral leve (2kg cada lado)</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Levantar objetos</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 8 reps • Do solo até a bancada com flexão de joelho</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Deslocamentos</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 20 metros • Deslocamento frontal e posterior suave</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Exercícios de dupla tarefa</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • Caminhada contando regressivamente de 3 em 3</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- SEQUÊNCIA 5 — EQUILÍBRIO E MARCHA -->
+            <div class="seq-card-block" data-seq="5" style="background: #ffffff; border: 1.5px solid #e9d5ff; border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3rem;">⚖️</span>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">Sequência 5 — Equilíbrio e marcha</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Propriocepção e coordenação espacial</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #faf5ff; color: #7e22ce; padding: 2px 7px; border-radius: 6px;">7 ex.</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Apoio bipodal</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 30s • Olhos abertos e semi-fechados</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Apoio unipodal adaptado</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 10 a 15s por perna • Com apoio de 1 mão</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Deslocamento lateral</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 10 passos para cada lado</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Caminhada</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">1 série • 5 a 8 min • Ritmo cadenciado e seguro</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Obstáculos baixos</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 6 cones baixos (5cm) • Elevação de joelhos</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Mudanças de direção</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • Trajeto em zigue-zague amplo</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Marcha com dupla tarefa</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • Caminhada verbalizando nomes de frutas/cidades</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- SEQUÊNCIA 6 — PREVENÇÃO DE QUEDAS -->
+            <div class="seq-card-block" data-seq="6" style="background: #ffffff; border: 1.5px solid #fecdd3; border-radius: 16px; padding: 14px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.3rem;">🛡️</span>
+                        <div>
+                            <div style="font-size: 0.95rem; font-weight: 900; color: var(--text-dark);">Sequência 6 — Prevenção de quedas</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">Treinos específicos para proteção e autonomia</div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #fff1f2; color: #be123c; padding: 2px 7px; border-radius: 6px;">6 ex.</span>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Força de membros inferiores</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 10 reps • Fortalecimento de glúteo e quadríceps</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Equilíbrio</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 15s • Postura tandem e semi-tandem</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Reação postural</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • 8 passos rápidos de recuperação de equilíbrio</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Mobilidade</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • Dorsiflexão de tornozelo para prevenir rastejo</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Marcha</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">2 séries • Passada firme calcanhar-ponta</div>
+                        </div>
+                    </label>
+
+                    <label class="presc-ex-row" style="display: flex; align-items: center; gap: 10px; background: #f8fafc; padding: 8px 10px; border-radius: 10px; cursor: pointer;">
+                        <input type="checkbox" checked class="presc-check" style="width: 18px; height: 18px; accent-color: var(--lime-dark);">
+                        <div style="flex: 1;">
+                            <div style="font-size: 0.85rem; font-weight: 800; color: var(--text-dark);">Transferência sentado/em pé</div>
+                            <div style="font-size: 0.72rem; color: var(--text-muted);">3 séries • 8 a 10 reps sem impulsão descontrolada</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Botões de Ação do Profissional -->
+            <button class="btn-primary" style="margin-bottom: 10px;" onclick="saveWebPrescription()">
+                💾 SALVAR E PRESCREVER PARA MARIA SILVA
+            </button>
+
+            <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <button class="btn-secondary" style="flex: 1; padding: 12px; font-size: 0.85rem; border-radius: 14px;" onclick="goToScreen(9)">
+                    👁️ Ver Treino (Tela 9)
+                </button>
+                <button class="btn-secondary" style="flex: 1; padding: 12px; font-size: 0.85rem; border-radius: 14px;" onclick="alert('Ficha Clínica em PDF gerada com sucesso! Pronta para impressão e envio ao aluno.')">
+                    📄 Ficha em PDF
+                </button>
+            </div>
         </section>
 
         <!-- ======================================================== -->
@@ -1807,12 +3191,24 @@
             <!-- Lista de Opções do Profissional idêntica à Tela 15 -->
             <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px;">
                 
-                <div onclick="alert('Lista de 12 alunos ativos')" style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8fafc; border-radius: 12px; cursor: pointer;">
+                <!-- Destaque: Dashboard Funcional -->
+                <div onclick="goToScreen(5)" style="display: flex; justify-content: space-between; align-items: center; padding: 14px; background: #f0fdf4; border: 1.5px solid var(--lime-main); border-radius: 14px; cursor: pointer; box-shadow: 0 2px 8px rgba(91,167,13,0.15);">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 1.3rem;">📊</span>
+                        <div>
+                            <strong style="font-size: 0.92rem; color: var(--lime-dark);">Dashboard do Profissional</strong>
+                            <div style="font-size: 0.74rem; color: var(--text-dark);">Status Funcional do Aluno &bull; 7 Dimensões</div>
+                        </div>
+                    </div>
+                    <span style="color: var(--lime-dark); font-weight: 900;">&rsaquo;</span>
+                </div>
+
+                <div onclick="goToScreen(5)" style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8fafc; border-radius: 12px; cursor: pointer;">
                     <div style="display: flex; align-items: center; gap: 10px;">
                         <span>👥</span>
                         <div>
                             <strong style="font-size: 0.88rem;">Meus alunos</strong>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">Acompanhe a evolução</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Acompanhe a evolução (Maria Silva, etc.)</div>
                         </div>
                     </div>
                     <span>&rsaquo;</span>
@@ -1910,6 +3306,15 @@
     <!-- Script de Alternância das 15 Telas e Efeitos -->
     <script>
         function goToScreen(screenNumber) {
+            // Se for número 7, redirecionar para tela 4 de avaliação física completa
+            if (screenNumber === 7 || screenNumber === '7') {
+                screenNumber = 4;
+            }
+            // Se for número 6, redirecionar para tela 3 de anamnese gerontológica
+            if (screenNumber === 6 || screenNumber === '6') {
+                screenNumber = 3;
+            }
+
             // Ocultar todas as telas
             document.querySelectorAll('.screen-viewport').forEach(el => el.classList.remove('active'));
 
@@ -1921,8 +3326,9 @@
             }
 
             // Atualizar o chip ativo no menu do topo
-            document.querySelectorAll('.screen-chip').forEach((chip, index) => {
-                if (index === screenNumber - 1) {
+            document.querySelectorAll('.screen-chip').forEach((chip) => {
+                const onclickAttr = chip.getAttribute('onclick') || '';
+                if (onclickAttr.includes(`goToScreen(${screenNumber})`) || onclickAttr.includes(`goToScreen('${screenNumber}')`)) {
                     chip.classList.add('active');
                 } else {
                     chip.classList.remove('active');
@@ -1977,13 +3383,55 @@
             }
         }
 
+        // Trocar Aluno Selecionado no Dashboard do Profissional (Tela 5)
+        function selectProStudent(id, name, age, plan, freq, scoreCap, scoreFall, adh, avatar) {
+            document.querySelectorAll('.student-pill').forEach(btn => {
+                btn.style.background = '#ffffff';
+                btn.style.color = 'var(--text-dark)';
+                btn.style.border = '1px solid var(--border-light)';
+                btn.style.boxShadow = 'none';
+                btn.style.fontWeight = '700';
+            });
+            const pillId = id === 's1' ? 'pill_maria' : (id === 's2' ? 'pill_jose' : (id === 's3' ? 'pill_antonia' : 'pill_carlos'));
+            const activeBtn = document.getElementById(pillId);
+            if (activeBtn) {
+                activeBtn.style.background = 'var(--lime-dark)';
+                activeBtn.style.color = 'white';
+                activeBtn.style.border = 'none';
+                activeBtn.style.boxShadow = '0 2px 6px rgba(91,167,13,0.3)';
+                activeBtn.style.fontWeight = '800';
+            }
+            const nameEl = document.getElementById('dash_student_name');
+            if (nameEl) nameEl.textContent = name;
+            const detailsEl = document.getElementById('dash_student_details');
+            if (detailsEl) detailsEl.textContent = `${age} anos • Plano ${plan}`;
+            const freqEl = document.getElementById('dash_student_freq');
+            if (freqEl) freqEl.textContent = freq;
+            const capEl = document.getElementById('dash_score_cap');
+            if (capEl) capEl.textContent = scoreCap;
+            const fallEl = document.getElementById('dash_score_fall');
+            if (fallEl) fallEl.textContent = scoreFall;
+            const adhEl = document.getElementById('dash_score_adh');
+            if (adhEl) adhEl.textContent = `${adh}% treinos`;
+            const avatarEl = document.getElementById('dash_student_avatar');
+            if (avatarEl) avatarEl.textContent = avatar;
+            const actionNameEl = document.getElementById('dash_action_student_name');
+            if (actionNameEl) actionNameEl.textContent = name;
+        }
+
+        // Exportar Relatório Clínico Gerontológico
+        function exportClinicalReport() {
+            const name = document.getElementById('dash_student_name')?.textContent || 'Maria Silva';
+            alert(`📑 Relatório Clínico Gerontológico de Evolução gerado para:\n\n• Aluno(a): ${name}\n• Avaliador(a): Prof. Dra. Camila Rocha (CREF 098452-G/SP)\n• Dimensões: Força (25kg), Mobilidade (9.1s), Equilíbrio (15s), Marcha (1.07 m/s), Flexibilidade (26cm), Risco de Quedas (18% - Baixo) e SPPB (11/12 - Robusto).\n\nO documento em PDF foi gerado e está pronto para impressão ou compartilhamento.`);
+        }
+
         // Salvar Cadastro do Aluno
         function saveStudentRegistration() {
             const name = document.getElementById('student_name')?.value || 'Maria Silva';
             const prof = document.getElementById('student_professional')?.value || '';
             const plan = document.getElementById('student_plan')?.value || '';
             alert(`✅ Cadastro de ${name} salvo com sucesso!\n\n• Profissional: ${prof}\n• Plano: ${plan}\n\nOs dados foram gravados na ficha do aluno.`);
-            goToScreen(6);
+            goToScreen(3);
         }
 
         // Salvar Anamnese Gerontológica
@@ -1991,7 +3439,234 @@
             const eva = document.getElementById('anamnese_pain_slider')?.value || '3';
             const validated = document.getElementById('anamnese_prof_validated')?.checked ? 'Validado pelo Profissional' : 'Aguardando validação';
             alert(`✅ Anamnese Gerontológica salva com sucesso!\n\n• Questionário de Saúde, Dor (EVA ${eva}/10), Sono e Comorbidades registrado.\n• Status: ${validated}.\n\nO sistema apoia o profissional na validação e prescrição personalizada.`);
-            goToScreen(7);
+            goToScreen(4);
+        }
+
+        // Alternância de Abas da Avaliação Física
+        function switchEvalTab(idx) {
+            for (let i = 0; i <= 4; i++) {
+                const panel = document.getElementById(`eval_panel_${i}`);
+                const btn = document.getElementById(`eval_tab_btn_${i}`);
+                if (panel) panel.style.display = (i === idx) ? 'block' : 'none';
+                if (btn) {
+                    if (i === idx) {
+                        btn.style.background = '#f0fdf4';
+                        btn.style.color = 'var(--lime-dark)';
+                        btn.style.fontWeight = '800';
+                    } else {
+                        btn.style.background = '#ffffff';
+                        btn.style.color = 'var(--text-muted)';
+                        btn.style.fontWeight = '700';
+                    }
+                }
+            }
+        }
+
+        // Recálculo Automático do IMC e Evolução do Peso
+        function recalcAssessment() {
+            const w = parseFloat(document.getElementById('eval_input_weight')?.value || '0');
+            const hCm = parseFloat(document.getElementById('eval_input_height')?.value || '0');
+            
+            if (w > 0 && hCm > 0) {
+                const hM = hCm / 100.0;
+                const imc = w / (hM * hM);
+                const imcValEl = document.getElementById('eval_calc_bmi_val');
+                const imcBadgeEl = document.getElementById('eval_calc_bmi_badge');
+                const imcDescEl = document.getElementById('eval_calc_bmi_desc');
+                
+                if (imcValEl) imcValEl.innerText = imc.toFixed(1) + ' kg/m²';
+                
+                let classification = '';
+                if (imc < 22.0) {
+                    classification = 'Baixo peso (Risco nutricional / sarcopenia)';
+                    if (imcBadgeEl) {
+                        imcBadgeEl.innerText = '⚠ Baixo peso';
+                        imcBadgeEl.style.background = '#fef3c7';
+                        imcBadgeEl.style.color = '#92400e';
+                    }
+                } else if (imc <= 27.0) {
+                    classification = 'Eutrófico / Peso adequado (Critério Lipschitz 60+)';
+                    if (imcBadgeEl) {
+                        imcBadgeEl.innerText = '✓ Adequado (60+)';
+                        imcBadgeEl.style.background = '#dcfce7';
+                        imcBadgeEl.style.color = '#166534';
+                    }
+                } else if (imc <= 30.0) {
+                    classification = 'Sobrepeso (Atenção às sobrecargas articulares)';
+                    if (imcBadgeEl) {
+                        imcBadgeEl.innerText = 'Atenção';
+                        imcBadgeEl.style.background = '#fef3c7';
+                        imcBadgeEl.style.color = '#92400e';
+                    }
+                } else {
+                    classification = 'Obesidade (Risco cardiovascular e locomotor)';
+                    if (imcBadgeEl) {
+                        imcBadgeEl.innerText = '⚠ Obeso';
+                        imcBadgeEl.style.background = '#fee2e2';
+                        imcBadgeEl.style.color = '#991b1b';
+                    }
+                }
+                if (imcDescEl) imcDescEl.innerText = 'Classificação: ' + classification;
+
+                // Evolução do peso vs 63.5 kg anterior
+                const prevW = 63.5;
+                const deltaKg = w - prevW;
+                const deltaPct = (deltaKg / prevW) * 100.0;
+                const sign = deltaKg >= 0 ? '+' : '';
+                const evolEl = document.getElementById('eval_calc_weight_evol');
+                if (evolEl) {
+                    evolEl.innerText = `${sign}${deltaKg.toFixed(1)} kg (${sign}${deltaPct.toFixed(1)}%) vs avaliação de 15/06/2026`;
+                }
+            }
+        }
+
+        function recalcRcq() {
+            const waist = parseFloat(document.getElementById('eval_waist')?.value || '0');
+            const hip = parseFloat(document.getElementById('eval_hip')?.value || '0');
+            if (waist > 0 && hip > 0) {
+                const rcq = waist / hip;
+                const rcqEl = document.getElementById('eval_rcq_val');
+                if (rcqEl) rcqEl.innerText = rcq.toFixed(2);
+            }
+        }
+
+        function checkCalfAlert() {
+            const calf = parseFloat(document.getElementById('eval_calf')?.value || '0');
+            const alertEl = document.getElementById('eval_calf_alert');
+            if (alertEl && calf > 0) {
+                if (calf >= 31.0) {
+                    alertEl.style.background = '#dcfce7';
+                    alertEl.style.color = '#166534';
+                    alertEl.style.borderColor = '#86efac';
+                    alertEl.innerHTML = `✅ Panturrilha ≥ 31 cm (${calf} cm): Massa muscular preservada (baixo risco de sarcopenia).`;
+                } else {
+                    alertEl.style.background = '#fee2e2';
+                    alertEl.style.color = '#991b1b';
+                    alertEl.style.borderColor = '#fca5a5';
+                    alertEl.innerHTML = `⚠ Panturrilha < 31 cm (${calf} cm): Alerta para perda de massa muscular e sarcopenia.`;
+                }
+            }
+        }
+
+        function recalcSkinfolds() {
+            const t = parseFloat(document.getElementById('eval_triceps')?.value || '0');
+            const s = parseFloat(document.getElementById('eval_subscapular')?.value || '0');
+            const i = parseFloat(document.getElementById('eval_iliac')?.value || '0');
+            const sumEl = document.getElementById('eval_skinfolds_sum');
+            if (sumEl) {
+                sumEl.innerText = (t + s + i).toFixed(1) + ' mm';
+            }
+        }
+
+        function checkHandgripAlert() {
+            const g = parseFloat(document.getElementById('eval_handgrip')?.value || '0');
+            const alertEl = document.getElementById('eval_handgrip_alert');
+            if (alertEl && g > 0) {
+                if (g >= 16.0) {
+                    alertEl.style.color = '#166534';
+                    alertEl.innerHTML = `✅ Força palmar preservada (${g} kgf ≥ 16 kgf para mulheres 60+ - EWGSOP2).`;
+                } else {
+                    alertEl.style.color = '#991b1b';
+                    alertEl.innerHTML = `⚠ Força palmar reduzida (${g} kgf < 16 kgf): Provável sarcopenia ou perda de potência.`;
+                }
+            }
+        }
+
+        function checkGaitSpeed() {
+            const t = parseFloat(document.getElementById('eval_gait3m')?.value || '0');
+            const alertEl = document.getElementById('eval_gait_speed_info');
+            if (alertEl && t > 0) {
+                const speed = 3.0 / t;
+                const isFast = speed >= 0.8;
+                alertEl.style.color = isFast ? '#166534' : '#991b1b';
+                alertEl.innerHTML = `${isFast ? '✅' : '⚠'} Velocidade estimada: ${speed.toFixed(2)} m/s (${isFast ? 'Marcha segura e funcional' : 'Velocidade lenta - risco de quedas'}).`;
+            }
+        }
+
+        function promptNewAssessment() {
+            const newDate = prompt("Digite a data da nova avaliação:", "22/09/2026");
+            const newProf = prompt("Digite o nome do profissional responsável:", "Dra. Mariana Lima (CREF 045123)");
+            if (newDate && newProf) {
+                document.getElementById('eval_display_date').innerText = newDate;
+                document.getElementById('eval_display_prof').innerText = newProf;
+                alert(`✅ Nova avaliação física iniciada em ${newDate} sob responsabilidade de ${newProf}.\nPreencha os dados obrigatórios e opcionais.`);
+                switchEvalTab(0);
+            }
+        }
+
+        const pastEvaluations = [
+            { date: "22/09/2026", prof: "Dra. Mariana Lima (CREF 045123)", weight: 62.0, height: 158, calf: 34.5, handgrip: 22.5, gait: 2.8 },
+            { date: "15/06/2026", prof: "Dra. Mariana Lima (CREF 045123)", weight: 63.5, height: 158, calf: 33.8, handgrip: 20.0, gait: 3.2 },
+            { date: "10/01/2026", prof: "Dr. Roberto Santos (CREF 038910)", weight: 65.0, height: 158, calf: 33.0, handgrip: 17.5, gait: 3.7 }
+        ];
+
+        function loadPastAssessment(idx) {
+            const item = pastEvaluations[idx];
+            if (!item) return;
+            document.getElementById('eval_display_date').innerText = item.date;
+            document.getElementById('eval_display_prof').innerText = item.prof;
+            document.getElementById('eval_input_weight').value = item.weight;
+            document.getElementById('eval_input_height').value = item.height;
+            document.getElementById('eval_calf').value = item.calf;
+            document.getElementById('eval_handgrip').value = item.handgrip;
+            document.getElementById('eval_gait3m').value = item.gait;
+            recalcAssessment();
+            checkCalfAlert();
+            checkHandgripAlert();
+            checkGaitSpeed();
+            switchEvalTab(0);
+            alert(`Ficha de avaliação de ${item.date} (${item.prof}) carregada com sucesso!`);
+        }
+
+        function savePhysicalAssessment() {
+            const w = document.getElementById('eval_input_weight')?.value || '62.0';
+            const h = document.getElementById('eval_input_height')?.value || '158';
+            const date = document.getElementById('eval_display_date')?.innerText || '22/09/2026';
+            const prof = document.getElementById('eval_display_prof')?.innerText || 'Dra. Mariana Lima';
+            const bmi = document.getElementById('eval_calc_bmi_val')?.innerText || '24.8 kg/m²';
+            
+            alert(`✅ Avaliação física salva com sucesso!\n\n• Data: ${date}\n• Profissional: ${prof}\n• Peso: ${w} kg | Altura: ${h} cm\n• IMC: ${bmi}\n\nOs dados e histórico foram atualizados e sincronizados com a evolução.`);
+            goToScreen(8);
+        }
+
+        // Sistema de Prescrição de Treino por Sequências (Tela 6)
+        function filterWebPrescription(seqId) {
+            const chips = document.querySelectorAll('.seq-filter-chip');
+            chips.forEach((c, idx) => {
+                if (idx === seqId) {
+                    c.style.background = 'var(--lime-dark)';
+                    c.style.color = '#ffffff';
+                    c.style.border = '1px solid var(--lime-dark)';
+                    c.style.fontWeight = '800';
+                } else {
+                    c.style.background = '#ffffff';
+                    c.style.color = 'var(--text-dark)';
+                    c.style.border = '1px solid #cbd5e1';
+                    c.style.fontWeight = '700';
+                }
+            });
+
+            const cards = document.querySelectorAll('.seq-card-block');
+            cards.forEach(card => {
+                const cardSeq = parseInt(card.getAttribute('data-seq') || '0', 10);
+                if (seqId === 0 || cardSeq === seqId) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function saveWebPrescription() {
+            const checkboxes = document.querySelectorAll('.presc-check');
+            let selectedCount = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) selectedCount++;
+            });
+            const countEl = document.getElementById('prescription-count');
+            if (countEl) countEl.innerText = `${selectedCount} de ${checkboxes.length}`;
+
+            alert(`✅ Prescrição de treino salva e vinculada com sucesso para Maria Silva!\n\n• Sequências ativas: 6 de 6\n• Exercícios selecionados: ${selectedCount} de ${checkboxes.length}\n• Frequência recomendada: 3x por semana\n• Objetivo: Força, marcha, mobilidade e prevenção de quedas.\n\nO plano de treino do aluno (Tela 9) foi atualizado.`);
         }
 
         // Registrar Service Worker para PWA

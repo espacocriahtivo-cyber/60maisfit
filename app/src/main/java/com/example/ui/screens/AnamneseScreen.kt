@@ -150,7 +150,7 @@ fun AnamneseScreen(
             .testTag("anamnese_screen")
     ) {
         TopBarWithBack(
-            title = "Anamnese Gerontológica",
+            title = "Tela 3: Anamnese",
             onBackClick = onBackClick
         )
 
@@ -752,7 +752,7 @@ fun AnamneseScreen(
 
             // BOTÃO AVANÇAR
             PrimaryFitButton(
-                text = "Salvar Anamnese e Ir para Avaliação",
+                text = "Salvar Anamnese e Ir para Avaliação (Tela 4)",
                 onClick = {
                     val updatedConditions = conditions.copy(
                         medicalDiagnoses = medicalDiagnoses,

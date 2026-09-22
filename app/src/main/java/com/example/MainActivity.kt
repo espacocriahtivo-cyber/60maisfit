@@ -74,6 +74,7 @@ import com.example.ui.screens.LoginScreen
 import com.example.ui.screens.MainMenuScreen
 import com.example.ui.screens.PhysicalAssessmentScreen
 import com.example.ui.screens.PlansScreen
+import com.example.ui.screens.ProfessionalDashboardScreen
 import com.example.ui.screens.ProfessionalScreen
 import com.example.ui.screens.RegisterScreen
 import com.example.ui.screens.RemindersScreen
@@ -81,6 +82,7 @@ import com.example.ui.screens.RoleSelectionScreen
 import com.example.ui.screens.SplashScreen
 import com.example.ui.screens.StudentHomeScreen
 import com.example.ui.screens.StudentProfileScreen
+import com.example.ui.screens.WorkoutPrescriptionScreen
 import com.example.ui.screens.WorkoutScreen
 import com.example.ui.theme.FitLime
 import com.example.ui.theme.FitLimeDark
@@ -159,6 +161,7 @@ fun MainAppNavigation(
     val currentStudent by repository.studentProfile.collectAsState()
     val workout by repository.currentWorkout.collectAsState()
     val assessment by repository.physicalAssessment.collectAsState()
+    val assessmentHistory by repository.assessmentHistory.collectAsState()
     val conditions by repository.healthConditions.collectAsState()
     val reminders by repository.reminders.collectAsState()
     val plans by repository.plans.collectAsState()
@@ -167,6 +170,8 @@ fun MainAppNavigation(
     val professionalStudents by repository.professionalStudents.collectAsState()
     val accessibilityState by repository.accessibilityState.collectAsState()
     val weightHistory by repository.weightHistory.collectAsState()
+    val selectedStudentId by repository.selectedStudentId.collectAsState()
+    val currentPrescription by repository.currentPrescription.collectAsState()
 
     var showAccessibilityDialog by remember { mutableStateOf(false) }
     var showCatalogSheet by remember { mutableStateOf(false) }
@@ -176,11 +181,13 @@ fun MainAppNavigation(
         ScreenCatalogItem("1", "Tela 1: Splash / Início", "Banner heroico, logo 60+ FIT e 'Começar'", "splash"),
         ScreenCatalogItem("2", "Tela 2: Menu Principal (9 opções)", "Musculação e Funcionalidade • 9 atalhos", "main_menu"),
         ScreenCatalogItem("2b", "Login", "E-mail, senha, entrar, esqueceu e perfis", "login"),
-        ScreenCatalogItem("3", "Tela 3: Criar Conta", "Nome, nascimento, CPF, termos e validação", "register"),
-        ScreenCatalogItem("4", "Tela 4: Escolha de Usuário", "Aluno 60+ ou Profissional com avatares", "role_selection"),
-        ScreenCatalogItem("5", "Tela 5: Cadastro / Meu Perfil", "Foto, peso, altura, objetivo e salvar", "student_profile"),
-        ScreenCatalogItem("6", "Tela 6: Anamnese", "Hipertensão, artrose, diabetes e observações", "anamnese"),
-        ScreenCatalogItem("7", "Tela 7: Avaliação Física", "Abas [Dados] e [Funcional] (pressão, marcha)", "physical_assessment"),
+        ScreenCatalogItem("3", "Tela 3: Anamnese Gerontológica", "Saúde, cirurgias, medicamentos, dor, sono e comorbidades", "anamnese"),
+        ScreenCatalogItem("4", "Tela 4: Avaliação Física", "Obrigatórios, IMC, Perimetria, Dobras, AGA e Comparativo", "physical_assessment"),
+        ScreenCatalogItem("4b", "Escolha de Papel", "Aluno 60+ ou Profissional com avatares", "role_selection"),
+        ScreenCatalogItem("5", "Tela 5: Dashboard do Profissional", "Status Funcional: Força, Mobilidade, Equilíbrio, Marcha, Quedas e Gráficos", "professional_dashboard"),
+        ScreenCatalogItem("5b", "Cadastro do Aluno", "Dados pessoais, profissionais, plano e frequência", "student_profile"),
+        ScreenCatalogItem("6", "Tela 6: Prescrição de Treino", "Sequências 1 a 6: Mobilidade, Alongamento, Força, Funcional, Equilíbrio e Prevenção", "workout_prescription"),
+        ScreenCatalogItem("7", "Tela 7: Avaliação Física (Atalho)", "Avaliação física com histórico e comparativo", "physical_assessment"),
         ScreenCatalogItem("8", "Tela 8: Tela Inicial (60+fit)", "Musculação e Funcionalidade • Menu principal (9 opções)", "student_home"),
         ScreenCatalogItem("9", "Tela 9: Treino de Hoje", "Treino A, lista de exercícios e 'Iniciar Treino'", "workout_overview"),
         ScreenCatalogItem("10", "Tela 10: Vídeo e Execução Ativa", "Player de vídeo, áudio-guia e descanso", "exercise_active/ex_2"),
@@ -259,13 +266,72 @@ fun MainAppNavigation(
                         if (role == UserType.STUDENT) {
                             navController.navigate("student_profile")
                         } else {
-                            navController.navigate("professional_area")
+                            navController.navigate("professional_dashboard")
                         }
                     }
                 )
             }
 
-            // Tela 5: Perfil / Cadastro do Aluno
+            // Tela 5: Dashboard do Profissional (Status Funcional Completo: Força, Mobilidade, Equilíbrio, Marcha, Quedas, etc)
+            composable("professional_dashboard") {
+                ProfessionalDashboardScreen(
+                    students = professionalStudents,
+                    selectedStudentId = selectedStudentId,
+                    onSelectStudent = { repository.selectStudent(it) },
+                    getFunctionalProfile = { repository.getFunctionalProfileForStudent(it) },
+                    onNavigateToAnamnese = { navController.navigate("anamnese") },
+                    onNavigateToAssessment = { navController.navigate("physical_assessment") },
+                    onNavigateToWorkout = { navController.navigate("workout_overview") },
+                    onBackClick = { navController.popBackStack() },
+                    onNavigateBottom = { route ->
+                        if (route == "profile") {
+                            navController.navigate("student_profile")
+                        } else {
+                            navController.navigate("professional_dashboard")
+                        }
+                    }
+                )
+            }
+            composable("tela_5") {
+                ProfessionalDashboardScreen(
+                    students = professionalStudents,
+                    selectedStudentId = selectedStudentId,
+                    onSelectStudent = { repository.selectStudent(it) },
+                    getFunctionalProfile = { repository.getFunctionalProfileForStudent(it) },
+                    onNavigateToAnamnese = { navController.navigate("anamnese") },
+                    onNavigateToAssessment = { navController.navigate("physical_assessment") },
+                    onNavigateToWorkout = { navController.navigate("workout_overview") },
+                    onBackClick = { navController.popBackStack() },
+                    onNavigateBottom = { route ->
+                        if (route == "profile") {
+                            navController.navigate("student_profile")
+                        } else {
+                            navController.navigate("professional_dashboard")
+                        }
+                    }
+                )
+            }
+            composable("pro_dashboard") {
+                ProfessionalDashboardScreen(
+                    students = professionalStudents,
+                    selectedStudentId = selectedStudentId,
+                    onSelectStudent = { repository.selectStudent(it) },
+                    getFunctionalProfile = { repository.getFunctionalProfileForStudent(it) },
+                    onNavigateToAnamnese = { navController.navigate("anamnese") },
+                    onNavigateToAssessment = { navController.navigate("physical_assessment") },
+                    onNavigateToWorkout = { navController.navigate("workout_prescription") },
+                    onBackClick = { navController.popBackStack() },
+                    onNavigateBottom = { route ->
+                        if (route == "profile") {
+                            navController.navigate("student_profile")
+                        } else {
+                            navController.navigate("professional_dashboard")
+                        }
+                    }
+                )
+            }
+
+            // Tela 5b: Cadastro / Perfil do Aluno
             composable("student_profile") {
                 StudentProfileScreen(
                     profile = currentStudent,
@@ -278,25 +344,80 @@ fun MainAppNavigation(
                 )
             }
 
-            // Tela 6: Anamnese
+            // Tela 6: Prescrição de Treino por Sequências
+            composable("workout_prescription") {
+                WorkoutPrescriptionScreen(
+                    initialPrescription = currentPrescription,
+                    students = professionalStudents,
+                    onBackClick = { navController.popBackStack() },
+                    onSavePrescription = { updatedPrescription ->
+                        repository.updatePrescription(updatedPrescription)
+                    },
+                    onPreviewWorkout = { navController.navigate("workout_overview") }
+                )
+            }
+            composable("tela_6") {
+                WorkoutPrescriptionScreen(
+                    initialPrescription = currentPrescription,
+                    students = professionalStudents,
+                    onBackClick = { navController.popBackStack() },
+                    onSavePrescription = { updatedPrescription ->
+                        repository.updatePrescription(updatedPrescription)
+                    },
+                    onPreviewWorkout = { navController.navigate("workout_overview") }
+                )
+            }
+
+            // Tela 3: Anamnese Gerontológica
             composable("anamnese") {
                 AnamneseScreen(
                     conditions = conditions,
                     onBackClick = { navController.popBackStack() },
                     onNextClick = { updatedConditions ->
                         repository.updateHealthConditions(updatedConditions)
+                        Toast.makeText(context, "Anamnese salva com sucesso!", Toast.LENGTH_SHORT).show()
+                        navController.navigate("physical_assessment")
+                    }
+                )
+            }
+            composable("tela_3") {
+                AnamneseScreen(
+                    conditions = conditions,
+                    onBackClick = { navController.popBackStack() },
+                    onNextClick = { updatedConditions ->
+                        repository.updateHealthConditions(updatedConditions)
+                        Toast.makeText(context, "Anamnese salva com sucesso!", Toast.LENGTH_SHORT).show()
                         navController.navigate("physical_assessment")
                     }
                 )
             }
 
-            // Tela 7: Avaliação Física
+            // Tela 4 / Tela 7: Avaliação Física
             composable("physical_assessment") {
                 PhysicalAssessmentScreen(
                     assessment = assessment,
+                    history = assessmentHistory,
+                    comparison = repository.getComparisonWithPrevious(assessment),
                     onBackClick = { navController.popBackStack() },
                     onSaveClick = { updatedAssessment ->
                         repository.updatePhysicalAssessment(updatedAssessment)
+                        Toast.makeText(context, "Avaliação física salva com sucesso!", Toast.LENGTH_SHORT).show()
+                        navController.navigate("student_home") {
+                            popUpTo("splash") { inclusive = true }
+                        }
+                    }
+                )
+            }
+
+            composable("tela_4") {
+                PhysicalAssessmentScreen(
+                    assessment = assessment,
+                    history = assessmentHistory,
+                    comparison = repository.getComparisonWithPrevious(assessment),
+                    onBackClick = { navController.popBackStack() },
+                    onSaveClick = { updatedAssessment ->
+                        repository.updatePhysicalAssessment(updatedAssessment)
+                        Toast.makeText(context, "Avaliação física salva com sucesso!", Toast.LENGTH_SHORT).show()
                         navController.navigate("student_home") {
                             popUpTo("splash") { inclusive = true }
                         }
@@ -423,6 +544,8 @@ fun MainAppNavigation(
                     onCreatePlan = { newPlan -> repository.addProfessionalPlan(newPlan) },
                     onDeletePlan = { planId -> repository.deleteProfessionalPlan(planId) },
                     onNavigateToHostingerConfig = { navController.navigate("hostinger_config") },
+                    onNavigateToDashboard = { navController.navigate("professional_dashboard") },
+                    onNavigateToPrescription = { navController.navigate("workout_prescription") },
                     onBackClick = { navController.popBackStack() },
                     onNavigateBottom = { route ->
                         if (route == "profile") {

@@ -88,6 +88,8 @@ fun ProfessionalScreen(
     onCreatePlan: (PlanItem) -> Unit = {},
     onDeletePlan: (String) -> Unit = {},
     onNavigateToHostingerConfig: () -> Unit = {},
+    onNavigateToDashboard: () -> Unit = {},
+    onNavigateToPrescription: () -> Unit = {},
     onBackClick: () -> Unit,
     onNavigateBottom: (String) -> Unit
 ) {
@@ -335,10 +337,19 @@ fun ProfessionalScreen(
 
                 item {
                     ProfessionalMenuItemCard(
+                        title = "Dashboard do Profissional (Status Funcional)",
+                        subtitle = "Força, mobilidade, equilíbrio, marcha, quedas e gráficos",
+                        icon = Icons.Default.Groups,
+                        onClick = onNavigateToDashboard
+                    )
+                }
+
+                item {
+                    ProfessionalMenuItemCard(
                         title = "Meus alunos",
                         subtitle = "Acompanhe a evolução de cada praticante",
                         icon = Icons.Default.Groups,
-                        onClick = { selectedActionTitle = "Meus Alunos" }
+                        onClick = onNavigateToDashboard
                     )
                 }
 
@@ -362,10 +373,10 @@ fun ProfessionalScreen(
 
                 item {
                     ProfessionalMenuItemCard(
-                        title = "Prescrição de treinos",
-                        subtitle = "Edite e personalize cargas e exercícios",
+                        title = "Prescrição de treinos (Tela 6)",
+                        subtitle = "Monte treinos por sequência: Mobilidade, Força, Equilíbrio...",
                         icon = Icons.Default.FitnessCenter,
-                        onClick = { selectedActionTitle = "Prescrição de Treinos" }
+                        onClick = onNavigateToPrescription
                     )
                 }
 
