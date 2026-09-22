@@ -45,7 +45,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.R
 import com.example.ui.components.BrandLogo
-import com.example.ui.theme.FitLime
 
 @Composable
 fun SplashScreen(
@@ -65,7 +64,7 @@ fun SplashScreen(
             modifier = Modifier.fillMaxSize()
         )
 
-        // Gradient Dark Overlay (darker on the left and bottom for sharp contrast with text and curves)
+        // Gradient Dark Overlay
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -82,7 +81,7 @@ fun SplashScreen(
                 )
         )
 
-        // Dynamic Green Swooshes / Framing waves from TELA INICIAL
+        // Dynamic Green Swooshes / Framing waves from TELA INICIAL.jpg
         Canvas(modifier = Modifier.fillMaxSize()) {
             val w = size.width
             val h = size.height
@@ -133,14 +132,14 @@ fun SplashScreen(
             )
         }
 
-        // Screen Content matching exact visual composition
+        // Screen Content matching exact visual composition of TELA INICIAL.jpg
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .systemBarsPadding()
                 .padding(horizontal = 28.dp, vertical = 20.dp),
             verticalArrangement = Arrangement.SpaceBetween,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.Start
         ) {
             Spacer(modifier = Modifier.height(10.dp))
 
@@ -151,7 +150,7 @@ fun SplashScreen(
             ) {
                 BrandLogo(
                     textColor = Color.White,
-                    scale = 1.25f
+                    scale = 1.35f
                 )
 
                 Spacer(modifier = Modifier.height(34.dp))
@@ -187,7 +186,7 @@ fun SplashScreen(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 12.dp)
+                    .padding(bottom = 14.dp)
             ) {
                 // Vibrant Lime Pill Button with black arrow circle and COMEÇAR text
                 Button(
@@ -213,7 +212,7 @@ fun SplashScreen(
                         // Black circle with right arrow
                         Box(
                             modifier = Modifier
-                                .size(34.dp)
+                                .size(36.dp)
                                 .clip(CircleShape)
                                 .background(Color.Black),
                             contentAlignment = Alignment.Center
@@ -222,7 +221,7 @@ fun SplashScreen(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                                 contentDescription = null,
                                 tint = Color(0xFF8CEE00),
-                                modifier = Modifier.size(20.dp)
+                                modifier = Modifier.size(22.dp)
                             )
                         }
 

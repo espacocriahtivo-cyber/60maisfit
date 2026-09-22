@@ -534,6 +534,39 @@ fun PlansScreen(
                                             }
                                         }
                                     }
+
+                                    PaymentMethod.BOLETO_BANCARIO -> {
+                                        Surface(
+                                            shape = RoundedCornerShape(14.dp),
+                                            color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f),
+                                            modifier = Modifier.fillMaxWidth()
+                                        ) {
+                                            Column(modifier = Modifier.padding(14.dp)) {
+                                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Receipt,
+                                                        contentDescription = null,
+                                                        tint = FitLimeDark,
+                                                        modifier = Modifier.size(20.dp)
+                                                    )
+                                                    Spacer(modifier = Modifier.width(8.dp))
+                                                    Text(
+                                                        text = "Boleto Bancário Digital",
+                                                        fontSize = 14.sp,
+                                                        fontWeight = FontWeight.Bold,
+                                                        color = MaterialTheme.colorScheme.onSurface
+                                                    )
+                                                }
+                                                Spacer(modifier = Modifier.height(6.dp))
+                                                Text(
+                                                    text = "O boleto com código de barras será gerado após a confirmação e enviado para o seu e-mail cadastrado.",
+                                                    fontSize = 12.sp,
+                                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                    lineHeight = 16.sp
+                                                )
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

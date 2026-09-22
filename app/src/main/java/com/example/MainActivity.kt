@@ -59,6 +59,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.data.AppRepository
+import com.example.data.BillingPeriod
+import com.example.data.PaymentMethod
+import com.example.data.PlanItem
+import com.example.data.UserSubscription
 import com.example.data.UserType
 import com.example.ui.components.AccessibilityDialog
 import com.example.ui.screens.AnamneseScreen
@@ -67,6 +71,7 @@ import com.example.ui.screens.ExerciseActiveScreen
 import com.example.ui.screens.HealthScreen
 import com.example.ui.screens.HostingerConfigScreen
 import com.example.ui.screens.LoginScreen
+import com.example.ui.screens.MainMenuScreen
 import com.example.ui.screens.PhysicalAssessmentScreen
 import com.example.ui.screens.PlansScreen
 import com.example.ui.screens.ProfessionalScreen
@@ -148,6 +153,7 @@ fun MainAppNavigation(
     repository: AppRepository,
     onSpeak: (String) -> Unit
 ) {
+    val context = LocalContext.current
     val navController = rememberNavController()
 
     val currentStudent by repository.studentProfile.collectAsState()
@@ -168,7 +174,8 @@ fun MainAppNavigation(
 
     val allScreensList = listOf(
         ScreenCatalogItem("1", "Tela 1: Splash / Início", "Banner heroico, logo 60+ FIT e 'Começar'", "splash"),
-        ScreenCatalogItem("2", "Tela 2: Login", "E-mail, senha, entrar, esqueceu e perfis", "login"),
+        ScreenCatalogItem("2", "Tela 2: Menu Principal (9 opções)", "Musculação e Funcionalidade • 9 atalhos", "main_menu"),
+        ScreenCatalogItem("2b", "Login", "E-mail, senha, entrar, esqueceu e perfis", "login"),
         ScreenCatalogItem("3", "Tela 3: Criar Conta", "Nome, nascimento, CPF, termos e validação", "register"),
         ScreenCatalogItem("4", "Tela 4: Escolha de Usuário", "Aluno 60+ ou Profissional com avatares", "role_selection"),
         ScreenCatalogItem("5", "Tela 5: Cadastro / Meu Perfil", "Foto, peso, altura, objetivo e salvar", "student_profile"),
@@ -190,15 +197,29 @@ fun MainAppNavigation(
             navController = navController,
             startDestination = "splash"
         ) {
-            // Tela 1: Splash
+            // Tela 1: Splash (Como estava originalmente, com hero banner e botão Começar)
             composable("splash") {
                 SplashScreen(
-                    onStartClick = { navController.navigate("login") },
+                    onStartClick = { navController.navigate("main_menu") },
                     onAccessibilityClick = { showAccessibilityDialog = true }
                 )
             }
 
-            // Tela 2: Login
+            // Tela 2: Menu Principal (Com as 9 opções e slogan solicitado)
+            composable("main_menu") {
+                MainMenuScreen(
+                    onNavigate = { route ->
+                        if (route == "contact_professional") {
+                            Toast.makeText(context, "Fale com o Profissional: Envie uma mensagem no suporte ou fale com seu instrutor.", Toast.LENGTH_LONG).show()
+                        } else {
+                            navController.navigate(route)
+                        }
+                    },
+                    onBackToStart = { navController.popBackStack() }
+                )
+            }
+
+            // Login
             composable("login") {
                 LoginScreen(
                     onLoginSuccess = { userType ->

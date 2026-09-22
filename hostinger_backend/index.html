@@ -368,7 +368,8 @@
         </div>
         <div class="screen-picker" id="screenPickerNav">
             <button class="screen-chip active" onclick="goToScreen(1)">1. Splash</button>
-            <button class="screen-chip" onclick="goToScreen(2)">2. Login</button>
+            <button class="screen-chip" onclick="goToScreen(2)">2. Menu Principal</button>
+            <button class="screen-chip" onclick="goToScreen('2b')">Login</button>
             <button class="screen-chip" onclick="goToScreen(3)">3. Criar conta</button>
             <button class="screen-chip" onclick="goToScreen(4)">4. Perfil/Papel</button>
             <button class="screen-chip" onclick="goToScreen(5)">5. Cadastro</button>
@@ -389,7 +390,7 @@
     <div class="phone-frame" id="phoneContainer">
 
         <!-- ======================================================== -->
-        <!-- TELA 1: SPLASH (TELA INICIAL)                            -->
+        <!-- TELA 1: SPLASH (TELA INICIAL FIEL À TELA INICIAL.JPG)     -->
         <!-- ======================================================== -->
         <section id="screen-1" class="screen-viewport active" style="position: relative; overflow: hidden; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(6,14,7,0.7) 40%, rgba(4,9,5,0.96) 95%), url('img_splash_hero.jpg') center top / cover no-repeat, #081008; color: white; justify-content: space-between; padding: 20px 24px;">
             <!-- Dynamic Green Wave Accents -->
@@ -423,7 +424,7 @@
                     </div>
                 </div>
 
-                <!-- Exact Headline from TELA INICIAL -->
+                <!-- Exact Headline from TELA INICIAL.jpg -->
                 <div style="text-align: left; margin-top: 36px;">
                     <p style="font-size: 1.85rem; line-height: 1.25; font-weight: 800; color: #ffffff; margin: 0; text-shadow: 0 2px 12px rgba(0,0,0,0.85);">
                         Mais saúde,<br>
@@ -456,9 +457,146 @@
         </section>
 
         <!-- ======================================================== -->
-        <!-- TELA 2: TELA DE LOGIN                                    -->
+        <!-- TELA 2: MENU PRINCIPAL (NOVA TELA 2 COM 9 OPÇÕES)        -->
         <!-- ======================================================== -->
-        <section id="screen-2" class="screen-viewport" style="background: #0d140e; color: white; padding: 20px 22px; justify-content: space-between;">
+        <section id="screen-2" class="screen-viewport" style="position: relative; background: #0b150c; color: white; padding: 18px 20px 30px 20px; overflow-y: auto;">
+            <!-- Status Bar -->
+            <div class="status-bar dark-theme" style="padding: 0; margin-bottom: 12px;">
+                <span>9:41</span>
+                <div class="status-icons">📶 🔋</div>
+            </div>
+
+            <!-- Top Header com Logo e Subtítulo -->
+            <div style="text-align: center; margin-top: 6px; margin-bottom: 16px;">
+                <div style="display: inline-flex; align-items: baseline; gap: 4px; justify-content: center;">
+                    <span style="font-size: 3.2rem; font-weight: 900; color: #ffffff; letter-spacing: -2px; line-height: 1;">60</span>
+                    <span style="font-size: 2.2rem; font-weight: 900; color: #8cee00; line-height: 1;">+</span>
+                    <span style="font-size: 3.2rem; font-weight: 900; font-style: italic; color: #8cee00; letter-spacing: -1px; line-height: 1; margin-left: 2px;">fit</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px;">
+                    <span style="display: inline-block; width: 20px; height: 2px; background: #8cee00;"></span>
+                    <span style="font-size: 0.75rem; font-weight: 800; letter-spacing: 1.6px; color: #ffffff; text-transform: uppercase;">Musculação e Funcionalidade</span>
+                    <span style="display: inline-block; width: 20px; height: 2px; background: #8cee00;"></span>
+                </div>
+                <!-- Slogan solicitado -->
+                <p style="font-size: 0.88rem; line-height: 1.4; color: #d1fae5; margin-top: 10px; font-weight: 500; padding: 0 10px;">
+                    Movimento, força e autonomia para envelhecer com mais segurança.
+                </p>
+            </div>
+
+            <!-- Seção do Menu Principal -->
+            <div style="margin-top: 14px; margin-bottom: 22px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 4px;">
+                    <h3 style="font-size: 1rem; font-weight: 900; color: #8cee00; text-transform: uppercase; letter-spacing: 0.8px; margin: 0;">Menu principal:</h3>
+                    <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 600;">9 opções</span>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 9px;">
+                    <!-- 1. Meu Perfil -->
+                    <div onclick="goToScreen(5)" style="display: flex; justify-content: space-between; align-items: center; background: #132215; border: 1.5px solid #234227; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">👤</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff;">Meu Perfil</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+
+                    <!-- 2. Minha Avaliação -->
+                    <div onclick="goToScreen(7)" style="display: flex; justify-content: space-between; align-items: center; background: #132215; border: 1.5px solid #234227; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">📋</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff;">Minha Avaliação</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+
+                    <!-- 3. Meu Treino -->
+                    <div onclick="goToScreen(9)" style="display: flex; justify-content: space-between; align-items: center; background: #18311a; border: 1.5px solid #8cee00; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(140, 238, 0, 0.15);">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">🏋️</span>
+                            <span style="font-weight: 900; font-size: 0.98rem; color: #8cee00;">Meu Treino</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+
+                    <!-- 4. Biblioteca de Exercícios -->
+                    <div onclick="goToScreen(10)" style="display: flex; justify-content: space-between; align-items: center; background: #132215; border: 1.5px solid #234227; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">🎥</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff;">Biblioteca de Exercícios</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+
+                    <!-- 5. Minha Evolução -->
+                    <div onclick="goToScreen(12)" style="display: flex; justify-content: space-between; align-items: center; background: #132215; border: 1.5px solid #234227; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">📈</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff;">Minha Evolução</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+
+                    <!-- 6. Minha Saúde -->
+                    <div onclick="goToScreen(11)" style="display: flex; justify-content: space-between; align-items: center; background: #132215; border: 1.5px solid #234227; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">❤️</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff;">Minha Saúde</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+
+                    <!-- 7. Meu Plano -->
+                    <div onclick="goToScreen(14)" style="display: flex; justify-content: space-between; align-items: center; background: #132215; border: 1.5px solid #234227; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">💳</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff;">Meu Plano</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+
+                    <!-- 8. Notificações -->
+                    <div onclick="goToScreen(13)" style="display: flex; justify-content: space-between; align-items: center; background: #132215; border: 1.5px solid #234227; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">🔔</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff;">Notificações</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+
+                    <!-- 9. Fale com o Profissional -->
+                    <div onclick="openSupportChat()" style="display: flex; justify-content: space-between; align-items: center; background: #132215; border: 1.5px solid #234227; padding: 13px 16px; border-radius: 16px; cursor: pointer; transition: all 0.2s ease;">
+                        <div style="display: flex; align-items: center; gap: 14px;">
+                            <span style="font-size: 1.45rem; width: 32px; text-align: center;">💬</span>
+                            <span style="font-weight: 800; font-size: 0.95rem; color: #ffffff;">Fale com o Profissional</span>
+                        </div>
+                        <span style="color: #8cee00; font-size: 1.2rem; font-weight: 900;">&rsaquo;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões de Ação na Tela 2 -->
+            <div style="margin-top: 14px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+                <button onclick="goToScreen(9)" style="background: linear-gradient(90deg, #7ee600 0%, #a4f51e 100%); color: #000; border: none; border-radius: 9999px; padding: 14px 28px; width: 92%; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 1.15rem; font-weight: 900; letter-spacing: 1px; box-shadow: 0 6px 20px rgba(126, 230, 0, 0.35); cursor: pointer;">
+                    <span>🏋️ ACESSAR TREINO</span>
+                </button>
+
+                <div style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+                    <a href="javascript:void(0)" onclick="goToScreen(1)" style="color: #cbd5e1; text-decoration: none; font-size: 0.88rem; font-weight: 600;">
+                        ← Voltar ao Início
+                    </a>
+                    <span style="color: #475569;">|</span>
+                    <a href="javascript:void(0)" onclick="goToScreen('2b')" style="color: #8cee00; text-decoration: none; font-size: 0.88rem; font-weight: 700;">
+                        Fazer Login ➔
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TELA 2B: TELA DE LOGIN                                   -->
+        <!-- ======================================================== -->
+        <section id="screen-2b" class="screen-viewport" style="background: #0d140e; color: white; padding: 20px 22px; justify-content: space-between;">
             <div>
                 <div class="status-bar dark-theme" style="padding: 0; margin-bottom: 14px;">
                     <span>9:41</span>
@@ -658,7 +796,7 @@
         <!-- ======================================================== -->
         <!-- TELA 5: CADASTRO DO ALUNO (MEU PERFIL)                   -->
         <!-- ======================================================== -->
-        <section id="screen-5" class="screen-viewport" style="background: #ffffff; padding: 16px 20px;">
+        <section id="screen-5" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; overflow-y: auto;">
             <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
                 <span>9:41</span>
                 <div class="status-icons">📶 🔋</div>
@@ -666,61 +804,179 @@
 
             <div style="display: flex; align-items: center; margin-bottom: 14px;">
                 <button class="btn-back" onclick="goToScreen(4)">←</button>
-                <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Meu perfil</h2>
+                <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Cadastro do Aluno</h2>
             </div>
 
-            <!-- Avatar Circular com Ícone de Câmera -->
-            <div style="text-align: center; margin-bottom: 18px; position: relative; width: 100px; margin-left: auto; margin-right: auto;">
-                <div style="width: 90px; height: 90px; border-radius: 50%; background: #dcfce7; border: 3px solid var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; overflow: hidden; margin: 0 auto;">
+            <!-- Header Badge -->
+            <div style="margin-bottom: 14px;">
+                <span style="background: rgba(140, 238, 0, 0.18); color: var(--lime-dark); font-weight: 800; font-size: 0.76rem; padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(91, 167, 13, 0.35);">
+                    Ficha de Cadastro e Matrícula
+                </span>
+            </div>
+
+            <!-- 6. Foto do Aluno -->
+            <div style="text-align: center; margin-bottom: 16px; position: relative; width: 105px; margin-left: auto; margin-right: auto;">
+                <div style="width: 96px; height: 96px; border-radius: 50%; background: #dcfce7; border: 3.5px solid var(--lime-main); display: flex; align-items: center; justify-content: center; font-size: 2.8rem; overflow: hidden; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                     <img src="img_avatar_maria.jpg" onerror="this.outerHTML='<span style=\'font-size:2.8rem;\'>👵</span>'" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
-                <div style="position: absolute; bottom: 0; right: 6px; width: 32px; height: 32px; background: #0f172a; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; border: 2px solid white; cursor: pointer;">
+                <div onclick="alert('Foto selecionada com sucesso!')" title="Alterar Foto" style="position: absolute; bottom: 2px; right: 4px; width: 34px; height: 34px; background: var(--lime-dark); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; border: 2.5px solid white; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
                     📷
                 </div>
             </div>
+            <p style="text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">
+                Toque na câmera para alterar a <strong>Foto</strong>
+            </p>
 
+            <!-- 1. Nome -->
             <div class="form-group">
                 <label class="form-label">Nome completo</label>
-                <div class="input-box"><input type="text" value="Maria Silva"></div>
+                <div class="input-box">
+                    <span>👤</span>
+                    <input type="text" id="student_name" placeholder="Ex: Maria Silva" value="Maria Silva">
+                </div>
             </div>
 
+            <!-- 2. Data de nascimento -->
             <div class="form-group">
                 <label class="form-label">Data de nascimento</label>
-                <div class="input-box"><input type="text" value="15/03/1956"> <span>📅</span></div>
-            </div>
-
-            <div style="display: flex; gap: 12px;">
-                <div class="form-group" style="flex: 1;">
-                    <label class="form-label">Peso (kg)</label>
-                    <div class="input-box"><input type="text" value="62"></div>
-                </div>
-                <div class="form-group" style="flex: 1;">
-                    <label class="form-label">Altura (m)</label>
-                    <div class="input-box"><input type="text" value="1,58"></div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Objetivo principal</label>
                 <div class="input-box">
-                    <select>
-                        <option selected>Ganhar força e independência</option>
-                        <option>Melhorar equilíbrio e prevenir quedas</option>
+                    <span>📅</span>
+                    <input type="text" id="student_birthdate" placeholder="DD/MM/AAAA" value="15/03/1956">
+                </div>
+            </div>
+
+            <!-- 3. Sexo -->
+            <div class="form-group">
+                <label class="form-label">Sexo</label>
+                <div class="input-box">
+                    <span>⚧️</span>
+                    <select id="student_gender" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                        <option value="Feminino" selected>Feminino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 4. Telefone -->
+            <div class="form-group">
+                <label class="form-label">Telefone</label>
+                <div class="input-box">
+                    <span>📞</span>
+                    <input type="tel" id="student_phone" placeholder="(11) 98765-4321" value="(11) 98765-4321">
+                </div>
+            </div>
+
+            <!-- 5. E-mail -->
+            <div class="form-group">
+                <label class="form-label">E-mail</label>
+                <div class="input-box">
+                    <span>✉️</span>
+                    <input type="email" id="student_email" placeholder="aluno@email.com" value="maria.silva@email.com">
+                </div>
+            </div>
+
+            <!-- 7. Contato de emergência -->
+            <div class="form-group">
+                <label class="form-label">Contato de emergência</label>
+                <div class="input-box">
+                    <span>🚨</span>
+                    <input type="text" id="student_emergency" placeholder="Ex: Carlos Silva (Filho) - (11) 99876-5432" value="Carlos Silva (Filho) - (11) 99876-5432">
+                </div>
+            </div>
+
+            <!-- 8. Objetivo -->
+            <div class="form-group">
+                <label class="form-label">Objetivo</label>
+                <div class="input-box">
+                    <span>🎯</span>
+                    <select id="student_goal" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                        <option selected>Ganhar força e autonomia</option>
+                        <option>Melhorar o equilíbrio e prevenir quedas</option>
+                        <option>Aumentar flexibilidade e mobilidade</option>
                         <option>Alívio de dores articulares e artrose</option>
                         <option>Condicionamento físico geral</option>
                     </select>
                 </div>
             </div>
 
-            <button class="btn-primary" style="margin-top: 14px;" onclick="goToScreen(6)">
-                SALVAR
+            <!-- CARD: INFORMAÇÕES PROFISSIONAIS -->
+            <div style="background: #f8fafc; border: 1.5px solid rgba(91, 167, 13, 0.4); border-radius: 18px; padding: 16px; margin: 18px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.04);">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--lime-dark); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                        🩺
+                    </div>
+                    <div>
+                        <div style="font-size: 1rem; font-weight: 800; color: var(--text-dark);">Informações profissionais</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">Prescrição, plano contratado e acompanhamento</div>
+                    </div>
+                </div>
+
+                <!-- 9. Profissional responsável -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Profissional responsável</label>
+                    <div class="input-box">
+                        <span>👨‍🏫</span>
+                        <input type="text" id="student_professional" placeholder="Nome do profissional (CREF/CREFITO)" value="Dra. Mariana Lima (CREF 045123)">
+                    </div>
+                </div>
+
+                <!-- 10. Data de início -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Data de início</label>
+                    <div class="input-box">
+                        <span>🗓️</span>
+                        <input type="text" id="student_start_date" placeholder="DD/MM/AAAA" value="10/01/2026">
+                    </div>
+                </div>
+
+                <!-- 11. Plano contratado -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Plano contratado</label>
+                    <div class="input-box">
+                        <span>💳</span>
+                        <select id="student_plan" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                            <option>60+fit Essencial (R$ 79,90/mês)</option>
+                            <option selected>60+fit Gerontológico (R$ 129,90/mês)</option>
+                            <option>60+fit Premium (R$ 199,90/mês)</option>
+                            <option>60+fit Personalizado (Consultar)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 12. Frequência semanal -->
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Frequência semanal</label>
+                    <div class="input-box">
+                        <span>⏱️</span>
+                        <select id="student_frequency" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                            <option>1x por semana</option>
+                            <option>2x por semana</option>
+                            <option selected>3x por semana</option>
+                            <option>4x por semana</option>
+                            <option>5x por semana</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 13. Observações -->
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Observações</label>
+                    <div class="input-box" style="height: auto; padding: 10px;">
+                        <textarea id="student_notes" rows="3" style="width: 100%; border: none; outline: none; font-family: inherit; font-size: 0.88rem; resize: vertical;" placeholder="Anotações clínicas, cuidados articulares, restrições e histórico...">Foco em membros inferiores, equilíbrio e prevenção de quedas. Sem contraindicações agudas.</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary" style="margin-top: 10px; margin-bottom: 20px;" onclick="saveStudentRegistration()">
+                SALVAR CADASTRO DO ALUNO
             </button>
         </section>
 
         <!-- ======================================================== -->
-        <!-- TELA 6: ANAMNESE                                         -->
+        <!-- TELA 6: ANAMNESE GERONTOLÓGICA                           -->
         <!-- ======================================================== -->
-        <section id="screen-6" class="screen-viewport" style="background: #ffffff; padding: 16px 20px;">
+        <section id="screen-6" class="screen-viewport" style="background: #ffffff; padding: 16px 20px; overflow-y: auto;">
             <div class="status-bar light-theme" style="padding: 0; margin-bottom: 8px;">
                 <span>9:41</span>
                 <div class="status-icons">📶 🔋</div>
@@ -728,52 +984,255 @@
 
             <div style="display: flex; align-items: center; margin-bottom: 14px;">
                 <button class="btn-back" onclick="goToScreen(5)">←</button>
-                <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Anamnese</h2>
+                <h2 style="font-size: 1.25rem; font-weight: 900; margin-left: 8px;">Anamnese Gerontológica</h2>
             </div>
 
-            <h3 style="font-size: 0.95rem; font-weight: 800; margin-bottom: 2px;">Condições de saúde</h3>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 14px;">(Selecione as opções que se aplicam)</p>
-
-            <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;">
-                <label style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                    <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--lime-dark);">
-                    <span>Hipertensão</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                    <input type="checkbox" style="width: 20px; height: 20px; accent-color: var(--lime-dark);">
-                    <span>Diabetes</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                    <input type="checkbox" style="width: 20px; height: 20px; accent-color: var(--lime-dark);">
-                    <span>Problemas cardíacos</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                    <input type="checkbox" checked style="width: 20px; height: 20px; accent-color: var(--lime-dark);">
-                    <span>Artrose / Artrite</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                    <input type="checkbox" style="width: 20px; height: 20px; accent-color: var(--lime-dark);">
-                    <span>Osteoporose</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                    <input type="checkbox" style="width: 20px; height: 20px; accent-color: var(--lime-dark);">
-                    <span>Obesidade</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer;">
-                    <input type="checkbox" style="width: 20px; height: 20px; accent-color: var(--lime-dark);">
-                    <span>Outras</span>
-                </label>
+            <!-- Header Badge -->
+            <div style="margin-bottom: 14px;">
+                <span style="background: rgba(140, 238, 0, 0.18); color: var(--lime-dark); font-weight: 800; font-size: 0.76rem; padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(91, 167, 13, 0.35);">
+                    Questionário Clínico e Funcional 60+
+                </span>
             </div>
 
-            <div class="form-group">
-                <label class="form-label">Observações</label>
-                <div class="input-box" style="height: auto; padding: 10px;">
-                    <textarea rows="3" placeholder="Digite aqui...">Sinto dor leve no joelho direito ao subir escadas, mas consigo caminhar bem.</textarea>
+            <!-- AVISO METODOLÓGICO: Apoio ao profissional -->
+            <div style="background: #fef3c7; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 14px; margin-bottom: 20px; display: flex; gap: 12px; align-items: flex-start;">
+                <div style="font-size: 1.5rem; line-height: 1;">⚠️</div>
+                <div>
+                    <div style="font-size: 0.88rem; font-weight: 800; color: #92400e; margin-bottom: 2px;">
+                        Apoio à Decisão Profissional
+                    </div>
+                    <div style="font-size: 0.78rem; color: #78350f; line-height: 1.35;">
+                        A presença de uma doença <strong>não gera automaticamente um treino</strong>. O sistema funciona como ferramenta de apoio ao profissional de Educação Física / Fisioterapia para validar e personalizar a prescrição com segurança.
+                    </div>
                 </div>
             </div>
 
-            <button class="btn-primary" style="margin-top: 10px;" onclick="goToScreen(7)">
-                PRÓXIMO
+            <!-- BLOCO 1: SAÚDE -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                    <span style="font-size: 1.2rem;">🩺</span>
+                    <h3 style="font-size: 1rem; font-weight: 800; color: var(--text-dark); margin: 0;">1. Bloco Saúde</h3>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Diagnósticos médicos</label>
+                    <div class="input-box" style="height: auto; padding: 10px;">
+                        <textarea id="anamnese_diagnoses" rows="2" style="width: 100%; border: none; outline: none; font-family: inherit; font-size: 0.88rem; resize: vertical;" placeholder="Diagnósticos emitidos por médicos assistentes...">Hipertensão arterial essencial controlada e osteoartrite em joelhos.</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Cirurgias</label>
+                    <div class="input-box">
+                        <input type="text" id="anamnese_surgeries" placeholder="Ex: Colecistectomia (2015), prótese..." value="Colecistectomia videolaparoscópica (2015)">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Internações</label>
+                    <div class="input-box">
+                        <input type="text" id="anamnese_hospitalizations" placeholder="Internações nos últimos 12 a 24 meses" value="Nenhuma internação recente">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Medicamentos</label>
+                    <div class="input-box" style="height: auto; padding: 10px;">
+                        <textarea id="anamnese_medications" rows="2" style="width: 100%; border: none; outline: none; font-family: inherit; font-size: 0.88rem; resize: vertical;" placeholder="Fármacos contínuos, dosagem e horário...">Losartana 50mg (1x pela manhã), Vitamina D 2000UI/dia.</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Alergias</label>
+                    <div class="input-box">
+                        <input type="text" id="anamnese_allergies" placeholder="Medicamentos, fitoterápicos, poeira..." value="Dipirona e poeira">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Histórico de quedas</label>
+                    <div class="input-box" style="height: auto; padding: 10px;">
+                        <textarea id="anamnese_fall_history" rows="2" style="width: 100%; border: none; outline: none; font-family: inherit; font-size: 0.88rem; resize: vertical;" placeholder="Quedas nos últimos 12 meses, locais e consequências...">1 queda há 8 meses ao tropeçar no tapete (sem fratura nem hospitalização).</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO 2: DOR -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                    <span style="font-size: 1.2rem;">🩹</span>
+                    <h3 style="font-size: 1rem; font-weight: 800; color: var(--text-dark); margin: 0;">2. Bloco Dor</h3>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Localização da dor</label>
+                    <div class="input-box">
+                        <input type="text" id="anamnese_pain_loc" placeholder="Ex: Joelho direito, região lombar..." value="Joelho direito e lombar baixa">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                        <label class="form-label" style="margin: 0;">Intensidade da dor (Escala EVA 0-10)</label>
+                        <span id="pain_value_badge" style="background: #84cc16; color: white; font-weight: 900; font-size: 0.82rem; padding: 3px 8px; border-radius: 6px;">3 / 10</span>
+                    </div>
+                    <input type="range" id="anamnese_pain_slider" min="0" max="10" value="3" style="width: 100%; accent-color: var(--lime-dark); cursor: pointer;" oninput="document.getElementById('pain_value_badge').innerText = this.value + ' / 10'">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-top: 4px;">
+                        <span>0: Sem dor</span>
+                        <span>5: Moderada</span>
+                        <span>10: Insuportável</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO 3: ESTILO DE VIDA (SONO & NÍVEL DE ATIVIDADE) -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                    <span style="font-size: 1.2rem;">🌙</span>
+                    <h3 style="font-size: 1rem; font-weight: 800; color: var(--text-dark); margin: 0;">3. Bloco Sono & Atividade Física</h3>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 14px;">
+                    <label class="form-label">Sono</label>
+                    <div class="input-box">
+                        <span>😴</span>
+                        <select id="anamnese_sleep" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                            <option>Muito bom (7 a 9 horas ininterruptas)</option>
+                            <option selected>Regular (6 a 7 horas, acorda 1 vez)</option>
+                            <option>Ruim (insônia ou desconforto ao deitar)</option>
+                            <option>Fragmentado (acorda várias vezes à noite)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Nível de atividade física</label>
+                    <div class="input-box">
+                        <span>🏃</span>
+                        <select id="anamnese_activity" style="border: none; background: transparent; width: 100%; font-size: 0.92rem; outline: none; font-weight: 600;">
+                            <option>Sedentário (pouco ou nenhum movimento estruturado)</option>
+                            <option selected>Levemente ativo (caminhadas 1 a 2x por semana)</option>
+                            <option>Moderadamente ativo (exercícios orientados 3x por semana)</option>
+                            <option>Muito ativo (musculação e funcional regulares)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOCO 4: DOENÇAS / COMORBIDADES (17 ITENS) -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; margin-bottom: 18px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                    <span style="font-size: 1.2rem;">❤️</span>
+                    <div>
+                        <h3 style="font-size: 1rem; font-weight: 800; color: var(--text-dark); margin: 0;">4. Doenças / Comorbidades</h3>
+                        <p style="font-size: 0.74rem; color: var(--text-muted); margin: 2px 0 0 0;">Selecione os parâmetros clínicos identificados</p>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr; gap: 9px;">
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_hipertensao" checked style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Hipertensão arterial</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_diabetes" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Diabetes tipo 2</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_obesidade" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Obesidade</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_osteopenia" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Osteopenia</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_osteoporose" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Osteoporose</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_artrose" checked style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Artrose</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_artrite" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Artrite</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_lombalgia" checked style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Lombalgia</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_cardio" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Doenças cardiovasculares</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_resp" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Doenças respiratórias</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_parkinson" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Parkinson</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_avc" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>AVC / sequelas neurológicas</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_sarcopenia" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Sarcopenia</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_fragilidade" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Fragilidade</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_equilibrio" checked style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Alterações de equilíbrio</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_risco_quedas" checked style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Risco de quedas</span>
+                    </label>
+                    <label style="display: flex; align-items: center; gap: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer;">
+                        <input type="checkbox" id="cb_mobilidade" style="width: 19px; height: 19px; accent-color: var(--lime-dark);">
+                        <span>Limitações de mobilidade</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- BLOCO 5: VALIDAÇÃO PROFISSIONAL E OBSERVAÇÕES -->
+            <div style="background: #f8fafc; border: 1.5px solid rgba(91, 167, 13, 0.4); border-radius: 16px; padding: 16px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                    <span style="font-size: 1.2rem;">🛡️</span>
+                    <div>
+                        <h3 style="font-size: 1rem; font-weight: 800; color: var(--text-dark); margin: 0;">5. Validação do Profissional</h3>
+                        <p style="font-size: 0.74rem; color: var(--text-muted); margin: 2px 0 0 0;">Apoio e personalização antes da prescrição</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; background: #ffffff; padding: 10px 12px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 12px;">
+                    <span style="font-size: 0.86rem; font-weight: 700; color: var(--text-dark);">Validado pelo profissional responsável</span>
+                    <input type="checkbox" id="anamnese_prof_validated" checked style="width: 20px; height: 20px; accent-color: var(--lime-dark);">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label class="form-label">Parecer do profissional responsável</label>
+                    <div class="input-box" style="height: auto; padding: 10px;">
+                        <textarea id="anamnese_prof_notes" rows="3" style="width: 100%; border: none; outline: none; font-family: inherit; font-size: 0.88rem; resize: vertical;" placeholder="Ajustes de carga, exercícios contraindicados e recomendações...">Avaliado clinicamente. Treino liberado com adaptação de carga, controle de impacto articular e fortalecimento proprioceptivo de tornozelo e quadríceps.</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                    <label class="form-label">Observações adicionais</label>
+                    <div class="input-box" style="height: auto; padding: 10px;">
+                        <textarea id="anamnese_notes" rows="2" style="width: 100%; border: none; outline: none; font-family: inherit; font-size: 0.88rem; resize: vertical;" placeholder="Outras informações pertinentes...">Aluna motivada. Prefere treinar no período da manhã.</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary" style="margin-top: 10px; margin-bottom: 22px;" onclick="saveGerontologicalAnamnese()">
+                SALVAR ANAMNESE E IR PARA AVALIAÇÃO
             </button>
         </section>
 
@@ -1508,6 +1967,31 @@
             if (pressao && bpm) {
                 alert("Sinais vitais gravados com sucesso!");
             }
+        }
+
+        // Chat com Profissional
+        function openSupportChat() {
+            const msg = prompt("Fale com o Profissional / Fisioterapeuta:\nDigite sua dúvida sobre o treino ou evolução:", "");
+            if (msg) {
+                alert("Mensagem enviada para o seu profissional com sucesso!\nVocê receberá uma resposta em Notificações.");
+            }
+        }
+
+        // Salvar Cadastro do Aluno
+        function saveStudentRegistration() {
+            const name = document.getElementById('student_name')?.value || 'Maria Silva';
+            const prof = document.getElementById('student_professional')?.value || '';
+            const plan = document.getElementById('student_plan')?.value || '';
+            alert(`✅ Cadastro de ${name} salvo com sucesso!\n\n• Profissional: ${prof}\n• Plano: ${plan}\n\nOs dados foram gravados na ficha do aluno.`);
+            goToScreen(6);
+        }
+
+        // Salvar Anamnese Gerontológica
+        function saveGerontologicalAnamnese() {
+            const eva = document.getElementById('anamnese_pain_slider')?.value || '3';
+            const validated = document.getElementById('anamnese_prof_validated')?.checked ? 'Validado pelo Profissional' : 'Aguardando validação';
+            alert(`✅ Anamnese Gerontológica salva com sucesso!\n\n• Questionário de Saúde, Dor (EVA ${eva}/10), Sono e Comorbidades registrado.\n• Status: ${validated}.\n\nO sistema apoia o profissional na validação e prescrição personalizada.`);
+            goToScreen(7);
         }
 
         // Registrar Service Worker para PWA

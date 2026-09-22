@@ -31,11 +31,8 @@ import androidx.compose.material.icons.filled.CameraAlt
 import androidx.compose.material.icons.filled.CardMembership
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.EventRepeat
-import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.MedicalServices
 import androidx.compose.material.icons.filled.Notes
-import androidx.compose.material.icons.filled.Payment
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.PhoneInTalk
@@ -92,7 +89,7 @@ fun StudentProfileScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    // 1. Dados Pessoais
+    // 1. Dados Pessoais do Aluno
     var name by remember { mutableStateOf(profile.name) }
     var birthDate by remember { mutableStateOf(profile.birthDate) }
     var gender by remember { mutableStateOf(profile.gender) }
@@ -110,25 +107,24 @@ fun StudentProfileScreen(
     var weeklyFrequency by remember { mutableStateOf(profile.weeklyFrequency) }
     var professionalNotes by remember { mutableStateOf(profile.professionalNotes) }
 
-    // Dados complementares
-    var weight by remember { mutableStateOf(profile.weightKg) }
-    var height by remember { mutableStateOf(profile.heightM) }
-
     val goalsList = listOf(
         "Ganhar força e autonomia",
         "Melhorar o equilíbrio",
         "Prevenção de quedas",
         "Aumentar flexibilidade e mobilidade",
-        "Alívio de dores nas costas e joelhos"
+        "Alívio de dores nas costas e joelhos",
+        "Condicionamento físico geral"
     )
 
     val plansList = listOf(
         "60+fit Essencial (R$ 79,90/mês)",
         "60+fit Gerontológico (R$ 129,90/mês)",
-        "60+fit Premium (R$ 199,90/mês)"
+        "60+fit Premium (R$ 199,90/mês)",
+        "60+fit Personalizado (Consultar)"
     )
 
     val frequencyOptions = listOf(
+        "1x por semana",
         "2x por semana",
         "3x por semana",
         "4x por semana",
@@ -150,7 +146,7 @@ fun StudentProfileScreen(
                 .testTag("student_profile_screen")
         ) {
             TopBarWithBack(
-                title = "Cadastro / Meu Perfil",
+                title = "Cadastro do Aluno",
                 onBackClick = onBackClick
             )
 
@@ -168,7 +164,7 @@ fun StudentProfileScreen(
                     modifier = Modifier.padding(bottom = 12.dp)
                 ) {
                     Text(
-                        text = "Área de Cadastro do Aluno",
+                        text = "Ficha de Cadastro e Matrícula",
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold,
                         color = FitLimeDark,
@@ -176,7 +172,9 @@ fun StudentProfileScreen(
                     )
                 }
 
-                // 1. FOTO DO ALUNO
+                // ==========================================
+                // CAMPO: FOTO
+                // ==========================================
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -186,21 +184,21 @@ fun StudentProfileScreen(
                     Box(contentAlignment = Alignment.BottomEnd) {
                         Image(
                             painter = painterResource(id = R.drawable.img_avatar_maria),
-                            contentDescription = "Foto",
+                            contentDescription = "Foto do Aluno",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .size(108.dp)
+                                .size(112.dp)
                                 .clip(CircleShape)
-                                .border(3.dp, FitLime, CircleShape)
+                                .border(3.5.dp, FitLime, CircleShape)
                         )
                         Box(
                             modifier = Modifier
-                                .size(36.dp)
+                                .size(38.dp)
                                 .clip(CircleShape)
                                 .background(FitLimeDark)
                                 .clickable {
                                     scope.launch {
-                                        snackbarHostState.showSnackbar("Foto atualizada com sucesso!")
+                                        snackbarHostState.showSnackbar("Foto do aluno atualizada!")
                                     }
                                 },
                             contentAlignment = Alignment.Center
@@ -209,31 +207,33 @@ fun StudentProfileScreen(
                                 imageVector = Icons.Default.CameraAlt,
                                 contentDescription = "Alterar Foto",
                                 tint = Color.White,
-                                modifier = Modifier.size(18.dp)
+                                modifier = Modifier.size(20.dp)
                             )
                         }
                     }
                 }
 
                 Text(
-                    text = "Toque no ícone da câmera para trocar a foto",
+                    text = "Toque no ícone da câmera para trocar a Foto do aluno",
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
-                        .padding(bottom = 16.dp)
+                        .padding(bottom = 18.dp)
                 )
 
-                // SECTION 1: DADOS PESSOAIS
+                // ==========================================
+                // SEÇÃO: DADOS PESSOAIS
+                // ==========================================
                 Text(
-                    text = "Dados Pessoais",
-                    fontSize = 17.sp,
-                    fontWeight = FontWeight.Bold,
+                    text = "Identificação do Aluno",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.ExtraBold,
                     color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.padding(vertical = 6.dp)
                 )
 
-                // Nome
+                // 1. Nome
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
@@ -252,7 +252,7 @@ fun StudentProfileScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Data de nascimento
+                // 2. Data de nascimento
                 OutlinedTextField(
                     value = birthDate,
                     onValueChange = { birthDate = it },
@@ -272,11 +272,11 @@ fun StudentProfileScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Sexo (Selector Chips)
+                // 3. Sexo (Selector Chips)
                 Column(modifier = Modifier.fillMaxWidth()) {
                     Text(
                         text = "Sexo:",
-                        fontSize = 14.sp,
+                        fontSize = 13.sp,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
@@ -307,11 +307,12 @@ fun StudentProfileScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Telefone
+                // 4. Telefone
                 OutlinedTextField(
                     value = phone,
                     onValueChange = { phone = it },
-                    label = { Text("Telefone / WhatsApp") },
+                    label = { Text("Telefone") },
+                    placeholder = { Text("(11) 98765-4321") },
                     leadingIcon = { Icon(Icons.Default.Phone, contentDescription = null, tint = FitLimeDark) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                     singleLine = true,
@@ -327,11 +328,12 @@ fun StudentProfileScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // E-mail
+                // 5. E-mail
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
                     label = { Text("E-mail") },
+                    placeholder = { Text("aluno@email.com") },
                     leadingIcon = { Icon(Icons.Default.Email, contentDescription = null, tint = FitLimeDark) },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                     singleLine = true,
@@ -347,11 +349,12 @@ fun StudentProfileScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Contato de emergência
+                // 6. Contato de emergência
                 OutlinedTextField(
                     value = emergencyContact,
                     onValueChange = { emergencyContact = it },
-                    label = { Text("Contato de emergência (Nome e Telefone)") },
+                    label = { Text("Contato de emergência") },
+                    placeholder = { Text("Nome do responsável e telefone com DDD") },
                     leadingIcon = { Icon(Icons.Default.PhoneInTalk, contentDescription = null, tint = Color(0xFFDC2626)) },
                     singleLine = true,
                     shape = RoundedCornerShape(16.dp),
@@ -366,7 +369,7 @@ fun StudentProfileScreen(
 
                 Spacer(modifier = Modifier.height(12.dp))
 
-                // Objetivo (Dropdown)
+                // 7. Objetivo (Dropdown)
                 Box(modifier = Modifier.fillMaxWidth()) {
                     OutlinedTextField(
                         value = goal,
@@ -410,7 +413,9 @@ fun StudentProfileScreen(
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // SECTION 2: INFORMAÇÕES PROFISSIONAIS
+                // ==========================================
+                // SEÇÃO: INFORMAÇÕES PROFISSIONAIS
+                // ==========================================
                 Card(
                     shape = RoundedCornerShape(20.dp),
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
@@ -425,7 +430,7 @@ fun StudentProfileScreen(
                     ) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(bottom = 12.dp)
+                            modifier = Modifier.padding(bottom = 14.dp)
                         ) {
                             Box(
                                 modifier = Modifier
@@ -450,18 +455,19 @@ fun StudentProfileScreen(
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Text(
-                                    text = "Prescrição, acompanhamento e plano",
+                                    text = "Atribuição técnica, plano e cronograma",
                                     fontSize = 12.sp,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
                         }
 
-                        // Profissional responsável
+                        // 8. Profissional responsável
                         OutlinedTextField(
                             value = responsibleProfessional,
                             onValueChange = { responsibleProfessional = it },
                             label = { Text("Profissional responsável") },
+                            placeholder = { Text("Nome do professor / fisioterapeuta (CREF/CREFITO)") },
                             leadingIcon = { Icon(Icons.Default.Badge, contentDescription = null, tint = FitLimeDark) },
                             singleLine = true,
                             shape = RoundedCornerShape(14.dp),
@@ -476,11 +482,11 @@ fun StudentProfileScreen(
 
                         Spacer(modifier = Modifier.height(12.dp))
 
-                        // Data de início
+                        // 9. Data de início
                         OutlinedTextField(
                             value = startDate,
                             onValueChange = { startDate = it },
-                            label = { Text("Data de início") },
+                            label = { Text("Data de início (DD/MM/AAAA)") },
                             leadingIcon = { Icon(Icons.Default.CalendarMonth, contentDescription = null, tint = FitLimeDark) },
                             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                             singleLine = true,
@@ -496,7 +502,7 @@ fun StudentProfileScreen(
 
                         Spacer(modifier = Modifier.height(12.dp))
 
-                        // Plano contratado (Dropdown)
+                        // 10. Plano contratado (Dropdown)
                         Box(modifier = Modifier.fillMaxWidth()) {
                             OutlinedTextField(
                                 value = contractedPlan,
@@ -538,50 +544,9 @@ fun StudentProfileScreen(
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(14.dp))
 
-                        // Botão de acesso rápido a pagamentos e planos
-                        Surface(
-                            shape = RoundedCornerShape(12.dp),
-                            color = FitLime.copy(alpha = 0.15f),
-                            border = androidx.compose.foundation.BorderStroke(1.dp, FitLimeDark.copy(alpha = 0.5f)),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { onManagePlansClick() }
-                                .testTag("profile_manage_payment_button")
-                        ) {
-                            Row(
-                                modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
-                                horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(
-                                        imageVector = Icons.Default.Payment,
-                                        contentDescription = null,
-                                        tint = FitLimeDark,
-                                        modifier = Modifier.size(20.dp)
-                                    )
-                                    Spacer(modifier = Modifier.width(10.dp))
-                                    Text(
-                                        text = "Gerenciar Pagamentos e Assinatura",
-                                        fontSize = 13.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        color = FitLimeDark
-                                    )
-                                }
-                                Icon(
-                                    imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
-                                    contentDescription = null,
-                                    tint = FitLimeDark,
-                                    modifier = Modifier.size(14.dp)
-                                )
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(12.dp))
-
-                        // Frequência semanal
+                        // 11. Frequência semanal
                         Text(
                             text = "Frequência semanal:",
                             fontSize = 13.sp,
@@ -593,7 +558,7 @@ fun StudentProfileScreen(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
-                            frequencyOptions.forEach { freq ->
+                            frequencyOptions.take(4).forEach { freq ->
                                 val isSelected = weeklyFrequency == freq
                                 FilterChip(
                                     selected = isSelected,
@@ -612,20 +577,20 @@ fun StudentProfileScreen(
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(14.dp))
 
-                        // Observações
+                        // 12. Observações
                         OutlinedTextField(
                             value = professionalNotes,
                             onValueChange = { professionalNotes = it },
                             label = { Text("Observações") },
                             leadingIcon = { Icon(Icons.Default.Notes, contentDescription = null, tint = FitLimeDark) },
-                            placeholder = { Text("Anotações clínicas, cuidados articulares, restrições...") },
+                            placeholder = { Text("Anotações clínicas, cuidados articulares, restrições e histórico...") },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(100.dp)
+                                .height(115.dp)
                                 .testTag("profile_notes_input"),
-                            maxLines = 4,
+                            maxLines = 5,
                             shape = RoundedCornerShape(14.dp),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedBorderColor = FitLimeDark,
@@ -635,53 +600,11 @@ fun StudentProfileScreen(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(20.dp))
-
-                // Medidas biométricas rápidas (Peso e Altura)
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    OutlinedTextField(
-                        value = weight,
-                        onValueChange = { weight = it },
-                        label = { Text("Peso (kg)") },
-                        leadingIcon = { Icon(Icons.Default.FitnessCenter, contentDescription = null, tint = FitLimeDark) },
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                        singleLine = true,
-                        shape = RoundedCornerShape(14.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = FitLimeDark,
-                            unfocusedBorderColor = MaterialTheme.colorScheme.outline
-                        ),
-                        modifier = Modifier
-                            .weight(1f)
-                            .testTag("profile_weight_input")
-                    )
-
-                    OutlinedTextField(
-                        value = height,
-                        onValueChange = { height = it },
-                        label = { Text("Altura (m)") },
-                        leadingIcon = { Icon(Icons.Default.EventRepeat, contentDescription = null, tint = FitLimeDark) },
-                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                        singleLine = true,
-                        shape = RoundedCornerShape(14.dp),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = FitLimeDark,
-                            unfocusedBorderColor = MaterialTheme.colorScheme.outline
-                        ),
-                        modifier = Modifier
-                            .weight(1f)
-                            .testTag("profile_height_input")
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(28.dp))
+                Spacer(modifier = Modifier.height(26.dp))
 
                 // Botão Salvar Cadastro
                 PrimaryFitButton(
-                    text = "Salvar Cadastro",
+                    text = "Salvar Cadastro do Aluno",
                     onClick = {
                         val updated = profile.copy(
                             name = name,
@@ -695,17 +618,15 @@ fun StudentProfileScreen(
                             startDate = startDate,
                             contractedPlan = contractedPlan,
                             weeklyFrequency = weeklyFrequency,
-                            professionalNotes = professionalNotes,
-                            weightKg = weight,
-                            heightM = height
+                            professionalNotes = professionalNotes
                         )
                         onSaveClick(updated)
-                        Toast.makeText(context, "Cadastro atualizado com sucesso!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Cadastro do aluno salvo com sucesso!", Toast.LENGTH_SHORT).show()
                     },
                     testTag = "profile_save_button"
                 )
 
-                Spacer(modifier = Modifier.height(30.dp))
+                Spacer(modifier = Modifier.height(26.dp))
             }
         }
 
