@@ -34,9 +34,11 @@ import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.MedicalServices
 import androidx.compose.material.icons.filled.PictureAsPdf
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -47,6 +49,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
@@ -83,7 +86,9 @@ fun WorkoutPrescriptionScreen(
     students: List<ProfessionalStudent> = emptyList(),
     onBackClick: () -> Unit,
     onSavePrescription: (WorkoutPrescription) -> Unit,
-    onPreviewWorkout: () -> Unit
+    onPreviewWorkout: () -> Unit,
+    onOpenVideoLibrary: () -> Unit = {},
+    onOpenConditionWorkouts: () -> Unit = {}
 ) {
     val context = LocalContext.current
     var prescriptionState by remember { mutableStateOf(initialPrescription) }
@@ -115,7 +120,7 @@ fun WorkoutPrescriptionScreen(
             .testTag("workout_prescription_screen")
     ) {
         TopBarWithBack(
-            title = "Tela 6: Prescrição de Treino",
+            title = "Prescrição de Treino",
             onBackClick = onBackClick
         )
 
@@ -674,6 +679,56 @@ fun WorkoutPrescriptionScreen(
                                     )
                                 }
                             }
+                        }
+
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        OutlinedButton(
+                            onClick = onOpenVideoLibrary,
+                            shape = RoundedCornerShape(14.dp),
+                            border = BorderStroke(1.5.dp, FitLimeDark),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("btn_prescription_open_video_library")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Videocam,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp),
+                                tint = FitLimeDark
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "Consultar Biblioteca de Vídeos (Tela 7)",
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = FitLimeDark
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        OutlinedButton(
+                            onClick = onOpenConditionWorkouts,
+                            shape = RoundedCornerShape(14.dp),
+                            border = BorderStroke(1.5.dp, FitLimeDark),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("btn_prescription_open_condition_workouts")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.MedicalServices,
+                                contentDescription = null,
+                                modifier = Modifier.size(18.dp),
+                                tint = FitLimeDark
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "🎯 Treinos por Condição • Treino Direcionado (Tela 8)",
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = FitLimeDark
+                            )
                         }
 
                         Spacer(modifier = Modifier.height(8.dp))

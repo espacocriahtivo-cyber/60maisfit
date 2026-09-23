@@ -86,6 +86,8 @@ fun StudentHomeScreen(
     onProfileClick: () -> Unit = {},
     onAssessmentClick: () -> Unit = {},
     onWorkoutClick: () -> Unit = onStartWorkoutClick,
+    onConditionWorkoutsClick: () -> Unit = {},
+    onSafetyCheckClick: () -> Unit = {},
     onEvolutionClick: () -> Unit = onProgressClick,
     onNotificationsClick: () -> Unit = onRemindersClick,
     onContactProfessionalClick: (() -> Unit)? = null,
@@ -96,6 +98,14 @@ fun StudentHomeScreen(
     var showContactDialog by remember { mutableStateOf(false) }
 
     val menuItems = listOf(
+        MainMenuItem(
+            emoji = "🛡️",
+            title = "Atenção antes do treino",
+            subtitle = "Sistema de segurança • Checagem de tontura, dor, ar e quedas",
+            badgeColor = Color(0xFFFEE2E2),
+            testTag = "menu_item_safety_check",
+            onClick = { onSafetyCheckClick() }
+        ),
         MainMenuItem(
             emoji = "👤",
             title = "Meu Perfil",
@@ -121,9 +131,17 @@ fun StudentHomeScreen(
             onClick = { onWorkoutClick() }
         ),
         MainMenuItem(
+            emoji = "🎯",
+            title = "Treino Direcionado",
+            subtitle = "Hipertensão, Diabetes, Osteoporose, Parkinson, Pós-AVC, etc.",
+            badgeColor = Color(0xFFC7D2FE),
+            testTag = "menu_item_condition_workouts",
+            onClick = { onConditionWorkoutsClick() }
+        ),
+        MainMenuItem(
             emoji = "🎥",
-            title = "Biblioteca de Exercícios",
-            subtitle = "Vídeos demonstrativos, áudio e postura correta",
+            title = "Biblioteca de Vídeos",
+            subtitle = "Vídeos demonstrativos de 10s adaptados para a melhor idade",
             badgeColor = Color(0xFFFEF08A),
             testTag = "menu_item_exercises",
             onClick = { onExercisesClick() }
@@ -131,7 +149,7 @@ fun StudentHomeScreen(
         MainMenuItem(
             emoji = "📈",
             title = "Minha Evolução",
-            subtitle = "Histórico de peso, força, equilíbrio e conquistas",
+            subtitle = "Sua evolução desde a 1ª avaliação • Força, equilíbrio e marcha",
             badgeColor = Color(0xFFDDD6FE),
             testTag = "menu_item_evolution",
             onClick = { onEvolutionClick() }
@@ -154,7 +172,7 @@ fun StudentHomeScreen(
         ),
         MainMenuItem(
             emoji = "🔔",
-            title = "Notificações",
+            title = "Notificações e Lembretes",
             subtitle = "Lembretes de água, treino e medicamentos",
             badgeColor = Color(0xFFFFEDD5),
             testTag = "menu_item_notifications",
@@ -163,7 +181,7 @@ fun StudentHomeScreen(
         MainMenuItem(
             emoji = "💬",
             title = "Fale com o Profissional",
-            subtitle = "Dúvidas, orientações e contato direto",
+            subtitle = "Dúvidas, orientações e contato direto com seu instrutor",
             badgeColor = Color(0xFFCCFBF1),
             testTag = "menu_item_contact_professional",
             onClick = {
@@ -203,10 +221,11 @@ fun StudentHomeScreen(
                     Surface(
                         shape = RoundedCornerShape(8.dp),
                         color = FitLime.copy(alpha = 0.2f),
-                        border = androidx.compose.foundation.BorderStroke(1.dp, FitLimeDark.copy(alpha = 0.4f))
+                        border = androidx.compose.foundation.BorderStroke(1.dp, FitLimeDark.copy(alpha = 0.4f)),
+                        modifier = Modifier.testTag("home_top_screen_badge")
                     ) {
                         Text(
-                            text = "Tela inicial",
+                            text = "Início",
                             fontSize = 12.sp,
                             fontWeight = FontWeight.Bold,
                             color = FitLimeDark,
@@ -434,6 +453,187 @@ fun StudentHomeScreen(
                 }
             }
 
+            Spacer(modifier = Modifier.height(14.dp))
+
+            // Card Especial: Treino Direcionado
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                border = androidx.compose.foundation.BorderStroke(1.5.dp, FitLimeDark.copy(alpha = 0.9f)),
+                elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onConditionWorkoutsClick() }
+                    .testTag("home_directed_workout_card")
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = FitLimeDark,
+                            contentColor = Color.White
+                        ) {
+                            Text(
+                                text = "🎯 ÁREA EXCLUSIVA 60+",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Black,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                            )
+                        }
+
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = FitLime.copy(alpha = 0.25f)
+                        ) {
+                            Text(
+                                text = "8 Condições Clínicas",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = FitLimeDark,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                            )
+                        }
+                    }
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(46.dp)
+                                .clip(CircleShape)
+                                .background(FitLime.copy(alpha = 0.25f)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("🩺", fontSize = 24.sp)
+                        }
+
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "Treino direcionado",
+                                fontSize = 17.sp,
+                                fontWeight = FontWeight.Black,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Prescrições clínicas: Hipertensão, Diabetes tipo 2, Osteoporose, Artrose, Parkinson, AVC, Sarcopenia e Fragilidade.",
+                                fontSize = 12.sp,
+                                lineHeight = 16.sp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
+                            contentDescription = null,
+                            tint = FitLimeDark,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(14.dp))
+
+            // Card Especial: Sistema de Segurança • Atenção antes do treino
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                border = androidx.compose.foundation.BorderStroke(1.5.dp, Color(0xFFEF4444).copy(alpha = 0.8f)),
+                elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onSafetyCheckClick() }
+                    .testTag("home_safety_system_card")
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = Color(0xFFDC2626),
+                            contentColor = Color.White
+                        ) {
+                            Text(
+                                text = "🛡️ SISTEMA DE SEGURANÇA",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Black,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                            )
+                        }
+
+                        Surface(
+                            shape = RoundedCornerShape(8.dp),
+                            color = Color(0xFFFEF2F2),
+                            border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFFCA5A5))
+                        ) {
+                            Text(
+                                text = "Check-in Pré-treino",
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color(0xFFDC2626),
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                            )
+                        }
+                    }
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .size(46.dp)
+                                .clip(CircleShape)
+                                .background(Color(0xFFFEF2F2)),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("⚠️", fontSize = 24.sp)
+                        }
+
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(
+                                text = "Atenção antes do treino",
+                                fontSize = 17.sp,
+                                fontWeight = FontWeight.Black,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                            Text(
+                                text = "Tontura, dor no peito, falta de ar, mal-estar ou queda recente? O app interrompe a sessão e orienta o cuidado adequado.",
+                                fontSize = 12.sp,
+                                lineHeight = 16.sp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
+                            contentDescription = null,
+                            tint = Color(0xFFDC2626),
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
+                }
+            }
+
             Spacer(modifier = Modifier.height(20.dp))
 
             // Section: Menu Principal
@@ -449,7 +649,7 @@ fun StudentHomeScreen(
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "Menu principal:",
+                    text = "Opções e recursos:",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
@@ -458,14 +658,14 @@ fun StudentHomeScreen(
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            // The 9 Menu Items
+            // The Menu Items
             Column(
                 modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(14.dp)
             ) {
                 menuItems.forEach { item ->
                     Card(
-                        shape = RoundedCornerShape(18.dp),
+                        shape = RoundedCornerShape(20.dp),
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
                         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
                         border = androidx.compose.foundation.BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.5f)),
@@ -477,20 +677,20 @@ fun StudentHomeScreen(
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(horizontal = 16.dp, vertical = 14.dp),
+                                .padding(horizontal = 18.dp, vertical = 16.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             // Emoji / Icon Container
                             Box(
                                 modifier = Modifier
-                                    .size(48.dp)
+                                    .size(52.dp)
                                     .clip(CircleShape)
                                     .background(item.badgeColor),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
                                     text = item.emoji,
-                                    fontSize = 22.sp
+                                    fontSize = 26.sp
                                 )
                             }
 
@@ -500,23 +700,25 @@ fun StudentHomeScreen(
                             Column(modifier = Modifier.weight(1f)) {
                                 Text(
                                     text = item.title,
-                                    fontSize = 16.sp,
+                                    fontSize = 17.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.onSurface
                                 )
-                                Spacer(modifier = Modifier.height(2.dp))
+                                Spacer(modifier = Modifier.height(3.dp))
                                 Text(
                                     text = item.subtitle,
-                                    fontSize = 12.sp,
+                                    fontSize = 13.sp,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    lineHeight = 16.sp
+                                    lineHeight = 18.sp
                                 )
                             }
 
-                            // Chevron Forward Indicator
+                            Spacer(modifier = Modifier.width(8.dp))
+
+                            // Chevron Forward Indicator with 36dp touch target
                             Box(
                                 modifier = Modifier
-                                    .size(32.dp)
+                                    .size(36.dp)
                                     .clip(CircleShape)
                                     .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)),
                                 contentAlignment = Alignment.Center
@@ -525,7 +727,7 @@ fun StudentHomeScreen(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos,
                                     contentDescription = "Abrir",
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                    modifier = Modifier.size(14.dp)
+                                    modifier = Modifier.size(15.dp)
                                 )
                             }
                         }

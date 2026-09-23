@@ -28,6 +28,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -50,7 +51,8 @@ fun WorkoutScreen(
     workout: Workout,
     onBackClick: () -> Unit,
     onExerciseClick: (Exercise) -> Unit,
-    onStartWorkoutClick: () -> Unit
+    onStartWorkoutClick: () -> Unit,
+    onSafetyCheckClick: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
@@ -115,6 +117,52 @@ fun WorkoutScreen(
                                     fontSize = 14.sp,
                                     fontWeight = FontWeight.Medium,
                                     color = MaterialTheme.colorScheme.onSurface
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Card Atenção antes do treino
+                    Card(
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFEF2F2)),
+                        border = androidx.compose.foundation.BorderStroke(1.2.dp, Color(0xFFFCA5A5)),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onSafetyCheckClick() }
+                            .testTag("workout_safety_check_card")
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(14.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(12.dp)
+                        ) {
+                            Text("🛡️", fontSize = 24.sp)
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = "Atenção antes do treino",
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF991B1B)
+                                )
+                                Text(
+                                    text = "Tontura, dor no peito, falta de ar ou queda? Faça sua checagem pré-treino.",
+                                    fontSize = 12.sp,
+                                    color = Color(0xFF7F1D1D)
+                                )
+                            }
+                            Surface(
+                                shape = RoundedCornerShape(8.dp),
+                                color = Color(0xFFDC2626),
+                                contentColor = Color.White
+                            ) {
+                                Text(
+                                    text = "Checar",
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
                                 )
                             }
                         }

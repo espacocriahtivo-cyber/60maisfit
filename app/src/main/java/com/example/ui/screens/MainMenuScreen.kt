@@ -53,12 +53,14 @@ fun MainMenuScreen(
     val menuItems = listOf(
         MainMenuOption("👤", "Meu Perfil", { onNavigate("student_profile") }),
         MainMenuOption("📋", "Minha Avaliação", { onNavigate("physical_assessment") }),
+        MainMenuOption("🛡️", "Sistema de Segurança", { onNavigate("safety_check") }, isHighlighted = true),
         MainMenuOption("🏋️", "Meu Treino", { onNavigate("workout_overview") }, isHighlighted = true),
-        MainMenuOption("🎥", "Biblioteca de Exercícios", { onNavigate("exercise_active/ex_2") }),
-        MainMenuOption("📈", "Minha Evolução", { onNavigate("evolution") }),
+        MainMenuOption("🎯", "Treinos por Condição", { onNavigate("condition_workouts") }, isHighlighted = true),
+        MainMenuOption("🎥", "Biblioteca de Vídeos", { onNavigate("video_library") }),
+        MainMenuOption("📈", "Minha Evolução", { onNavigate("evolution") }, isHighlighted = true),
         MainMenuOption("❤️", "Minha Saúde", { onNavigate("health") }),
         MainMenuOption("💳", "Meu Plano", { onNavigate("plans") }),
-        MainMenuOption("🔔", "Notificações", { onNavigate("reminders") }),
+        MainMenuOption("🔔", "Notificações e Lembretes", { onNavigate("reminders") }),
         MainMenuOption("💬", "Fale com o Profissional", { onNavigate("contact_professional") })
     )
 

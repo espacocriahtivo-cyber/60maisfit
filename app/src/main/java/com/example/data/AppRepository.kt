@@ -836,6 +836,224 @@ class AppRepository {
         }
     }
 
+    // ==========================================
+    // BIBLIOTECA DE VÍDEOS (TELA 7)
+    // ==========================================
+    private val _videoExercises = MutableStateFlow(VideoLibraryData.defaultVideos)
+    val videoExercises: StateFlow<List<VideoExercise>> = _videoExercises.asStateFlow()
+
+    fun toggleFavoriteVideoExercise(id: String) {
+        _videoExercises.update { list ->
+            list.map { if (it.id == id) it.copy(isFavorite = !it.isFavorite) else it }
+        }
+    }
+
+    fun addVideoExerciseToActiveWorkout(videoExercise: VideoExercise) {
+        val repCount = videoExercise.reps.filter { it.isDigit() }.toIntOrNull() ?: 10
+        val newEx = Exercise(
+            id = "ex_${videoExercise.id}_${System.currentTimeMillis()}",
+            name = "${videoExercise.emoji} ${videoExercise.name}",
+            sets = videoExercise.sets,
+            reps = repCount,
+            restSeconds = videoExercise.restSeconds,
+            instruction = videoExercise.instruction
+        )
+        val currentExercises = _currentWorkout.value.exercises
+        _currentWorkout.update {
+            it.copy(exercises = currentExercises + newEx)
+        }
+    }
+
+    // ==========================================
+    // TREINOS POR CONDIÇÃO / TREINO DIRECIONADO (TELA 8)
+    // ==========================================
+    private val _conditionProtocols = MutableStateFlow(ConditionWorkoutsData.protocols)
+    val conditionProtocols: StateFlow<List<ConditionWorkoutProtocol>> = _conditionProtocols.asStateFlow()
+
+    fun prescribeConditionProtocol(protocol: ConditionWorkoutProtocol) {
+        val convertedExercises = protocol.exercises.mapIndexed { index, directedEx ->
+            val repCount = directedEx.repsOrTime.filter { it.isDigit() }.toIntOrNull() ?: 10
+            Exercise(
+                id = "dir_${protocol.id}_${index}_${System.currentTimeMillis()}",
+                name = "${directedEx.emoji} ${directedEx.name}",
+                sets = directedEx.sets,
+                reps = repCount,
+                restSeconds = directedEx.restSeconds,
+                instruction = "${directedEx.instruction} (Diretriz: ${directedEx.clinicalGuideline})"
+            )
+        }
+
+        _currentWorkout.update {
+            it.copy(
+                code = "Treino Direcionado: ${protocol.conditionName}",
+                title = "Protocolo Clínico (${protocol.title})",
+                exercises = convertedExercises
+            )
+        }
+    }
+
+    // ==========================================
+    // SISTEMA DE SEGURANÇA: ATENÇÃO ANTES DO TREINO (TELA 9)
+    // ==========================================
+    private val _safetySymptoms = MutableStateFlow(SafetySystemData.symptomsList)
+    val safetySymptoms: StateFlow<List<PreWorkoutSymptom>> = _safetySymptoms.asStateFlow()
+
+    private val _safetyRecords = MutableStateFlow(SafetySystemData.defaultRecords)
+    val safetyRecords: StateFlow<List<SafetyCheckRecord>> = _safetyRecords.asStateFlow()
+
+    private val _lastSafetyCheck = MutableStateFlow<SafetyCheckRecord?>(SafetySystemData.defaultRecords.firstOrNull())
+    val lastSafetyCheck: StateFlow<SafetyCheckRecord?> = _lastSafetyCheck.asStateFlow()
+
+    fun recordSafetyCheck(record: SafetyCheckRecord) {
+        _safetyRecords.update { listOf(record) + it }
+        _lastSafetyCheck.value = record
+    }
+
+    // ==========================================
+    // EVOLUÇÃO LONGITUDINAL DO ALUNO (TELA 10)
+    // ==========================================
+    private val defaultEvolutionMetrics = listOf(
+        EvolutionMetricItem(
+            id = "evo_peso",
+            category = EvolutionMetricCategory.WEIGHT,
+            title = "Peso Corporal e IMC",
+            unit = "kg",
+            firstAssessmentValue = "65.0 kg (IMC 26.0)",
+            currentAssessmentValue = "62.0 kg (IMC 24.8)",
+            deltaValue = "-3.0 kg",
+            deltaPercentage = "-4.6%",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "Faixa eutrófica Lipschitz para 60+ (22 a 27 kg/m²). Redução gradual e segura com preservação de massa muscular magra.",
+            practicalBenefitForElderly = "Alívio expressivo do impacto e sobrecarga nas articulações dos joelhos, quadris e coluna lombar.",
+            historyPoints = listOf("Jan" to 65.0f, "Mar" to 64.2f, "Mai" to 63.0f, "Jul" to 62.4f, "Set" to 62.0f)
+        ),
+        EvolutionMetricItem(
+            id = "evo_forca",
+            category = EvolutionMetricCategory.STRENGTH,
+            title = "Força Muscular (Sentar e Levantar 30s)",
+            unit = "repetições",
+            firstAssessmentValue = "10 repetições",
+            currentAssessmentValue = "14 repetições",
+            deltaValue = "+4 reps",
+            deltaPercentage = "+40.0%",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "Avançou de limítrofe para nível Bom/Forte pelos critérios de Rikli & Jones (Senior Fitness Test).",
+            practicalBenefitForElderly = "Facilidade para levantar de cadeiras baixas, vaso sanitário e subir escadas com autonomia sem apoio dos braços.",
+            historyPoints = listOf("Jan" to 10f, "Mar" to 11f, "Mai" to 12f, "Jul" to 13f, "Set" to 14f)
+        ),
+        EvolutionMetricItem(
+            id = "evo_preensao",
+            category = EvolutionMetricCategory.HANDGRIP,
+            title = "Preensão Palmar (Dinamometria Manual)",
+            unit = "kgf",
+            firstAssessmentValue = "17.5 kgf",
+            currentAssessmentValue = "22.5 kgf",
+            deltaValue = "+5.0 kgf",
+            deltaPercentage = "+28.6%",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "Superou com folga a linha de corte internacional de sarcopenia feminina (EWGSOP2 < 16 kgf). Alta reserva motora.",
+            practicalBenefitForElderly = "Firmeza para abrir potes e garrafas, segurar corrimãos com agilidade e carregar compras sem fadiga nas mãos.",
+            historyPoints = listOf("Jan" to 17.5f, "Mar" to 18.5f, "Mai" to 20.0f, "Jul" to 21.2f, "Set" to 22.5f)
+        ),
+        EvolutionMetricItem(
+            id = "evo_equilibrio",
+            category = EvolutionMetricCategory.BALANCE,
+            title = "Equilíbrio Estático (Apoio Unipodal)",
+            unit = "segundos",
+            firstAssessmentValue = "6.0 segundos",
+            currentAssessmentValue = "14.0 segundos",
+            deltaValue = "+8.0 s",
+            deltaPercentage = "+133.3%",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "Mais que dobrou o tempo sustentado em uma perna só. Indicador protetor com risco de quedas expressivamente reduzido.",
+            practicalBenefitForElderly = "Segurança ao calçar calçados em pé, passar por desníveis de calçadas e evitar tropeços inesperados em casa.",
+            historyPoints = listOf("Jan" to 6.0f, "Mar" to 8.0f, "Mai" to 10.0f, "Jul" to 12.0f, "Set" to 14.0f)
+        ),
+        EvolutionMetricItem(
+            id = "evo_marcha",
+            category = EvolutionMetricCategory.GAIT,
+            title = "Velocidade da Marcha (Teste de 3 metros)",
+            unit = "m/s",
+            firstAssessmentValue = "0.81 m/s (3.7s)",
+            currentAssessmentValue = "1.07 m/s (2.8s)",
+            deltaValue = "+0.26 m/s",
+            deltaPercentage = "+32.1%",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "Superou a marca gerontológica protetora de 1.0 m/s. Excelente cadência e coordenação neuromotora na locomoção.",
+            practicalBenefitForElderly = "Passada mais rápida e confiante para atravessar faixas de pedestre com folga no semáforo.",
+            historyPoints = listOf("Jan" to 0.81f, "Mar" to 0.88f, "Mai" to 0.94f, "Jul" to 1.01f, "Set" to 1.07f)
+        ),
+        EvolutionMetricItem(
+            id = "evo_flexibilidade",
+            category = EvolutionMetricCategory.FLEXIBILITY,
+            title = "Flexibilidade Posterior (Sentar e Alcançar)",
+            unit = "cm",
+            firstAssessmentValue = "16.0 cm",
+            currentAssessmentValue = "24.0 cm",
+            deltaValue = "+8.0 cm",
+            deltaPercentage = "+50.0%",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "Ganho de 8 cm de alcance. Arco articular do joelho atingiu 125° de flexão e recuperação total de extensão neutra (0°).",
+            practicalBenefitForElderly = "Alívio de tensões nas costas e agilidade para pegar sapatos, amarrar cadarços e limpar prateleiras baixas.",
+            historyPoints = listOf("Jan" to 16.0f, "Mar" to 18.0f, "Mai" to 20.0f, "Jul" to 22.0f, "Set" to 24.0f)
+        ),
+        EvolutionMetricItem(
+            id = "evo_medidas",
+            category = EvolutionMetricCategory.BODY_MEASUREMENTS,
+            title = "Medidas Corporais (Panturrilha e Cintura)",
+            unit = "cm",
+            firstAssessmentValue = "Panturrilha 33.0 / Cintura 83.0 cm",
+            currentAssessmentValue = "Panturrilha 34.5 / Cintura 78.0 cm",
+            deltaValue = "+1.5 cm pant. / -5 cm cint.",
+            deltaPercentage = "+4.5% massa magra",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "Ganho de trofismo na panturrilha (marcador padrão ouro de massa muscular no idoso) somado a perda de 5 cm de gordura abdominal.",
+            practicalBenefitForElderly = "Melhora no retorno venoso das pernas, redução do inchaço e menor risco cardiovascular metabólico.",
+            historyPoints = listOf("Jan" to 33.0f, "Mar" to 33.4f, "Mai" to 33.8f, "Jul" to 34.2f, "Set" to 34.5f)
+        ),
+        EvolutionMetricItem(
+            id = "evo_frequencia",
+            category = EvolutionMetricCategory.FREQUENCY,
+            title = "Frequência de Treino e Adesão Mensal",
+            unit = "treinos/mês",
+            firstAssessmentValue = "11 treinos (68%)",
+            currentAssessmentValue = "18 treinos (92%)",
+            deltaValue = "+7 treinos",
+            deltaPercentage = "+35.3%",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "Excelente regularidade de 3 a 4 sessões semanais. Sequência ativa de 7 semanas ininterruptas no programa.",
+            practicalBenefitForElderly = "Consolidação de hábitos de vida ativos, energia renovada pela manhã e melhora expressiva do sono.",
+            historyPoints = listOf("Jan" to 11f, "Mar" to 14f, "Mai" to 16f, "Jul" to 17f, "Set" to 18f)
+        ),
+        EvolutionMetricItem(
+            id = "evo_exercicios",
+            category = EvolutionMetricCategory.COMPLETED_EXERCISES,
+            title = "Exercícios Realizados Acumulados",
+            unit = "exercícios",
+            firstAssessmentValue = "30 realizados",
+            currentAssessmentValue = "142 acumulados",
+            deltaValue = "+112 exercícios",
+            deltaPercentage = "+373%",
+            isPositiveImprovement = true,
+            clinicalInterpretation = "426 séries concluídas com sucesso. Distribuição balanceada entre força (34%), equilíbrio (25%), mobilidade (21%) e função (20%).",
+            practicalBenefitForElderly = "Adaptação neuromuscular consolidada com manutenção da independência física e vitalidade.",
+            historyPoints = listOf("Jan" to 30f, "Mar" to 62f, "Mai" to 95f, "Jul" to 120f, "Set" to 142f)
+        )
+    )
+
+    private val _evolutionMetrics = MutableStateFlow(defaultEvolutionMetrics)
+    val evolutionMetrics: StateFlow<List<EvolutionMetricItem>> = _evolutionMetrics.asStateFlow()
+
+    private val defaultTrophies = listOf(
+        EvolutionTrophy("tr_1", "Super Força 60+", "+40% de força nas pernas conquistados", "💪", "Set/2026"),
+        EvolutionTrophy("tr_2", "Escudo Anti-Quedas", "Mais que dobrou o equilíbrio unipodal (14s)", "🛡️", "Ago/2026"),
+        EvolutionTrophy("tr_3", "Pegada Forte", "Preensão palmar protetora contra sarcopenia (22.5 kgf)", "✊", "Set/2026"),
+        EvolutionTrophy("tr_4", "Constância de Ouro", "7 semanas consecutivas com 92% de frequência", "⭐", "Set/2026")
+    )
+
+    private val _evolutionTrophies = MutableStateFlow(defaultTrophies)
+    val evolutionTrophies: StateFlow<List<EvolutionTrophy>> = _evolutionTrophies.asStateFlow()
+
     companion object {
         val instance = AppRepository()
     }

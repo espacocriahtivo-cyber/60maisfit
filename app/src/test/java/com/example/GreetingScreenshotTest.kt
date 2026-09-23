@@ -2,6 +2,9 @@ package com.example
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onFirst
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performScrollTo
@@ -45,22 +48,24 @@ class GreetingScreenshotTest {
         }
 
         // Verify that the requested header texts are present
-        composeTestRule.onNodeWithText("Tela inicial").assertIsDisplayed()
+        composeTestRule.onNodeWithTag("home_top_screen_badge").assertIsDisplayed()
         composeTestRule.onNodeWithText("60+fit").assertIsDisplayed()
         composeTestRule.onNodeWithText("Musculação e Funcionalidade").assertIsDisplayed()
         composeTestRule.onNodeWithText("Movimento, força e autonomia para envelhecer com mais segurança.").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Menu principal:").assertIsDisplayed()
+        composeTestRule.onNodeWithText("Opções e recursos:").assertIsDisplayed()
 
-        // Verify the 9 menu options exist
-        composeTestRule.onNodeWithText("Meu Perfil").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Minha Avaliação").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Meu Treino").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Biblioteca de Exercícios").assertIsDisplayed()
-        composeTestRule.onNodeWithText("Minha Evolução").performScrollTo().assertIsDisplayed()
-        composeTestRule.onNodeWithText("Minha Saúde").performScrollTo().assertIsDisplayed()
-        composeTestRule.onNodeWithText("Meu Plano").performScrollTo().assertIsDisplayed()
-        composeTestRule.onNodeWithText("Notificações").performScrollTo().assertIsDisplayed()
-        composeTestRule.onNodeWithText("Fale com o Profissional").performScrollTo().assertIsDisplayed()
+        // Verify menu options exist
+        composeTestRule.onNodeWithTag("menu_item_safety_check").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_profile").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_assessment").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_workout").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_condition_workouts").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_video_library").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_evolution").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_health").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_plans").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_reminders").performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithTag("menu_item_contact_professional").performScrollTo().assertIsDisplayed()
 
         composeTestRule.onRoot().captureRoboImage(filePath = "src/test/screenshots/greeting.png")
     }

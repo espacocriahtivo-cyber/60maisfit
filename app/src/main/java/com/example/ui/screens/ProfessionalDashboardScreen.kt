@@ -35,6 +35,7 @@ import androidx.compose.material.icons.filled.MedicalServices
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Shield
+import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.FilterChip
@@ -88,6 +89,9 @@ fun ProfessionalDashboardScreen(
     onNavigateToAnamnese: () -> Unit,
     onNavigateToAssessment: () -> Unit,
     onNavigateToWorkout: () -> Unit,
+    onNavigateToVideoLibrary: () -> Unit = {},
+    onNavigateToConditionWorkouts: () -> Unit = {},
+    onNavigateToSafetyCheck: () -> Unit = {},
     onBackClick: () -> Unit,
     onNavigateBottom: (String) -> Unit
 ) {
@@ -111,7 +115,7 @@ fun ProfessionalDashboardScreen(
                 .padding(innerPadding)
         ) {
             TopBarWithBack(
-                title = "Tela 5: Dashboard do Profissional",
+                title = "Dashboard do Profissional",
                 onBackClick = onBackClick
             )
 
@@ -430,6 +434,54 @@ fun ProfessionalDashboardScreen(
                                 onClick = onNavigateToWorkout,
                                 testTag = "btn_pro_adjust_workout"
                             )
+
+                            OutlinedButton(
+                                onClick = onNavigateToConditionWorkouts,
+                                shape = RoundedCornerShape(14.dp),
+                                border = BorderStroke(1.5.dp, FitLimeDark),
+                                modifier = Modifier.fillMaxWidth().testTag("btn_pro_condition_workouts")
+                            ) {
+                                Icon(Icons.Default.MedicalServices, contentDescription = null, modifier = Modifier.size(18.dp), tint = FitLimeDark)
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = "🎯 Treinos por Condição (Tela 8) • Treino Direcionado",
+                                    fontSize = 13.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = FitLimeDark
+                                )
+                            }
+
+                            OutlinedButton(
+                                onClick = onNavigateToSafetyCheck,
+                                shape = RoundedCornerShape(14.dp),
+                                border = BorderStroke(1.5.dp, Color(0xFFDC2626)),
+                                modifier = Modifier.fillMaxWidth().testTag("btn_pro_safety_check")
+                            ) {
+                                Icon(Icons.Default.Shield, contentDescription = null, modifier = Modifier.size(18.dp), tint = Color(0xFFDC2626))
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = "🛡️ Sistema de Segurança (Tela 9) • Atenção Pré-Treino",
+                                    fontSize = 13.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFFDC2626)
+                                )
+                            }
+
+                            OutlinedButton(
+                                onClick = onNavigateToVideoLibrary,
+                                shape = RoundedCornerShape(14.dp),
+                                border = BorderStroke(1.5.dp, FitLimeDark),
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Icon(Icons.Default.Videocam, contentDescription = null, modifier = Modifier.size(18.dp), tint = FitLimeDark)
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(
+                                    text = "Biblioteca de Vídeos (Tela 7) • Filtros Clínicos",
+                                    fontSize = 13.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = FitLimeDark
+                                )
+                            }
 
                             Row(
                                 modifier = Modifier.fillMaxWidth(),

@@ -157,4 +157,147 @@ class ExampleRobolectricTest {
         assertEquals("https://meudominio.com.br/api/api.php", updated.serverUrl)
         assertEquals("custom_secret_123", updated.apiToken)
     }
+
+    @Test
+    fun `safety system Tela 9 initializes with 7 pre-workout symptoms and records checks`() {
+        val repository = AppRepository()
+        val symptoms = repository.safetySymptoms.value
+        assertEquals(7, symptoms.size)
+        assertTrue(symptoms.any { it.title.contains("Tontura", ignoreCase = true) })
+        assertTrue(symptoms.any { it.title.contains("Dor no peito", ignoreCase = true) })
+        assertTrue(symptoms.any { it.title.contains("Falta de ar", ignoreCase = true) })
+        assertTrue(symptoms.any { it.title.contains("Mal-estar", ignoreCase = true) })
+        assertTrue(symptoms.any { it.title.contains("Queda", ignoreCase = true) })
+        assertTrue(symptoms.any { it.title.contains("Dor intensa", ignoreCase = true) })
+        assertTrue(symptoms.any { it.title.contains("Alteração importante", ignoreCase = true) })
+
+        // Record check with symptom (interrupted session)
+        val initialCount = repository.safetyRecords.value.size
+        val record = com.example.data.SafetyCheckRecord(
+            id = "test_check_1",
+            dateFormatted = "24/09/2026 às 08:30",
+            studentName = "Dona Maria Silva",
+            isCleared = false,
+            reportedSymptoms = listOf("Tontura", "Dor no peito"),
+            recommendationText = "Sessão interrompida. Procure atendimento médico."
+        )
+        repository.recordSafetyCheck(record)
+        assertEquals(initialCount + 1, repository.safetyRecords.value.size)
+        assertEquals(false, repository.safetyRecords.value.first().isCleared)
+    }
+
+    @Test
+    fun `Tela 10 evolution tracks all 9 required metrics from first assessment`() {
+        val repository = AppRepository()
+        val metrics = repository.evolutionMetrics.value
+
+        assertEquals(9, metrics.size)
+
+        // 1. Peso
+        val peso = metrics.find { it.category == com.example.data.EvolutionMetricCategory.WEIGHT }
+        assertNotNull(peso)
+        assertTrue(peso!!.firstAssessmentValue.contains("65.0"))
+        assertTrue(peso.currentAssessmentValue.contains("62.0"))
+
+        // 2. Força
+        val forca = metrics.find { it.category == com.example.data.EvolutionMetricCategory.STRENGTH }
+        assertNotNull(forca)
+        assertTrue(forca!!.deltaPercentage.contains("+40"))
+
+        // 3. Preensão palmar
+        val preensao = metrics.find { it.category == com.example.data.EvolutionMetricCategory.HANDGRIP }
+        assertNotNull(preensao)
+        assertTrue(preensao!!.currentAssessmentValue.contains("22.5"))
+
+        // 4. Equilíbrio
+        val equilibrio = metrics.find { it.category == com.example.data.EvolutionMetricCategory.BALANCE }
+        assertNotNull(equilibrio)
+        assertTrue(equilibrio!!.deltaPercentage.contains("+133"))
+
+        // 5. Marcha
+        val marcha = metrics.find { it.category == com.example.data.EvolutionMetricCategory.GAIT }
+        assertNotNull(marcha)
+        assertTrue(marcha!!.currentAssessmentValue.contains("1.07"))
+
+        // 6. Flexibilidade
+        val flex = metrics.find { it.category == com.example.data.EvolutionMetricCategory.FLEXIBILITY }
+        assertNotNull(flex)
+        assertTrue(flex!!.deltaValue.contains("+8.0"))
+
+        // 7. Medidas corporais
+        val medidas = metrics.find { it.category == com.example.data.EvolutionMetricCategory.BODY_MEASUREMENTS }
+        assertNotNull(medidas)
+        assertTrue(medidas!!.currentAssessmentValue.contains("Panturrilha"))
+
+        // 8. Frequência de treino
+        val freq = metrics.find { it.category == com.example.data.EvolutionMetricCategory.FREQUENCY }
+        assertNotNull(freq)
+        assertTrue(freq!!.currentAssessmentValue.contains("92%"))
+
+        // 9. Exercícios realizados
+        val exercicios = metrics.find { it.category == com.example.data.EvolutionMetricCategory.COMPLETED_EXERCISES }
+        assertNotNull(exercicios)
+        assertTrue(exercicios!!.currentAssessmentValue.contains("142"))
+
+        // Trophies
+        val trophies = repository.evolutionTrophies.value
+        assertTrue(trophies.isNotEmpty())
+    }
+
+    @Test
+    fun `Tela 11 payment system supports all required plans billing periods and payment methods`() {
+        val repository = AppRepository()
+        val plans = repository.plans.value
+
+        // Verify 3-tier product structure
+        assertEquals(3, plans.size)
+        val essencial = plans.find { it.id == "plan_essencial" }
+        val geronto = plans.find { it.id == "plan_gerontologico" }
+        val premium = plans.find { it.id == "plan_premium" }
+
+        assertNotNull(essencial)
+        assertNotNull(geronto)
+        assertNotNull(premium)
+
+        assertEquals("60+fit Essencial", essencial!!.name)
+        assertEquals(79.90, essencial.monthlyPrice, 0.01)
+
+        assertEquals("60+fit Gerontológico", geronto!!.name)
+        assertEquals(129.90, geronto.monthlyPrice, 0.01)
+
+        assertEquals("60+fit Premium", premium!!.name)
+        assertEquals(199.90, premium.monthlyPrice, 0.01)
+
+        // Test billing period discounts and total calculations
+        val (mensalTotal, _) = essencial.calculatePrice(com.example.data.BillingPeriod.MENSAL)
+        assertEquals(79.90, mensalTotal, 0.01)
+
+        val (trimestralTotal, trimestralMonthly) = essencial.calculatePrice(com.example.data.BillingPeriod.TRIMESTRAL)
+        assertEquals(79.90 * 0.90 * 3, trimestralTotal, 0.01)
+        assertEquals(79.90 * 0.90, trimestralMonthly, 0.01)
+
+        val (anualTotal, anualMonthly) = essencial.calculatePrice(com.example.data.BillingPeriod.ANUAL)
+        assertEquals(79.90 * 0.75 * 12, anualTotal, 0.01)
+        assertEquals(79.90 * 0.75, anualMonthly, 0.01)
+
+        // Test subscribeToPlan with Pix Automático / Recorrente
+        repository.subscribeToPlan(
+            planId = "plan_gerontologico",
+            period = com.example.data.BillingPeriod.SEMESTRAL,
+            method = com.example.data.PaymentMethod.PIX_AUTOMATICO
+        )
+
+        val sub = repository.userSubscription.value
+        assertEquals("60+fit Gerontológico", sub.planName)
+        assertEquals("plan_gerontologico", sub.planId)
+        assertEquals(com.example.data.BillingPeriod.SEMESTRAL, sub.billingPeriod)
+        assertEquals(com.example.data.PaymentMethod.PIX_AUTOMATICO, sub.paymentMethod)
+        assertTrue(sub.status.startsWith("Ativa"))
+        assertTrue(sub.currentBillingAmount.contains("R$"))
+
+        // Test subscription cancellation
+        repository.cancelSubscription()
+        assertTrue(repository.userSubscription.value.status.startsWith("Cancelada"))
+        assertEquals(false, repository.userSubscription.value.autoRenew)
+    }
 }

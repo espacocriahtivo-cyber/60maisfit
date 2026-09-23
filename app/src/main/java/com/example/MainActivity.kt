@@ -66,6 +66,7 @@ import com.example.data.UserSubscription
 import com.example.data.UserType
 import com.example.ui.components.AccessibilityDialog
 import com.example.ui.screens.AnamneseScreen
+import com.example.ui.screens.ConditionWorkoutsScreen
 import com.example.ui.screens.EvolutionScreen
 import com.example.ui.screens.ExerciseActiveScreen
 import com.example.ui.screens.HealthScreen
@@ -79,9 +80,11 @@ import com.example.ui.screens.ProfessionalScreen
 import com.example.ui.screens.RegisterScreen
 import com.example.ui.screens.RemindersScreen
 import com.example.ui.screens.RoleSelectionScreen
+import com.example.ui.screens.SafetyCheckScreen
 import com.example.ui.screens.SplashScreen
 import com.example.ui.screens.StudentHomeScreen
 import com.example.ui.screens.StudentProfileScreen
+import com.example.ui.screens.VideoLibraryScreen
 import com.example.ui.screens.WorkoutPrescriptionScreen
 import com.example.ui.screens.WorkoutScreen
 import com.example.ui.theme.FitLime
@@ -172,31 +175,39 @@ fun MainAppNavigation(
     val weightHistory by repository.weightHistory.collectAsState()
     val selectedStudentId by repository.selectedStudentId.collectAsState()
     val currentPrescription by repository.currentPrescription.collectAsState()
+    val videoExercises by repository.videoExercises.collectAsState()
+    val conditionProtocols by repository.conditionProtocols.collectAsState()
+    val safetySymptoms by repository.safetySymptoms.collectAsState()
+    val safetyRecords by repository.safetyRecords.collectAsState()
+    val evolutionMetrics by repository.evolutionMetrics.collectAsState()
+    val evolutionTrophies by repository.evolutionTrophies.collectAsState()
 
     var showAccessibilityDialog by remember { mutableStateOf(false) }
     var showCatalogSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     val allScreensList = listOf(
-        ScreenCatalogItem("1", "Tela 1: Splash / Início", "Banner heroico, logo 60+ FIT e 'Começar'", "splash"),
-        ScreenCatalogItem("2", "Tela 2: Menu Principal (9 opções)", "Musculação e Funcionalidade • 9 atalhos", "main_menu"),
+        ScreenCatalogItem("1", "Splash / Início", "Banner heroico, logo 60+ FIT e 'Começar'", "splash"),
+        ScreenCatalogItem("2", "Menu Principal", "Acesso rápido às funcionalidades", "main_menu"),
         ScreenCatalogItem("2b", "Login", "E-mail, senha, entrar, esqueceu e perfis", "login"),
-        ScreenCatalogItem("3", "Tela 3: Anamnese Gerontológica", "Saúde, cirurgias, medicamentos, dor, sono e comorbidades", "anamnese"),
-        ScreenCatalogItem("4", "Tela 4: Avaliação Física", "Obrigatórios, IMC, Perimetria, Dobras, AGA e Comparativo", "physical_assessment"),
+        ScreenCatalogItem("3", "Anamnese Gerontológica", "Saúde, cirurgias, medicamentos, dor, sono e comorbidades", "anamnese"),
+        ScreenCatalogItem("4", "Avaliação Física", "Obrigatórios, IMC, Perimetria, Dobras, AGA e Comparativo", "physical_assessment"),
         ScreenCatalogItem("4b", "Escolha de Papel", "Aluno 60+ ou Profissional com avatares", "role_selection"),
-        ScreenCatalogItem("5", "Tela 5: Dashboard do Profissional", "Status Funcional: Força, Mobilidade, Equilíbrio, Marcha, Quedas e Gráficos", "professional_dashboard"),
+        ScreenCatalogItem("5", "Dashboard do Profissional", "Status Funcional: Força, Mobilidade, Equilíbrio, Marcha, Quedas e Gráficos", "professional_dashboard"),
         ScreenCatalogItem("5b", "Cadastro do Aluno", "Dados pessoais, profissionais, plano e frequência", "student_profile"),
-        ScreenCatalogItem("6", "Tela 6: Prescrição de Treino", "Sequências 1 a 6: Mobilidade, Alongamento, Força, Funcional, Equilíbrio e Prevenção", "workout_prescription"),
-        ScreenCatalogItem("7", "Tela 7: Avaliação Física (Atalho)", "Avaliação física com histórico e comparativo", "physical_assessment"),
-        ScreenCatalogItem("8", "Tela 8: Tela Inicial (60+fit)", "Musculação e Funcionalidade • Menu principal (9 opções)", "student_home"),
-        ScreenCatalogItem("9", "Tela 9: Treino de Hoje", "Treino A, lista de exercícios e 'Iniciar Treino'", "workout_overview"),
-        ScreenCatalogItem("10", "Tela 10: Vídeo e Execução Ativa", "Player de vídeo, áudio-guia e descanso", "exercise_active/ex_2"),
-        ScreenCatalogItem("11", "Tela 11: Minha Saúde", "Cardíaco, pressão, oxigênio e novos dados", "health"),
-        ScreenCatalogItem("12", "Tela 12: Minha Evolução", "Abas [Peso, Força, Equilíbrio], gráfico e troféu", "evolution"),
-        ScreenCatalogItem("13", "Tela 13: Lembretes", "Switches de horário para água, treino e remédios", "reminders"),
-        ScreenCatalogItem("14", "Tela 14: Planos e Pagamento", "Gratuito, Essencial, Premium e Personalizado", "plans"),
-        ScreenCatalogItem("15", "Tela 15: Área do Profissional", "Gestão de alunos, avaliações e prescrição", "professional_area"),
-        ScreenCatalogItem("16", "Tela 16: Banco Hostinger (MySQL)", "Configurar API PHP, testar conexão e sincronizar", "hostinger_config")
+        ScreenCatalogItem("6", "Prescrição de Treino", "Sequências 1 a 6: Mobilidade, Alongamento, Força, Funcional, Equilíbrio e Prevenção", "workout_prescription"),
+        ScreenCatalogItem("7", "Biblioteca de Vídeos (10s)", "Diferencial 60+fit: Vídeos de 10s com filtros por objetivo, região, comorbidade e nível", "video_library"),
+        ScreenCatalogItem("8", "Treinos por Condição", "Área 'Treino direcionado': Hipertensão, Diabetes, Parkinson, AVC, etc.", "condition_workouts"),
+        ScreenCatalogItem("8b", "Início do Aluno (60+ FIT)", "Musculação e Funcionalidade • Painel principal", "student_home"),
+        ScreenCatalogItem("9", "Sistema de Segurança", "Atenção antes do treino: Tontura, dor no peito, falta de ar, mal-estar e quedas", "safety_check"),
+        ScreenCatalogItem("9b", "Treino de Hoje", "Treino A, lista de exercícios e 'Iniciar Treino'", "workout_overview"),
+        ScreenCatalogItem("10", "Evolução do Aluno", "Sua evolução desde a primeira avaliação: Peso, Força, Preensão, Equilíbrio, Marcha, Flexibilidade e Medidas", "evolution"),
+        ScreenCatalogItem("10b", "Execução Ativa do Exercício", "Player de vídeo, áudio-guia e descanso", "exercise_active/ex_2"),
+        ScreenCatalogItem("11", "Minha Saúde", "Sinais vitais: batimentos, pressão arterial e saturação", "health"),
+        ScreenCatalogItem("12", "Lembretes e Hábitos", "Horários para água, treino e remédios", "reminders"),
+        ScreenCatalogItem("13", "Planos e Pagamento", "60+fit Essencial, Gerontológico e Premium", "plans"),
+        ScreenCatalogItem("14", "Área do Profissional", "Gestão de alunos, avaliações e prescrição", "professional_area"),
+        ScreenCatalogItem("15", "Banco Hostinger (MySQL)", "Configurar API PHP, testar conexão e sincronizar", "hostinger_config")
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -207,7 +218,7 @@ fun MainAppNavigation(
             // Tela 1: Splash (Como estava originalmente, com hero banner e botão Começar)
             composable("splash") {
                 SplashScreen(
-                    onStartClick = { navController.navigate("main_menu") },
+                    onStartClick = { navController.navigate("student_home") },
                     onAccessibilityClick = { showAccessibilityDialog = true }
                 )
             }
@@ -281,7 +292,10 @@ fun MainAppNavigation(
                     getFunctionalProfile = { repository.getFunctionalProfileForStudent(it) },
                     onNavigateToAnamnese = { navController.navigate("anamnese") },
                     onNavigateToAssessment = { navController.navigate("physical_assessment") },
-                    onNavigateToWorkout = { navController.navigate("workout_overview") },
+                    onNavigateToWorkout = { navController.navigate("workout_prescription") },
+                    onNavigateToConditionWorkouts = { navController.navigate("condition_workouts") },
+                    onNavigateToSafetyCheck = { navController.navigate("safety_check") },
+                    onNavigateToVideoLibrary = { navController.navigate("video_library") },
                     onBackClick = { navController.popBackStack() },
                     onNavigateBottom = { route ->
                         if (route == "profile") {
@@ -300,7 +314,10 @@ fun MainAppNavigation(
                     getFunctionalProfile = { repository.getFunctionalProfileForStudent(it) },
                     onNavigateToAnamnese = { navController.navigate("anamnese") },
                     onNavigateToAssessment = { navController.navigate("physical_assessment") },
-                    onNavigateToWorkout = { navController.navigate("workout_overview") },
+                    onNavigateToWorkout = { navController.navigate("workout_prescription") },
+                    onNavigateToConditionWorkouts = { navController.navigate("condition_workouts") },
+                    onNavigateToSafetyCheck = { navController.navigate("safety_check") },
+                    onNavigateToVideoLibrary = { navController.navigate("video_library") },
                     onBackClick = { navController.popBackStack() },
                     onNavigateBottom = { route ->
                         if (route == "profile") {
@@ -320,6 +337,9 @@ fun MainAppNavigation(
                     onNavigateToAnamnese = { navController.navigate("anamnese") },
                     onNavigateToAssessment = { navController.navigate("physical_assessment") },
                     onNavigateToWorkout = { navController.navigate("workout_prescription") },
+                    onNavigateToConditionWorkouts = { navController.navigate("condition_workouts") },
+                    onNavigateToSafetyCheck = { navController.navigate("safety_check") },
+                    onNavigateToVideoLibrary = { navController.navigate("video_library") },
                     onBackClick = { navController.popBackStack() },
                     onNavigateBottom = { route ->
                         if (route == "profile") {
@@ -353,7 +373,9 @@ fun MainAppNavigation(
                     onSavePrescription = { updatedPrescription ->
                         repository.updatePrescription(updatedPrescription)
                     },
-                    onPreviewWorkout = { navController.navigate("workout_overview") }
+                    onPreviewWorkout = { navController.navigate("workout_overview") },
+                    onOpenVideoLibrary = { navController.navigate("video_library") },
+                    onOpenConditionWorkouts = { navController.navigate("condition_workouts") }
                 )
             }
             composable("tela_6") {
@@ -364,7 +386,9 @@ fun MainAppNavigation(
                     onSavePrescription = { updatedPrescription ->
                         repository.updatePrescription(updatedPrescription)
                     },
-                    onPreviewWorkout = { navController.navigate("workout_overview") }
+                    onPreviewWorkout = { navController.navigate("workout_overview") },
+                    onOpenVideoLibrary = { navController.navigate("video_library") },
+                    onOpenConditionWorkouts = { navController.navigate("condition_workouts") }
                 )
             }
 
@@ -392,7 +416,7 @@ fun MainAppNavigation(
                 )
             }
 
-            // Tela 4 / Tela 7: Avaliação Física
+            // Tela 4: Avaliação Física
             composable("physical_assessment") {
                 PhysicalAssessmentScreen(
                     assessment = assessment,
@@ -425,19 +449,77 @@ fun MainAppNavigation(
                 )
             }
 
-            // Tela 8: Tela Inicial (60+fit)
+            // Tela 7: Biblioteca de Vídeos (10 segundos)
+            composable("video_library") {
+                VideoLibraryScreen(
+                    videos = videoExercises,
+                    onBackClick = { navController.popBackStack() },
+                    onAddExerciseToWorkout = { ex ->
+                        repository.addVideoExerciseToActiveWorkout(ex)
+                    },
+                    onToggleFavorite = { id ->
+                        repository.toggleFavoriteVideoExercise(id)
+                    }
+                )
+            }
+
+            composable("tela_7") {
+                VideoLibraryScreen(
+                    videos = videoExercises,
+                    onBackClick = { navController.popBackStack() },
+                    onAddExerciseToWorkout = { ex ->
+                        repository.addVideoExerciseToActiveWorkout(ex)
+                    },
+                    onToggleFavorite = { id ->
+                        repository.toggleFavoriteVideoExercise(id)
+                    }
+                )
+            }
+
+            // Tela 8: Treinos por Condição (Treino Direcionado: Hipertensão, Diabetes tipo 2, Osteoporose, etc.)
+            composable("condition_workouts") {
+                ConditionWorkoutsScreen(
+                    protocols = conditionProtocols,
+                    onBackClick = { navController.popBackStack() },
+                    onStartWorkout = { protocol ->
+                        repository.prescribeConditionProtocol(protocol)
+                        navController.navigate("workout_overview")
+                    },
+                    onNavigateToVideoLibrary = { _ ->
+                        navController.navigate("video_library")
+                    }
+                )
+            }
+
+            composable("tela_8") {
+                ConditionWorkoutsScreen(
+                    protocols = conditionProtocols,
+                    onBackClick = { navController.popBackStack() },
+                    onStartWorkout = { protocol ->
+                        repository.prescribeConditionProtocol(protocol)
+                        navController.navigate("workout_overview")
+                    },
+                    onNavigateToVideoLibrary = { _ ->
+                        navController.navigate("video_library")
+                    }
+                )
+            }
+
+            // Tela Inicial do Aluno (60+fit)
             composable("student_home") {
                 StudentHomeScreen(
                     profile = currentStudent,
                     onProfileClick = { navController.navigate("student_profile") },
                     onAssessmentClick = { navController.navigate("physical_assessment") },
-                    onWorkoutClick = { navController.navigate("workout_overview") },
-                    onExercisesClick = { navController.navigate("exercise_active/ex_2") },
+                    onWorkoutClick = { navController.navigate("safety_check") },
+                    onConditionWorkoutsClick = { navController.navigate("condition_workouts") },
+                    onSafetyCheckClick = { navController.navigate("safety_check") },
+                    onExercisesClick = { navController.navigate("video_library") },
                     onEvolutionClick = { navController.navigate("evolution") },
                     onHealthClick = { navController.navigate("health") },
                     onPlansClick = { navController.navigate("plans") },
                     onNotificationsClick = { navController.navigate("reminders") },
-                    onStartWorkoutClick = { navController.navigate("workout_overview") },
+                    onStartWorkoutClick = { navController.navigate("safety_check") },
                     onProgressClick = { navController.navigate("evolution") },
                     onRemindersClick = { navController.navigate("reminders") },
                     onAccessibilityClick = { showAccessibilityDialog = true },
@@ -449,7 +531,34 @@ fun MainAppNavigation(
                 )
             }
 
-            // Tela 9: Treino de Hoje
+            // Tela 9: Sistema de Segurança — Atenção antes do treino
+            composable("safety_check") {
+                SafetyCheckScreen(
+                    symptoms = safetySymptoms,
+                    records = safetyRecords,
+                    studentProfile = currentStudent,
+                    onBackClick = { navController.popBackStack() },
+                    onProceedToWorkout = { navController.navigate("workout_overview") },
+                    onSaveRecord = { record ->
+                        repository.recordSafetyCheck(record)
+                    }
+                )
+            }
+
+            composable("tela_9") {
+                SafetyCheckScreen(
+                    symptoms = safetySymptoms,
+                    records = safetyRecords,
+                    studentProfile = currentStudent,
+                    onBackClick = { navController.popBackStack() },
+                    onProceedToWorkout = { navController.navigate("workout_overview") },
+                    onSaveRecord = { record ->
+                        repository.recordSafetyCheck(record)
+                    }
+                )
+            }
+
+            // Tela 9b / Treino de Hoje
             composable("workout_overview") {
                 WorkoutScreen(
                     workout = workout,
@@ -460,7 +569,8 @@ fun MainAppNavigation(
                     onStartWorkoutClick = {
                         val firstExerciseId = workout.exercises.firstOrNull()?.id ?: "ex_1"
                         navController.navigate("exercise_active/$firstExerciseId")
-                    }
+                    },
+                    onSafetyCheckClick = { navController.navigate("safety_check") }
                 )
             }
 
@@ -497,11 +607,28 @@ fun MainAppNavigation(
                 )
             }
 
-            // Tela 12: Minha Evolução
+            // Tela 10: Evolução (Sua evolução desde a primeira avaliação)
             composable("evolution") {
                 EvolutionScreen(
+                    metrics = evolutionMetrics,
+                    trophies = evolutionTrophies,
                     history = weightHistory,
                     currentWeight = assessment.weightKg,
+                    studentName = currentStudent.name,
+                    onBackClick = { navController.popBackStack() },
+                    onNavigateBottom = { route ->
+                        navController.navigate(route)
+                    }
+                )
+            }
+
+            composable("tela_10") {
+                EvolutionScreen(
+                    metrics = evolutionMetrics,
+                    trophies = evolutionTrophies,
+                    history = weightHistory,
+                    currentWeight = assessment.weightKg,
+                    studentName = currentStudent.name,
                     onBackClick = { navController.popBackStack() },
                     onNavigateBottom = { route ->
                         navController.navigate(route)

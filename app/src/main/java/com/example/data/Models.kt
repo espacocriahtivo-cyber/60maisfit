@@ -309,6 +309,44 @@ data class WeightHistoryPoint(
     val weight: Float
 )
 
+enum class EvolutionMetricCategory(val title: String, val emoji: String) {
+    ALL("Todas as Métricas", "⭐"),
+    WEIGHT("Peso", "📈"),
+    STRENGTH("Força", "💪"),
+    HANDGRIP("Preensão palmar", "✊"),
+    BALANCE("Equilíbrio", "⚖️"),
+    GAIT("Marcha", "🚶"),
+    FLEXIBILITY("Flexibilidade", "🤸"),
+    BODY_MEASUREMENTS("Medidas corporais", "📏"),
+    FREQUENCY("Frequência de treino", "📅"),
+    COMPLETED_EXERCISES("Exercícios realizados", "🏋️")
+}
+
+data class EvolutionMetricItem(
+    val id: String,
+    val category: EvolutionMetricCategory,
+    val title: String,
+    val unit: String,
+    val firstAssessmentValue: String,
+    val currentAssessmentValue: String,
+    val deltaValue: String,
+    val deltaPercentage: String,
+    val isPositiveImprovement: Boolean,
+    val clinicalInterpretation: String,
+    val practicalBenefitForElderly: String,
+    val historyPoints: List<Pair<String, Float>> = emptyList(),
+    val firstAssessmentDate: String = "10/01/2026",
+    val currentAssessmentDate: String = "22/09/2026"
+)
+
+data class EvolutionTrophy(
+    val id: String,
+    val title: String,
+    val subtitle: String,
+    val emoji: String,
+    val dateEarned: String
+)
+
 data class AccessibilityState(
     val largeText: Boolean = false,
     val highContrast: Boolean = false,
@@ -347,4 +385,71 @@ data class WorkoutPrescription(
     val sequences: List<WorkoutSequence> = emptyList(),
     val professionalName: String = "Prof. Dra. Camila Rocha (CREF 098452-G/SP)",
     val date: String = "22/09/2026"
+)
+
+data class VideoExercise(
+    val id: String,
+    val name: String,
+    val videoDurationSeconds: Int = 10,
+    val objective: String, // ex: "força de membros inferiores"
+    val objectiveCategory: String, // "força", "mobilidade", "equilíbrio", "flexibilidade", "funcionalidade", "marcha"
+    val region: String, // "membros inferiores", "membros superiores", "tronco", "corpo inteiro"
+    val conditions: List<String>, // "hipertensão", "diabetes", "osteoporose", "osteoartrite", "Parkinson", "pós-AVC", "sarcopenia", "fragilidade", "alterações respiratórias", "risco de quedas"
+    val level: String, // "iniciante", "intermediário", "avançado"
+    val sets: Int = 3,
+    val reps: String = "10",
+    val restSeconds: Int = 60,
+    val instruction: String,
+    val safetyTips: String = "Mantenha postura ereta, respiração contínua e apoios estáveis.",
+    val keyCues: List<String> = emptyList(),
+    val emoji: String = "🏋️",
+    val sequenceNumber: Int = 3,
+    val isFavorite: Boolean = false
+)
+
+data class DirectedExercise(
+    val id: String,
+    val name: String,
+    val pillar: String,
+    val sets: Int = 3,
+    val repsOrTime: String = "10 reps",
+    val restSeconds: Int = 60,
+    val instruction: String,
+    val clinicalGuideline: String,
+    val emoji: String = "✨"
+)
+
+data class ConditionWorkoutProtocol(
+    val id: String,
+    val conditionName: String,
+    val title: String,
+    val emoji: String,
+    val pillars: List<String>,
+    val clinicalRationale: String,
+    val precautions: String,
+    val targetAudience: String,
+    val exercises: List<DirectedExercise>,
+    val estimatedDurationMinutes: Int = 35
+)
+
+data class PreWorkoutSymptom(
+    val id: String,
+    val title: String,
+    val subtitle: String,
+    val emoji: String,
+    val isEmergency: Boolean = false,
+    val clinicalRiskNote: String
+)
+
+data class SafetyCheckRecord(
+    val id: String = "chk_${System.currentTimeMillis()}",
+    val timestamp: Long = System.currentTimeMillis(),
+    val dateFormatted: String,
+    val studentName: String,
+    val isCleared: Boolean,
+    val reportedSymptoms: List<String> = emptyList(),
+    val bloodPressure: String = "",
+    val heartRate: String = "",
+    val studentNotes: String = "",
+    val recommendationText: String
 )

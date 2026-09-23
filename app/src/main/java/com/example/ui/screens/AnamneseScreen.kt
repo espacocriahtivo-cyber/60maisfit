@@ -150,7 +150,7 @@ fun AnamneseScreen(
             .testTag("anamnese_screen")
     ) {
         TopBarWithBack(
-            title = "Tela 3: Anamnese",
+            title = "Anamnese Gerontológica",
             onBackClick = onBackClick
         )
 
